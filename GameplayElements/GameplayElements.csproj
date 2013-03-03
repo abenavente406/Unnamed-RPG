@@ -87,7 +87,12 @@
     <Compile Include="Managers\EntityManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GameHelperLibrary\GameHelperLibrary.csproj">
+      <Project>{0FC0A4DE-BC3D-4B16-9C78-6AB679C0BC3D}</Project>
+      <Name>GameHelperLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--
