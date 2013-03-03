@@ -73,6 +73,7 @@ namespace FileElements.IO
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
                 throw new Exception("Save Data: Save name not found!");
             }
         }

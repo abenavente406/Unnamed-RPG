@@ -1,5 +1,0 @@
-C:\Users\Anthony Benavente\Downloads\vinull-xtiled-11cd0378ea91\vinull-xtiled-11cd0378ea91\XTiled\bin\Xbox 360\Debug\FuncWorks.XNA.XTiled.dll
-C:\Users\Anthony Benavente\Downloads\vinull-xtiled-11cd0378ea91\vinull-xtiled-11cd0378ea91\XTiled\bin\Xbox 360\Debug\FuncWorks.XNA.XTiled.pdb
-C:\Users\Anthony Benavente\Downloads\vinull-xtiled-11cd0378ea91\vinull-xtiled-11cd0378ea91\XTiled\obj\Xbox 360\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Anthony Benavente\Downloads\vinull-xtiled-11cd0378ea91\vinull-xtiled-11cd0378ea91\XTiled\obj\Xbox 360\Debug\FuncWorks.XNA.XTiled.dll
-C:\Users\Anthony Benavente\Downloads\vinull-xtiled-11cd0378ea91\vinull-xtiled-11cd0378ea91\XTiled\obj\Xbox 360\Debug\FuncWorks.XNA.XTiled.pdb
