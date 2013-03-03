@@ -27,6 +27,14 @@ namespace GameplayElements.Managers
             player = new Player("Anthony", new Vector2(0, 0));
         }
 
+        public void UpdateAll(GameTime gameTime)
+        {
+            UpdatePlayer(gameTime);
+            UpdatePassives(gameTime);
+            UpdateNpcs(gameTime);
+            UpdateMonsters(gameTime);
+        }
+
         public void UpdatePlayer(GameTime gameTime)
         {
             player.Update(gameTime);

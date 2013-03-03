@@ -12,9 +12,14 @@ namespace FileElements.IO
 
         private GraphicsDevice graphics;
 
-        public SpriteSheetManager(ContentManager content, GraphicsDevice graphics)
+        public SpriteSheetManager(GraphicsDevice graphics)
         {
             this.graphics = graphics;
+        }
+
+        public void Initialize(ContentManager content)
+        {
+
         }
     }
 }

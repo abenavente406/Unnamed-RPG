@@ -10,36 +10,53 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace GameHelperLibrary {
+namespace GameHelperLibrary
+{
     public class Image
     {
 
-        #region Properties
-        public Texture2D ImageTexture { get { return _image;  } }
-        public int width  { get { return ImageTexture.Width;  } }
-        public int height { get { return ImageTexture.Height; } }
-        #endregion
-
         private Texture2D _image;
+        private Color tint = Color.White;
+
+        #region Properties
+        public Texture2D ImageTexture { get { return _image; } }
+        public int width { get { return ImageTexture.Width; } }
+        public int height { get { return ImageTexture.Height; } }
+
+        public Color Tint { get { return tint; } }
+        #endregion
 
         /// <summary>
         /// Creates an image that can be easily drawn to the screen
         /// </summary>
         /// <param name="content">Content Manager of game</param>
         /// <param name="assetName">The name of the asset with no extensions</param>
-        public Image(ContentManager content, string assetName) {
+        public Image(ContentManager content, string assetName)
+        {
             _image = content.Load<Texture2D>(assetName);
+            this.tint = Color.White;
+        }
+        public Image(ContentManager content, string assetName, Color tint)
+        {
+            _image = content.Load<Texture2D>(assetName);
+            this.tint = tint;
         }
         /// <summary>
         /// Creates an image that can easily be drawn to the screen.
         /// </summary>
         /// <param name="image"></param>
-        public Image(Texture2D image) {
+        public Image(Texture2D image)
+        {
             _image = image;
         }
 
-        public void Draw(SpriteBatch spriteBatch, float x, float y) {
-            spriteBatch.Draw(_image, new Vector2(x, y), Color.White);
+        public void Draw(SpriteBatch spriteBatch, float x, float y)
+        {
+            Draw(spriteBatch, new Vector2(x, y));
+        }
+        public void Draw(SpriteBatch spriteBatch, Vector2 pos)
+        {
+            spriteBatch.Draw(_image, pos, Color.White);
         }
 
     }
