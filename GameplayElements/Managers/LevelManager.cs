@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using TiledSharp;
 using GameplayElements.Data;
 
 namespace GameplayElements.Managers

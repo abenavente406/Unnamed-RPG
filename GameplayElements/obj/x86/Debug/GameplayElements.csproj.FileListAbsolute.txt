@@ -6,5 +6,3 @@ C:\Users\Anthony Benavente\Git\UnnamedRpg\GameplayElements\obj\x86\Debug\Gamepla
 C:\Users\Anthony Benavente\Git\UnnamedRpg\GameplayElements\obj\x86\Debug\GameplayElements.csprojResolveAssemblyReference.cache
 C:\Users\Anthony Benavente\Git\UnnamedRpg\GameplayElements\bin\x86\Debug\GameHelperLibrary.dll
 C:\Users\Anthony Benavente\Git\UnnamedRpg\GameplayElements\bin\x86\Debug\GameHelperLibrary.pdb
-C:\Users\Anthony Benavente\Git\UnnamedRpg\GameplayElements\bin\x86\Debug\TiledSharp.dll
-C:\Users\Anthony Benavente\Git\UnnamedRpg\GameplayElements\bin\x86\Debug\TiledSharp.pdb
