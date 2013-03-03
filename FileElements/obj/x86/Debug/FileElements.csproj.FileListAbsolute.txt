@@ -1,0 +1,5 @@
+C:\Users\Anthony Benavente\Git\UnnamedRpg\FileElements\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Anthony Benavente\Git\UnnamedRpg\FileElements\bin\x86\Debug\FileElements.dll
+C:\Users\Anthony Benavente\Git\UnnamedRpg\FileElements\bin\x86\Debug\FileElements.pdb
+C:\Users\Anthony Benavente\Git\UnnamedRpg\FileElements\obj\x86\Debug\FileElements.dll
+C:\Users\Anthony Benavente\Git\UnnamedRpg\FileElements\obj\x86\Debug\FileElements.pdb
