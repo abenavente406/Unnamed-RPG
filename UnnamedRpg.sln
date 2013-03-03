@@ -13,10 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileElements", "FileElement
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameplayElements", "GameplayElements\GameplayElements.csproj", "{66744C48-31D1-44AF-802C-5B8754DC47B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTiledExtensions", "XTiledExtensions\XTiledExtensions.csproj", "{AC3FAE00-C94C-4FE3-969F-232241195224}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTiled [Windows]", "XTiled\XTiled [Windows].csproj", "{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameHelperLibrary", "GameHelperLibrary\GameHelperLibrary.csproj", "{0FC0A4DE-BC3D-4B16-9C78-6AB679C0BC3D}"
 EndProject
 Global
@@ -39,14 +35,6 @@ Global
 		{66744C48-31D1-44AF-802C-5B8754DC47B4}.Debug|x86.Build.0 = Debug|x86
 		{66744C48-31D1-44AF-802C-5B8754DC47B4}.Release|x86.ActiveCfg = Release|x86
 		{66744C48-31D1-44AF-802C-5B8754DC47B4}.Release|x86.Build.0 = Release|x86
-		{AC3FAE00-C94C-4FE3-969F-232241195224}.Debug|x86.ActiveCfg = Debug|x86
-		{AC3FAE00-C94C-4FE3-969F-232241195224}.Debug|x86.Build.0 = Debug|x86
-		{AC3FAE00-C94C-4FE3-969F-232241195224}.Release|x86.ActiveCfg = Release|x86
-		{AC3FAE00-C94C-4FE3-969F-232241195224}.Release|x86.Build.0 = Release|x86
-		{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}.Debug|x86.ActiveCfg = Debug|x86
-		{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}.Debug|x86.Build.0 = Debug|x86
-		{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}.Release|x86.ActiveCfg = Release|x86
-		{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}.Release|x86.Build.0 = Release|x86
 		{0FC0A4DE-BC3D-4B16-9C78-6AB679C0BC3D}.Debug|x86.ActiveCfg = Debug|x86
 		{0FC0A4DE-BC3D-4B16-9C78-6AB679C0BC3D}.Debug|x86.Build.0 = Debug|x86
 		{0FC0A4DE-BC3D-4B16-9C78-6AB679C0BC3D}.Release|x86.ActiveCfg = Release|x86

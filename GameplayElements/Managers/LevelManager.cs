@@ -10,9 +10,16 @@ namespace GameplayElements.Managers
     {
         public Dictionary<string, Level> levels = new Dictionary<string, Level>();
 
+        private static Level currentLevel;
+
         public LevelManager()
         {
 
+        }
+
+        public static Level GetCurrentLevel()
+        {
+            return currentLevel;
         }
     }
 }

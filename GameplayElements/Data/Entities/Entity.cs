@@ -21,7 +21,7 @@ namespace GameplayElements.Data.Entities
         protected float health = 20.0f;
         protected bool dead = false;
 
-        protected Texture2D avatar;
+        protected Image avatar;
 
         protected Animation movingUp;
         protected Animation movingDown;
@@ -66,17 +66,20 @@ namespace GameplayElements.Data.Entities
 
         public virtual void Draw(SpriteBatch batch, GameTime gameTime)
         {
-
+            avatar.Draw(batch, Position);
         }
 
         public void Attack(Entity target)
         {
-
+            target.Damage(10);
         }
 
         protected void Move(Vector2 newPos)
         {
-
+            if (NoClip)
+            {
+                Position = newPos;
+            }
         }
 
         public void Damage(float damage)

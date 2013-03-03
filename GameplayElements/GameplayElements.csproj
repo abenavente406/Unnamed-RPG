@@ -83,8 +83,10 @@
     <Compile Include="Data\Items\Item.cs" />
     <Compile Include="Data\Items\Potion.cs" />
     <Compile Include="Data\Items\Weapon.cs" />
+    <Compile Include="Data\Level.cs" />
     <Compile Include="Managers\Camera.cs" />
     <Compile Include="Managers\EntityManager.cs" />
+    <Compile Include="Managers\LevelManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
