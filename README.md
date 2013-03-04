@@ -25,3 +25,7 @@ Todo
   - [ ] Other
   - [ ] Well designed levels
 - [ ] Sounds
+
+Credits
+=======
+Thanks to zhong_zhaofeng for the XNA Graphics API Libary. xnagraphics.codeplex/team/view

@@ -59,12 +59,17 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\ProjectData.cs" />
     <Compile Include="Data\SaveData.cs" />
     <Compile Include="IO\SaveDataParser.cs" />
     <Compile Include="IO\SpriteSheetManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Downloads\xnagraphics\xnagraphics\src\RaisingStudio.Xna.Graphics\RaisingStudio.Xna.Graphics.csproj">
+      <Project>{4F3FCA8C-1050-4286-AC21-B06578BE5D12}</Project>
+      <Name>RaisingStudio.Xna.Graphics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GameHelperLibrary\GameHelperLibrary.csproj">
       <Project>{0FC0A4DE-BC3D-4B16-9C78-6AB679C0BC3D}</Project>
       <Name>GameHelperLibrary</Name>

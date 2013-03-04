@@ -10,6 +10,15 @@
       <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Fonts\defaultFont.xnb</Output>
       <Time>2013-03-02T17:55:05.4619355-05:00</Time>
     </Item>
+    <Item>
+      <Source>Test\sword.png</Source>
+      <Name>Test\sword</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Test\sword.xnb</Output>
+      <Time>2013-03-03T22:44:41.3765447-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{23608C31-C2A2-47D3-9AB0-EEA8AFA531FB}</ContentProjectGUID>

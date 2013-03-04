@@ -16,3 +16,8 @@ C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Fi
 C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\GameplayElements.pdb
 C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\GameHelperLibrary.dll
 C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\GameHelperLibrary.pdb
+C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Test\sword.xnb
+C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\FuncWorks.XNA.XTiled.dll
+C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\FuncWorks.XNA.XTiled.pdb
+C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\RaisingStudio.Xna.Graphics.dll
+C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\RaisingStudio.Xna.Graphics.pdb

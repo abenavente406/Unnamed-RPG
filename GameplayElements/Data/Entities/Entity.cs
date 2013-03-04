@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using FileElements.Data;
+using FileElements.IO;
 using GameHelperLibrary;
 
 namespace GameplayElements.Data.Entities
@@ -67,6 +69,15 @@ namespace GameplayElements.Data.Entities
         public virtual void Draw(SpriteBatch batch, GameTime gameTime)
         {
             avatar.Draw(batch, Position);
+            DrawShadow();
+        }
+
+        public void DrawShadow()
+        {
+            ProjectData.Drawer.Begin();
+            ProjectData.Drawer.DrawEllipse(new Vector2(Position.X, Position.Y + SpriteHeight),
+                new Vector2(realWidth, realHeight / 5), new Color(0, 0, 0, 0.3f));
+            ProjectData.Drawer.End();
         }
 
         public void Attack(Entity target)

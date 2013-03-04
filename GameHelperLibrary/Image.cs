@@ -20,8 +20,8 @@ namespace GameHelperLibrary
 
         #region Properties
         public Texture2D ImageTexture { get { return _image; } }
-        public int width { get { return ImageTexture.Width; } }
-        public int height { get { return ImageTexture.Height; } }
+        public int Width { get { return ImageTexture.Width; } }
+        public int Height { get { return ImageTexture.Height; } }
 
         public Color Tint { get { return tint; } }
         #endregion

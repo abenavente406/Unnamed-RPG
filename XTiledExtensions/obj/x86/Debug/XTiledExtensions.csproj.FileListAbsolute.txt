@@ -1,0 +1,4 @@
+C:\Users\Anthony Benavente\Git\UnnamedRpg\XTiledExtensions\bin\x86\Debug\FuncWorks.XNA.XTiledExtensions.dll
+C:\Users\Anthony Benavente\Git\UnnamedRpg\XTiledExtensions\bin\x86\Debug\FuncWorks.XNA.XTiledExtensions.pdb
+C:\Users\Anthony Benavente\Git\UnnamedRpg\XTiledExtensions\obj\x86\Debug\FuncWorks.XNA.XTiledExtensions.dll
+C:\Users\Anthony Benavente\Git\UnnamedRpg\XTiledExtensions\obj\x86\Debug\FuncWorks.XNA.XTiledExtensions.pdb

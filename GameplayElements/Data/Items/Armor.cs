@@ -19,6 +19,9 @@ namespace GameplayElements.Data
         public static Armor armorDiamond = new Armor(ItemMaterial.DIAMOND, "Diamond Armor", 25f, 0x08);
         public static Armor armorHellstone = new Armor(ItemMaterial.HELLSTONE, "Fiery Armor", 20f, 0x09);
 
+        /** Percentage of how much damage is reduced */
+        public float reductionRate = 1.0f;
+
         public Armor(ItemMaterial material, string name, float weight, byte id) :
             base(name, weight, id)
         {

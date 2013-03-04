@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using FileElements.Data;
+using GameplayElements.Data.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace UnnamedRpg
 {
@@ -11,10 +14,18 @@ namespace UnnamedRpg
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        SpriteFont defaultFont;
+
+        ProjectData pj;
+
+        ItemEntity swordPic;
+
         public MainGame()
         {
-            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            FileElements.Data.ProjectData.Graphics = new GraphicsDeviceManager(this);
+
+            pj = new ProjectData(Content);
         }
 
         protected override void Initialize()
@@ -26,6 +37,8 @@ namespace UnnamedRpg
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            
+            swordPic = new ItemEntity(new Vector2(0, 0), Content.Load<Texture2D>("Test\\sword"));
         }
 
         protected override void UnloadContent()
@@ -35,11 +48,17 @@ namespace UnnamedRpg
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            swordPic.pos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin();
+            swordPic.Draw(spriteBatch, gameTime);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
