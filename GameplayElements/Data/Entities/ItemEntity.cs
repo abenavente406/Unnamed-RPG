@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework.Graphics;
 using GameHelperLibrary;
 using FileElements.Data;
 using FileElements.IO;
-using RaisingStudio.Xna.Graphics;
 
 namespace GameplayElements.Data.Entities
 {
@@ -14,8 +13,6 @@ namespace GameplayElements.Data.Entities
     {
         public Vector2 pos;
         protected Image avatar;
-
-        private DrawingBatch drawer;
 
         #region Properties
         public Vector2 Position { get { return pos; } }
@@ -28,9 +25,6 @@ namespace GameplayElements.Data.Entities
         {
             this.pos = pos;
             this.avatar = new Image(avatar);
-
-            drawer = new DrawingBatch(ProjectData.Graphics.GraphicsDevice);
-
         }
 
         public void Update(GameTime gameTime)
@@ -41,10 +35,15 @@ namespace GameplayElements.Data.Entities
         public void Draw(SpriteBatch batch, GameTime gametime)
         {
             avatar.Draw(batch, Position);
-            drawer.Begin();
-            drawer.DrawFilledEllipse(new Vector2(pos.X, pos.Y + SpriteHeight), 
+            DrawShadow();
+        }
+
+        private void DrawShadow()
+        {
+            ProjectData.Drawer.Begin();
+            ProjectData.Drawer.DrawFilledEllipse(new Vector2(pos.X, pos.Y + SpriteHeight),
                 new Vector2(SpriteWidth, SpriteWidth / 5), new Color(0, 0, 0, .3f));
-            drawer.End();
+            ProjectData.Drawer.End();
         }
     }
 }

@@ -91,10 +91,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Downloads\xnagraphics\xnagraphics\src\RaisingStudio.Xna.Graphics\RaisingStudio.Xna.Graphics.csproj">
-      <Project>{4F3FCA8C-1050-4286-AC21-B06578BE5D12}</Project>
-      <Name>RaisingStudio.Xna.Graphics</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FileElements\FileElements.csproj">
       <Project>{393FA68D-6AD6-49FB-ADAC-D4F554FB2356}</Project>
       <Name>FileElements</Name>
@@ -102,6 +98,10 @@
     <ProjectReference Include="..\GameHelperLibrary\GameHelperLibrary.csproj">
       <Project>{0FC0A4DE-BC3D-4B16-9C78-6AB679C0BC3D}</Project>
       <Name>GameHelperLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RaisingStudio.Xna.Graphics\RaisingStudio.Xna.Graphics.csproj">
+      <Project>{4F3FCA8C-1050-4286-AC21-B06578BE5D12}</Project>
+      <Name>RaisingStudio.Xna.Graphics</Name>
     </ProjectReference>
     <ProjectReference Include="..\XTiled\XTiled [Windows].csproj">
       <Project>{B2FDF76B-253A-4D65-A622-712DAC4BD2B2}</Project>

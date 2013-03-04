@@ -3,3 +3,4 @@ C:\Users\Anthony Benavente\Git\UnnamedRpg\XTiled\bin\x86\Debug\FuncWorks.XNA.XTi
 C:\Users\Anthony Benavente\Git\UnnamedRpg\XTiled\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Anthony Benavente\Git\UnnamedRpg\XTiled\obj\x86\Debug\FuncWorks.XNA.XTiled.dll
 C:\Users\Anthony Benavente\Git\UnnamedRpg\XTiled\obj\x86\Debug\FuncWorks.XNA.XTiled.pdb
+C:\Users\Anthony Benavente\Git\UnnamedRpg\XTiled\obj\x86\Debug\XTiled [Windows].csprojResolveAssemblyReference.cache

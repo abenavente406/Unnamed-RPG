@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnnamedRpgContent", "UnnamedRpg\UnnamedRpgContent\UnnamedRpgContent.contentproj", "{23608C31-C2A2-47D3-9AB0-EEA8AFA531FB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileElements", "FileElements\FileElements.csproj", "{393FA68D-6AD6-49FB-ADAC-D4F554FB2356}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4F3FCA8C-1050-4286-AC21-B06578BE5D12} = {4F3FCA8C-1050-4286-AC21-B06578BE5D12}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameplayElements", "GameplayElements\GameplayElements.csproj", "{66744C48-31D1-44AF-802C-5B8754DC47B4}"
 EndProject
@@ -19,7 +22,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTiled [Windows]", "XTiled\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTiledExtensions", "XTiledExtensions\XTiledExtensions.csproj", "{AC3FAE00-C94C-4FE3-969F-232241195224}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaisingStudio.Xna.Graphics", "..\..\Downloads\xnagraphics\xnagraphics\src\RaisingStudio.Xna.Graphics\RaisingStudio.Xna.Graphics.csproj", "{4F3FCA8C-1050-4286-AC21-B06578BE5D12}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaisingStudio.Xna.Graphics", "RaisingStudio.Xna.Graphics\RaisingStudio.Xna.Graphics.csproj", "{4F3FCA8C-1050-4286-AC21-B06578BE5D12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

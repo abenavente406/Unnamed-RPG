@@ -23,14 +23,16 @@ namespace UnnamedRpg
         public MainGame()
         {
             Content.RootDirectory = "Content";
-            FileElements.Data.ProjectData.Graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this);
 
-            pj = new ProjectData(Content);
         }
 
         protected override void Initialize()
         {
             base.Initialize();
+
+
+            pj = new ProjectData(Content, graphics);
         }
 
         protected override void LoadContent()
