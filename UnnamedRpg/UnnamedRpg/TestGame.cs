@@ -92,15 +92,15 @@ namespace UnnamedRpg
             /* Unused for now... to advanced */
             //spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp,
             //            null, null, null, camera.get_transformation(GraphicsDevice));
+
+            spriteBatch.Begin();
+            lm.Draw(spriteBatch);
+            spriteBatch.End();
  
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, 
                 DepthStencilState.Default, RasterizerState.CullNone);
-
             new ItemEntity(Vector2.Zero, Content.Load<Texture2D>("Test\\sword")).Draw(spriteBatch, gameTime);
-            lm.Draw(spriteBatch);
-
             em.Draw(spriteBatch, gameTime);
-
             spriteBatch.End();
 
             base.Draw(gameTime);
