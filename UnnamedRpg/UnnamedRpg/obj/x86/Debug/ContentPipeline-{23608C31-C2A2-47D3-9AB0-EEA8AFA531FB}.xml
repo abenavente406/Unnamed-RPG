@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline" xmlns:Processors="Microsoft.Xna.Framework.Content.Pipeline.Processors" xmlns:Framework="Microsoft.Xna.Framework">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
       <Source>Fonts\defaultFont.spritefont</Source>
@@ -11,6 +11,20 @@
       <Time>2013-03-02T17:55:05.4619355-05:00</Time>
     </Item>
     <Item>
+      <Source>Levels\world_1.tmx</Source>
+      <Name>Levels\world_1</Name>
+      <Importer>TMXContentImporter</Importer>
+      <Processor>TMXContentProcessor</Processor>
+      <Parameters>
+        <Data Key="LoadTextures">True</Data>
+        <Data Key="PremultiplyAlpha">True</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Levels\world_1.xnb</Output>
+      <Time>2013-03-04T23:15:34.9296574-05:00</Time>
+      <Request>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Levels\world_1\00.xnb</Request>
+    </Item>
+    <Item>
       <Source>Test\sword.png</Source>
       <Name>Test\sword</Name>
       <Importer>TextureImporter</Importer>
@@ -18,6 +32,32 @@
       <Options>None</Options>
       <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Test\sword.xnb</Output>
       <Time>2013-03-03T22:44:41.3765447-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\EntitySprites.png</Source>
+      <Name>Sprites\EntitySprites</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Sprites\EntitySprites.xnb</Output>
+      <Time>2013-03-04T18:00:08.0929396-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Levels\TileSheets\Spritesheet (Huge).png</Source>
+      <Name>Levels\world_1\00</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="GenerateMipmaps" Type="bool">false</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">Color</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFFFFFF</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Levels\world_1\00.xnb</Output>
+      <Time>2012-12-23T20:17:40-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -55,6 +95,10 @@
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
         <Value>2011-09-01T16:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Users\Anthony Benavente\Git\UnnamedRpg\XTiledExtensions\bin\x86\Debug\FuncWorks.XNA.XTiledExtensions.dll</Key>
+        <Value>2013-03-03T22:35:09.4358316-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>

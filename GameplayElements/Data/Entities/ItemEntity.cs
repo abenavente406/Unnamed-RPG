@@ -6,16 +6,19 @@ using Microsoft.Xna.Framework.Graphics;
 using GameHelperLibrary;
 using FileElements.Data;
 using FileElements.IO;
+using GameplayElements.Managers;
 
 namespace GameplayElements.Data.Entities
 {
     public class ItemEntity
     {
         public Vector2 pos;
+        public Vector2 onScreenPos;
         protected Image avatar;
 
         #region Properties
         public Vector2 Position { get { return pos; } }
+        public Vector2 OnScreenPosition { get { return Camera.Transform(Position); } }
 
         public int SpriteWidth { get { return avatar.Width; } }
         public int SpriteHeight { get { return avatar.Height; } }
@@ -34,14 +37,14 @@ namespace GameplayElements.Data.Entities
 
         public void Draw(SpriteBatch batch, GameTime gametime)
         {
-            avatar.Draw(batch, Position);
+            avatar.Draw(batch, OnScreenPosition);
             DrawShadow();
         }
 
         private void DrawShadow()
         {
             ProjectData.Drawer.Begin();
-            ProjectData.Drawer.DrawFilledEllipse(new Vector2(pos.X, pos.Y + SpriteHeight),
+            ProjectData.Drawer.DrawFilledEllipse(new Vector2(OnScreenPosition.X, OnScreenPosition.Y + SpriteHeight - 4),
                 new Vector2(SpriteWidth, SpriteWidth / 5), new Color(0, 0, 0, .3f));
             ProjectData.Drawer.End();
         }

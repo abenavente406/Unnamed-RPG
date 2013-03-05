@@ -6,17 +6,12 @@ using Microsoft.Xna.Framework;
 
 namespace GameplayElements.Data.Entities.Monsters
 {
-    public class Zombie : Monster
+    public class Ghost : Monster
     {
-        public Zombie(Vector2 pos)
-            : base("Zombie", pos)
+        public Ghost(Vector2 pos)
+            : base("Ghost", pos)
         {
-
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
+            SetTexture(new Vector2(0, 0), "Entity Sprites 1");
         }
     }
 }

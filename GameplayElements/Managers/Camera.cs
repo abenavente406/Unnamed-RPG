@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FileElements.Data;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -9,67 +10,93 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace GameplayElements
+namespace GameplayElements.Managers
 {
     public class Camera
     {
 
-        private int ViewportWidth;
-        private int ViewportHeight;
+        private static int viewportWidth;
+        private static int viewportHeight;
 
-        private Vector2 pos;
-        private Matrix transform;
-
-        protected float zoom;
-        protected float rotation;
+        private static Vector2 pos;
 
         #region Properties
-        public Vector2 Position 
+        public static Vector2 Position 
         {
             get { return pos; }
-            set { pos = value; }
-        }
-        public Matrix Transform 
-        { 
-            get { return transform; }
-            set { transform = value; }
-        }
-
-        public float Zoom
-        {
-            get { return zoom; }
-            set { zoom = value; if (zoom < 0.1f) zoom = 0.1f; }
+            set
+            {
+                pos = Vector2.Clamp(value, Vector2.Zero, new Vector2(LevelManager.GetCurrentLevel().Width,
+                    LevelManager.GetCurrentLevel().Height));
+            }
         }
 
-        public float Rotation
+        public static Rectangle ViewPortRectangle
         {
-            get { return rotation; }
-            set { rotation = MathHelper.WrapAngle(value); }
+            get
+            {
+                return new Rectangle((int)Position.X, (int)Position.Y, viewportWidth, viewportHeight);
+            }
         }
+
         #endregion
 
         public Camera(Vector2 startPos, int viewPortWidth, int viewPortHeight)
         {
             Position = startPos;
-            Rotation = 0.0f;
-            Zoom = 1.0f;
 
-            ViewportWidth = viewPortWidth;
-            ViewportHeight = viewPortHeight;
+            viewportWidth = viewPortWidth;
+            viewportHeight = viewPortHeight;
         }
 
         public void Move(Vector2 amount)
         {
-            pos += amount;
+            if (EntityManager.player.Position.X >= ProjectData.GameWidth / 2)
+                pos.X += amount.X;
+            if (EntityManager.player.Position.Y >= ProjectData.GameHeight / 2)
+                pos.Y += amount.Y;
+
+            pos = Vector2.Clamp(pos, Vector2.Zero, new Vector2(LevelManager.GetCurrentLevel().Width, 
+                LevelManager.GetCurrentLevel().Height));
         }
 
-        public Matrix get_transformation(GraphicsDevice graphicsDevice)
+        public static Vector2 Transform(Vector2 point)
         {
-            transform =  Matrix.CreateTranslation(new Vector3(-pos.X, -pos.Y, 0)) *
-                         Matrix.CreateRotationZ(Rotation) *
-                         Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
-                         Matrix.CreateTranslation(new Vector3(ViewportWidth * 0.5f, ViewportHeight * 0.5f, 0));
-            return transform;
+            return point - Position;
         }
+
+        #region Advanced Camera Functions
+        //private Matrix transform;
+
+        //protected float zoom;
+        //protected float rotation;
+
+        //public Matrix TransformMatrix
+        //{ 
+        //    get { return transform; }
+        //    set { transform = value; }
+        //}
+
+        //public Matrix get_transformation(GraphicsDevice graphicsDevice)
+        //{
+        //    transform = Matrix.CreateTranslation(new Vector3(-pos.X, -pos.Y, 0)) *
+        //                 Matrix.CreateRotationZ(Rotation) *
+        //                 Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
+        //                 Matrix.CreateTranslation(new Vector3(viewportWidth * 0.5f, viewportHeight * 0.5f, 0));
+        //    return transform;
+        //}
+
+        //public float Zoom
+        //{
+        //    get { return zoom; }
+        //    set { zoom = MathHelper.Clamp(value, 0.1f, 3.0f); }
+        //}
+
+        //public float Rotation
+        //{
+        //    get { return rotation; }
+        //    set { rotation = MathHelper.WrapAngle(value); }
+        //}
+        #endregion
     }
 }

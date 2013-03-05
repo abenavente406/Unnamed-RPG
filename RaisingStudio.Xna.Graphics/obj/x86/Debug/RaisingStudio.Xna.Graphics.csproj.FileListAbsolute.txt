@@ -8,3 +8,4 @@ C:\Users\Anthony Benavente\Git\UnnamedRpg\RaisingStudio.Xna.Graphics\bin\x86\Deb
 C:\Users\Anthony Benavente\Git\UnnamedRpg\RaisingStudio.Xna.Graphics\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Anthony Benavente\Git\UnnamedRpg\RaisingStudio.Xna.Graphics\obj\x86\Debug\RaisingStudio.Xna.Graphics.dll
 C:\Users\Anthony Benavente\Git\UnnamedRpg\RaisingStudio.Xna.Graphics\obj\x86\Debug\RaisingStudio.Xna.Graphics.pdb
+C:\Users\Anthony Benavente\Git\UnnamedRpg\RaisingStudio.Xna.Graphics\obj\x86\Debug\RaisingStudio.Xna.Graphics.csprojResolveAssemblyReference.cache

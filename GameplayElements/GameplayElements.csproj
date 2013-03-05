@@ -61,16 +61,8 @@
   <ItemGroup>
     <Compile Include="Data\Entities\Entity.cs" />
     <Compile Include="Data\Entities\ItemEntity.cs" />
-    <Compile Include="Data\Entities\Monsters\Bee.cs" />
-    <Compile Include="Data\Entities\Monsters\Dragon.cs" />
-    <Compile Include="Data\Entities\Monsters\Ghost.cs" />
-    <Compile Include="Data\Entities\Monsters\GiantZombie.cs" />
-    <Compile Include="Data\Entities\Monsters\Golem.cs" />
     <Compile Include="Data\Entities\Monsters\Monster.cs" />
     <Compile Include="Data\Entities\Monsters\Skeleton.cs" />
-    <Compile Include="Data\Entities\Monsters\Slime.cs" />
-    <Compile Include="Data\Entities\Monsters\Spiders.cs" />
-    <Compile Include="Data\Entities\Monsters\Worm.cs" />
     <Compile Include="Data\Entities\Monsters\Zombie.cs" />
     <Compile Include="Data\Entities\NPCs\NPC.cs" />
     <Compile Include="Data\Entities\NPCs\QuestGiver.cs" />
@@ -79,6 +71,8 @@
     <Compile Include="Data\Entities\Passives\Passive.cs" />
     <Compile Include="Data\Entities\Passives\Pig.cs" />
     <Compile Include="Data\Entities\Passives\Sheep.cs" />
+    <Compile Include="Data\Entities\PathFinding\PathFinder.cs" />
+    <Compile Include="Data\Entities\PathFinding\PathNode.cs" />
     <Compile Include="Data\Entities\Player.cs" />
     <Compile Include="Data\Items\Armor.cs" />
     <Compile Include="Data\Items\Item.cs" />

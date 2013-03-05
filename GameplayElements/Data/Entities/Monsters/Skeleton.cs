@@ -11,12 +11,7 @@ namespace GameplayElements.Data.Entities.Monsters
         public Skeleton(Vector2 pos)
             : base("Skeleton", pos)
         {
-
-        }
-
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
-        {
-            base.Update(gameTime);
+            SetTexture(new Vector2(6, 0), "Entity Sprites 1");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FileElements.Data;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using FuncWorks.XNA.XTiled;
@@ -12,12 +13,18 @@ namespace GameplayElements.Data
         public string name;
         private Map map;
 
+        #region Properties
+        public int Width { get { return map.Width * map.TileWidth; } }
+        public int Height { get { return map.Height * map.TileHeight; } }
+        #endregion
+
         public string Name { get { return name; } }
 
         public Level(string name, string location)
         {
             this.name = name;
-            map = LevelManager.content.Load<Map>(location);
+            Map.InitObjectDrawing(ProjectData.Graphics.GraphicsDevice);
+            map = LevelManager.Content.Load<Map>(location);
         }
 
         public void Draw(SpriteBatch batch, Rectangle region)

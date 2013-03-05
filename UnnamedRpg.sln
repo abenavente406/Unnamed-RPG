@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnnamedRpg", "UnnamedRpg\UnnamedRpg\UnnamedRpg.csproj", "{C6FD7128-C5E5-4979-9295-8F222FDE155C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnnamedRpgTest", "UnnamedRpg\UnnamedRpg\UnnamedRpgTest.csproj", "{C6FD7128-C5E5-4979-9295-8F222FDE155C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{66744C48-31D1-44AF-802C-5B8754DC47B4} = {66744C48-31D1-44AF-802C-5B8754DC47B4}
 		{393FA68D-6AD6-49FB-ADAC-D4F554FB2356} = {393FA68D-6AD6-49FB-ADAC-D4F554FB2356}

@@ -10,7 +10,7 @@ namespace UnnamedRpg
         /// </summary>
         static void Main(string[] args)
         {
-            using (MainGame game = new MainGame())
+            using (TestGame game = new TestGame())
             {
                 game.Run();
             }

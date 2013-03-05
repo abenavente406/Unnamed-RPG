@@ -13,11 +13,15 @@ Todo
   - [X] Creating save game system
   - [X] Creating file loading system
   - [ ] Naming the project
-  - [ ] Outline of all (most) classes
+  - [X] Outline of all (most) classes
     - [X] Entity classes
     - [X] Level classes
     - [ ] Item Classes
 - [ ] Functioning Gameplay
+  - [X] Camera
+  - [X] Level Loading System
+  - [ ] Level Changing System
+  - [ ] Transitions
 - [ ] Art
   - [ ] Player
   - [ ] NPCs

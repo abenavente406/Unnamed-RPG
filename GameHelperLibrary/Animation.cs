@@ -36,7 +36,7 @@ namespace GameHelperLibrary {
         /// </summary>
         /// <param name="images">The array of images the animation is made from</param>
         /// <param name="interval">The amount of time between each frame (default: 100f)</param>
-        public Animation(Texture2D[] images, float interval) {
+        public Animation(Texture2D[] images, float interval = 100f) {
             _interval = interval;
             frames = images.Length;
             _images = new Texture2D[frames];

@@ -37,8 +37,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Levels\" />
-    <Folder Include="Sprites\" />
+    <Compile Include="Levels\world_1.tmx">
+      <Name>world_1</Name>
+      <Importer>TMXContentImporter</Importer>
+      <Processor>TMXContentProcessor</Processor>
+      <SubType>Designer</SubType>
+      <ProcessorParameters_LoadTextures>True</ProcessorParameters_LoadTextures>
+      <ProcessorParameters_PremultiplyAlpha>True</ProcessorParameters_PremultiplyAlpha>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Test\sword.png">
@@ -46,6 +52,19 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\EntitySprites.png">
+      <Name>EntitySprites</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XTiledExtensions\XTiledExtensions.csproj">
+      <Project>{AC3FAE00-C94C-4FE3-969F-232241195224}</Project>
+      <Name>XTiledExtensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
