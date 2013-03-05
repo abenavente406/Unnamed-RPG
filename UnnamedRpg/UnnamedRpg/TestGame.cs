@@ -49,8 +49,8 @@ namespace UnnamedRpg
             
             pj = new ProjectData(Content, graphics);
             ssm = new SpriteSheetManager(graphics.GraphicsDevice, Content);
-            em = new EntityManager();
             lm = new LevelManager(Content);
+            em = new EntityManager();
 
             EntityManager.AddMonster(new Skeleton(new Vector2(rand.Next(ProjectData.GameWidth),
                 rand.Next(ProjectData.GameHeight))));
@@ -67,6 +67,7 @@ namespace UnnamedRpg
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
             em.UpdateAll(gameTime);
 
             int dirX = 0;
@@ -99,7 +100,6 @@ namespace UnnamedRpg
  
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, 
                 DepthStencilState.Default, RasterizerState.CullNone);
-            new ItemEntity(Vector2.Zero, Content.Load<Texture2D>("Test\\sword")).Draw(spriteBatch, gameTime);
             em.Draw(spriteBatch, gameTime);
             spriteBatch.End();
 

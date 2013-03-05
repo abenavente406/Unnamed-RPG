@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="200" height="200" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="Spritesheet (Huge)" tilewidth="32" tileheight="32">
-  <image source="TileSheets/Spritesheet (Huge).png" trans="ffffff" width="512" height="512"/>
+ <tileset firstgid="1" name="PathAndObjects_0" tilewidth="32" tileheight="32">
+  <image source="TileSheets/PathAndObjects_0.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="257" name="Castle_2" tilewidth="32" tileheight="32">
+  <image source="TileSheets/Castle_2.png" trans="ffffff" width="512" height="512"/>
  </tileset>
  <layer name="Tile Layer 1" width="200" height="200">
   <data encoding="base64" compression="zlib">
-   eJzt06ESwCAMRMEM+f9/rq0IFRVkgBWrzpx5IyIGAAAAAABHyJ8b3Cxfur9Ap6oBfUDdQRa6f8Jqsw70we2qBr50/4WV9AFz+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHb0AFy4OM8=
+   eJzt1qENgDAURdEvAE8CTABswAgszITUNAhaTUOOOP6Zm7wrIi4AAAAA4KVL+oKhgW3wldzFmcwFSwMb4StTlLvQB0SsyZYcoQ+oGUMfUKMPqKv9LH3AI3eS7Q1sAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD+4AfFGhnM=
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="200" height="200">
+  <data encoding="base64" compression="zlib">
+   eJztxsEJACAMBMHrvyLtQLsyBeSRt8zAwiYAAPxkVbt5IDnVbR4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmHurewYF
+  </data>
+ </layer>
+ <layer name="Collision" width="200" height="200" opacity="0.4">
+  <data encoding="base64" compression="zlib">
+   eJzt0zENAAAIwDDwrwpnHJycfKRNJmERAAB8UrkDhj8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4K4B7CoHlQ==
   </data>
  </layer>
 </map>

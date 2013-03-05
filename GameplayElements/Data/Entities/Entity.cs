@@ -63,8 +63,12 @@ namespace GameplayElements.Data.Entities
         }
         public Vector2 Position
         {
-            get { return pos; }
-            set { pos = value; }
+            get { return pos; } 
+            set
+            {
+                pos = Vector2.Clamp(value, Vector2.Zero, new Vector2(LevelManager.GetCurrentLevel().Width - realWidth,
+                    LevelManager.GetCurrentLevel().Height - realHeight));
+            }
         }
         public virtual float Speed
         {
@@ -121,6 +125,7 @@ namespace GameplayElements.Data.Entities
             }
         }
 
+        public bool IsMoving { get { return isMoving; } }
         public bool NoClip { get { return noClip; } set { noClip = value; } }
         public bool God { get { return god; } set { god = value; } }
         public bool SuperSpeed { get { return superSpeed; } set { superSpeed = value; } }
@@ -132,7 +137,9 @@ namespace GameplayElements.Data.Entities
             Position = pos;
         }
 
-        public abstract void Update(GameTime gameTime);
+        public virtual void Update(GameTime gameTime)
+        {
+        }
 
         #region Draw Methods
         /// <summary>
@@ -201,7 +208,11 @@ namespace GameplayElements.Data.Entities
 
         protected void Move(Vector2 newPos)
         {
-            Position = newPos;
+            Vector2 testPos = new Vector2(newPos.X - realWidth, newPos.Y - realHeight);
+            if (!LevelManager.IsWallTile(newPos))
+                Position = newPos;
+            else
+                isMoving = false;
         }
 
         protected float DistanceTo(Entity from, Entity to)

@@ -40,5 +40,14 @@ namespace GameplayElements.Managers
         {
             currentLevel.Draw(batch, Camera.ViewPortRectangle);
         }
+
+        public static bool IsWallTile(Vector2 pos)
+        {
+            if (pos.X < 0 || pos.Y < 0)
+                return true;
+            else
+                return currentLevel.wallTile[(int)pos.X / currentLevel.TileWidth,
+                    (int)pos.Y / currentLevel.TileHeight];
+        }
     }
 }
