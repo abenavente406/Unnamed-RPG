@@ -83,17 +83,18 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FileElements\FileElements.csproj">
+    <ProjectReference Include="..\..\FileElements\ProjectElements.csproj">
       <Project>{393FA68D-6AD6-49FB-ADAC-D4F554FB2356}</Project>
-      <Name>FileElements</Name>
+      <Name>ProjectElements</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\GameplayElements\GameplayElements.csproj">
       <Project>{66744C48-31D1-44AF-802C-5B8754DC47B4}</Project>
       <Name>GameplayElements</Name>
     </ProjectReference>
     <ProjectReference Include="..\UnnamedRpgContent\UnnamedRpgContent.contentproj">
-      <Name>UnnamedRpgContent</Name>
+      <Name>UnnamedRpgContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
+      <Project>{23608C31-C2A2-47D3-9AB0-EEA8AFA531FB}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -4,8 +4,8 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using GameHelperLibrary;
-using FileElements.Data;
-using FileElements.IO;
+using ProjectElements.Data;
+using ProjectElements.IO;
 using GameplayElements.Managers;
 
 namespace GameplayElements.Data.Entities

@@ -85,9 +85,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FileElements\FileElements.csproj">
+    <ProjectReference Include="..\FileElements\ProjectElements.csproj">
       <Project>{393FA68D-6AD6-49FB-ADAC-D4F554FB2356}</Project>
-      <Name>FileElements</Name>
+      <Name>ProjectElements</Name>
     </ProjectReference>
     <ProjectReference Include="..\GameHelperLibrary\GameHelperLibrary.csproj">
       <Project>{0FC0A4DE-BC3D-4B16-9C78-6AB679C0BC3D}</Project>

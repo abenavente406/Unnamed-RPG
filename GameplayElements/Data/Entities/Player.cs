@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using FileElements.Data;
+using ProjectElements.Data;
 
 namespace GameplayElements.Data.Entities
 {
@@ -16,6 +16,7 @@ namespace GameplayElements.Data.Entities
         public Player(string name, Vector2 pos)
             : base(name, pos)
         {
+            speed = 2.1f;
             SetTexture(new Vector2(3, 0), "Entity Sprites 1");
             onScreenPos = new Vector2(ProjectData.GameWidth / 2,
                 ProjectData.GameHeight / 2);
@@ -57,5 +58,6 @@ namespace GameplayElements.Data.Entities
 
             Move(testPostion);
         }
+
     }
 }

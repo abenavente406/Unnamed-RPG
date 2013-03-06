@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using FileElements.Data;
+using ProjectElements.Data;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using FuncWorks.XNA.XTiled;
@@ -51,6 +51,12 @@ namespace GameplayElements.Data
         public void DrawLayer(SpriteBatch batch, Rectangle region, int layerId)
         {
             map.DrawLayer(batch, layerId, region, 0.0f);
+        }
+
+
+        public TileLayerList GetLayers()
+        {
+            return map.TileLayers;
         }
 
     }

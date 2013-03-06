@@ -38,7 +38,11 @@ namespace GameplayElements.Managers
 
         public void Draw(SpriteBatch batch)
         {
-            currentLevel.Draw(batch, Camera.ViewPortRectangle);
+            foreach (FuncWorks.XNA.XTiled.TileLayer layer in currentLevel.GetLayers())
+            {
+                if (!(layer.Name == "Collision"))
+                    currentLevel.DrawLayer(batch, Camera.ViewPortRectangle, GetCurrentLevel().GetLayers().IndexOf(layer));
+            }
         }
 
         public static bool IsWallTile(Vector2 pos)

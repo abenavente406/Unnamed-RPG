@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using FileElements.Data;
-using FileElements.IO;
+using ProjectElements.Data;
+using ProjectElements.IO;
 using GameplayElements.Managers;
 using GameplayElements.Data.Entities;
 using GameplayElements.Data.Entities.Monsters;
@@ -88,9 +88,9 @@ namespace UnnamedRpg
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
-            /* Unused for now... to advanced */
+            /* Unused for now... too advanced */
             //spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp,
             //            null, null, null, camera.get_transformation(GraphicsDevice));
 
@@ -98,7 +98,7 @@ namespace UnnamedRpg
             lm.Draw(spriteBatch);
             spriteBatch.End();
  
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, 
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, 
                 DepthStencilState.Default, RasterizerState.CullNone);
             em.Draw(spriteBatch, gameTime);
             spriteBatch.End();

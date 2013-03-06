@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using RaisingStudio.Xna.Graphics;
 
-namespace FileElements.Data
+namespace ProjectElements.Data
 {
     public class ProjectData
     {

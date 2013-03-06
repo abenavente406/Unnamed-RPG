@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using GameHelperLibrary;
 
-namespace FileElements.IO
+namespace ProjectElements.IO
 {
     public class SpriteSheetManager
     {
