@@ -16,10 +16,8 @@ namespace GameplayElements.Data.Entities
         public Player(string name, Vector2 pos)
             : base(name, pos)
         {
-            speed = 2.1f;
+            speed = 2f;
             SetTexture(new Vector2(3, 0), "Entity Sprites 1");
-            onScreenPos = new Vector2(ProjectData.GameWidth / 2,
-                ProjectData.GameHeight / 2);
         }
 
         public override void Update(GameTime gameTime)

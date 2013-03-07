@@ -83,7 +83,6 @@ namespace UnnamedRpg
                 dirX++;
 
             camera.Move(new Vector2(dirX * EntityManager.player.Speed, dirY * EntityManager.player.Speed));
-
         }
 
         protected override void Draw(GameTime gameTime)
@@ -91,15 +90,15 @@ namespace UnnamedRpg
             GraphicsDevice.Clear(Color.Black);
 
             /* Unused for now... too advanced */
-            //spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp,
-            //            null, null, null, camera.get_transformation(GraphicsDevice));
+            //spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp,
+            //            DepthStencilState.Default, RasterizerState.CullNone, null, camera.get_transformation(GraphicsDevice));
 
             spriteBatch.Begin();
             lm.Draw(spriteBatch);
             spriteBatch.End();
- 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, 
-                DepthStencilState.Default, RasterizerState.CullNone);
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp,
+                        DepthStencilState.Default, RasterizerState.CullNone);
             em.Draw(spriteBatch, gameTime);
             spriteBatch.End();
 

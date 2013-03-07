@@ -117,7 +117,7 @@ namespace GameplayElements.Data.Entities
             }
         }
 
-        public Vector2 OnScreenPosition
+        public virtual Vector2 OnScreenPosition
         {
             get
             {
@@ -209,7 +209,7 @@ namespace GameplayElements.Data.Entities
         protected void Move(Vector2 newPos)
         {
             Vector2 testPos = new Vector2(newPos.X - realWidth, newPos.Y - realHeight);
-            if (!LevelManager.IsWallTile(newPos))
+            if (!LevelManager.IsWallTile(this))
                 Position = newPos;
             else
                 isMoving = false;

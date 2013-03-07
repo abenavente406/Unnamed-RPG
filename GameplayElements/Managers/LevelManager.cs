@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GameplayElements.Data;
+using GameplayElements.Data.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
@@ -45,13 +46,16 @@ namespace GameplayElements.Managers
             }
         }
 
-        public static bool IsWallTile(Vector2 pos)
+        public static bool IsWallTile(Entity entity)
         {
-            if (pos.X < 0 || pos.Y < 0)
-                return true;
+            if (entity.Position.X < entity.RealWidth || entity.Position.Y < entity.RealHeight)
+                if (entity.Position.X < 0 || entity.Position.Y < 0)
+                    return true;
+                else
+                    return false;
             else
-                return currentLevel.wallTile[(int)pos.X / currentLevel.TileWidth,
-                    (int)pos.Y / currentLevel.TileHeight];
+                return currentLevel.wallTile[(int)(entity.Position.X - entity.SpriteWidth) / currentLevel.TileWidth,
+                    (int)(entity.Position.Y - entity.SpriteHeight) / currentLevel.TileHeight];
         }
     }
 }
