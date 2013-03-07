@@ -5,13 +5,12 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using ProjectElements.Data;
+using GameHelperLibrary;
 
 namespace GameplayElements.Data.Entities
 {
     public class Player : Entity
     {
-
-        private KeyboardState newState;
 
         public Player(string name, Vector2 pos)
             : base(name, pos)
@@ -23,18 +22,16 @@ namespace GameplayElements.Data.Entities
         public override void Update(GameTime gameTime)
         {
 
-            newState = Keyboard.GetState();
-
             int dirX = 0;
             int dirY = 0;
 
-            if (newState.IsKeyDown(Keys.Up))
+            if (InputHandler.KeyDown(Keys.Up))
                 dirY--;
-            if (newState.IsKeyDown(Keys.Down))
+            if (InputHandler.KeyDown(Keys.Down))
                 dirY++;
-            if (newState.IsKeyDown(Keys.Left))
+            if (InputHandler.KeyDown(Keys.Left))
                 dirX--;
-            if (newState.IsKeyDown(Keys.Right))
+            if (InputHandler.KeyDown(Keys.Right))
                 dirX++;
 
             if (dirX < 0)

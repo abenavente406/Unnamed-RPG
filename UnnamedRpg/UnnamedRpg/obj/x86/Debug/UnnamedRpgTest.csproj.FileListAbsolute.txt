@@ -1,4 +1,3 @@
-C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Fonts\defaultFont.xnb
 C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Test\sword.xnb
 C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Sprites\EntitySprites.xnb
 C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\UnnamedRpg.exe
@@ -20,3 +19,5 @@ C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\obj\x86\Debug\Un
 C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Levels\world_1.xnb
 C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Levels\world_1\00.xnb
 C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Levels\world_1\01.xnb
+C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Backgrounds\title.xnb
+C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Fonts\menuFont.xnb

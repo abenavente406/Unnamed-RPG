@@ -2,15 +2,6 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline" xmlns:Processors="Microsoft.Xna.Framework.Content.Pipeline.Processors" xmlns:Framework="Microsoft.Xna.Framework">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>Fonts\defaultFont.spritefont</Source>
-      <Name>Fonts\defaultFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Fonts\defaultFont.xnb</Output>
-      <Time>2013-03-02T17:55:05.4619355-05:00</Time>
-    </Item>
-    <Item>
       <Source>Levels\world_1.tmx</Source>
       <Name>Levels\world_1</Name>
       <Importer>TMXContentImporter</Importer>
@@ -76,6 +67,24 @@
       <Options>None</Options>
       <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Levels\world_1\01.xnb</Output>
       <Time>2013-03-05T15:13:28-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Backgrounds\title.jpg</Source>
+      <Name>Backgrounds\title</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Backgrounds\title.xnb</Output>
+      <Time>2013-03-06T23:39:24.31291-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\menuFont.spritefont</Source>
+      <Name>Fonts\menuFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Fonts\menuFont.xnb</Output>
+      <Time>2013-03-06T23:52:24.9225583-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

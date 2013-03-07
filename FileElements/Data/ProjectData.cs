@@ -14,9 +14,9 @@ namespace ProjectElements.Data
         public static GraphicsDeviceManager Graphics;
         public static ContentManager Content;
 
-        public static int GameWidth = 1280;
-        public static int GameHeight = 720;
-        public static bool isFullScreen = false;
+        public static int GameWidth = 1366;
+        public static int GameHeight = 768;
+        public static bool isFullScreen = true;
 
         public static DrawingBatch Drawer;
 
