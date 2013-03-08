@@ -84,7 +84,43 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Fonts\menuFont.xnb</Output>
-      <Time>2013-03-06T23:52:24.9225583-05:00</Time>
+      <Time>2013-03-07T22:51:58.8949107-05:00</Time>
+    </Item>
+    <Item>
+      <Source>GUI\leftarrowUp.png</Source>
+      <Name>GUI\leftarrowUp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\GUI\leftarrowUp.xnb</Output>
+      <Time>2013-03-07T15:32:03.8890355-05:00</Time>
+    </Item>
+    <Item>
+      <Source>GUI\cursor.png</Source>
+      <Name>GUI\cursor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\GUI\cursor.xnb</Output>
+      <Time>2013-03-07T15:49:05.390462-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\defaultFont.spritefont</Source>
+      <Name>Fonts\defaultFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Fonts\defaultFont.xnb</Output>
+      <Time>2013-03-07T22:51:49.040347-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\titleFont.spritefont</Source>
+      <Name>Fonts\titleFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Fonts\titleFont.xnb</Output>
+      <Time>2013-03-07T23:23:04.9086405-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

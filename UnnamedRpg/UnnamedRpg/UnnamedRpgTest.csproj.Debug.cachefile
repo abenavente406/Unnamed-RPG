@@ -5,3 +5,7 @@ Content\Levels\world_1\00.xnb
 Content\Levels\world_1\01.xnb
 Content\Backgrounds\title.xnb
 Content\Fonts\menuFont.xnb
+Content\GUI\leftarrowUp.xnb
+Content\GUI\cursor.xnb
+Content\Fonts\defaultFont.xnb
+Content\Fonts\titleFont.xnb

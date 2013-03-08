@@ -65,8 +65,9 @@
     <Compile Include="Controls\ControlManager.cs" />
     <Compile Include="Controls\Label.cs" />
     <Compile Include="Controls\LinkLabel.cs" />
-    <Compile Include="GameState.cs" />
-    <Compile Include="GameStateManager.cs" />
+    <Compile Include="Controls\PictureBox.cs" />
+    <Compile Include="States\GameState.cs" />
+    <Compile Include="States\GameStateManager.cs" />
     <Compile Include="InputHandler.cs" />
     <Compile Include="Shapes\DrawableCircle.cs" />
     <Compile Include="Shapes\DrawableRectangle.cs" />
@@ -74,9 +75,7 @@
     <Compile Include="Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="States\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

@@ -17,13 +17,15 @@ namespace UnnamedRpg
     public class TestGame : Microsoft.Xna.Framework.Game
     {
         public GraphicsDeviceManager graphics;
-
         public SpriteBatch spriteBatch;
+
+        public static ProjectData projectData;
 
         GameStateManager stateManager;
 
         public TitleScreen TitleScreen;
         public StartMenuScreen StartMenuScreen;
+        public GamePlayScreen GamePlayScreen;
 
         public readonly Rectangle ScreenRectangle;
 
@@ -39,19 +41,22 @@ namespace UnnamedRpg
 
             ScreenRectangle = new Rectangle(0, 0, ProjectData.GameWidth, ProjectData.GameHeight);
 
+        }
+
+        protected override void Initialize()
+        {
+            projectData = new ProjectData(Content, graphics);
             Components.Add(new InputHandler(this));
 
             stateManager = new GameStateManager(this);
             Components.Add(stateManager);
 
-            TitleScreen = new TitleScreen(this, stateManager);
+            TitleScreen = new GameScreens.TitleScreen(this, stateManager);
             StartMenuScreen = new GameScreens.StartMenuScreen(this, stateManager);
+            GamePlayScreen = new GameScreens.GamePlayScreen(this, stateManager);
 
             stateManager.ChangeState(TitleScreen);
-        }
 
-        protected override void Initialize()
-        {
             base.Initialize();
         }
 
@@ -59,8 +64,7 @@ namespace UnnamedRpg
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-     }
+        }
 
         protected override void UnloadContent()
         {
@@ -70,41 +74,11 @@ namespace UnnamedRpg
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            //em.UpdateAll(gameTime);
-
-            //int dirX = 0;
-            //int dirY = 0;
-
-            //if (InputHandler.KeyDown(Keys.Up))
-            //    dirY--;
-            //if (InputHandler.KeyDown(Keys.Down))
-            //    dirY++;
-            //if (InputHandler.KeyDown(Keys.Left))
-            //    dirX--;
-            //if (InputHandler.KeyDown(Keys.Right))
-            //    dirX++;
-
-            //camera.Move(new Vector2(dirX * EntityManager.player.Speed, dirY * EntityManager.player.Speed));
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-
-            /* Unused for now... too advanced */
-            //spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp,
-            //            DepthStencilState.Default, RasterizerState.CullNone, null, camera.get_transformation(GraphicsDevice));
-
-            //spriteBatch.Begin();
-            //lm.Draw(spriteBatch);
-            //spriteBatch.End();
-
-            //spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp,
-            //            DepthStencilState.Default, RasterizerState.CullNone);
-            //em.Draw(spriteBatch, gameTime);
-            //spriteBatch.End();
-
             base.Draw(gameTime);
         }
     }
