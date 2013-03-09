@@ -1,15 +1,21 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+
 using GameHelperLibrary;
+
 using ProjectElements.Data;
 using ProjectElements.IO;
+
 using GameplayElements.Managers;
 using GameplayElements.Data.Entities;
 using GameplayElements.Data.Entities.Monsters;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 using UnnamedRpg.GameScreens;
 
 namespace UnnamedRpg
@@ -23,9 +29,7 @@ namespace UnnamedRpg
 
         GameStateManager stateManager;
 
-        public TitleScreen TitleScreen;
         public StartMenuScreen StartMenuScreen;
-        public GamePlayScreen GamePlayScreen;
 
         public readonly Rectangle ScreenRectangle;
 
@@ -51,11 +55,9 @@ namespace UnnamedRpg
             stateManager = new GameStateManager(this);
             Components.Add(stateManager);
 
-            TitleScreen = new GameScreens.TitleScreen(this, stateManager);
             StartMenuScreen = new GameScreens.StartMenuScreen(this, stateManager);
-            GamePlayScreen = new GameScreens.GamePlayScreen(this, stateManager);
 
-            stateManager.ChangeState(TitleScreen);
+            stateManager.ChangeState(StartMenuScreen);
 
             base.Initialize();
         }
@@ -64,11 +66,29 @@ namespace UnnamedRpg
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
         }
 
         protected override void UnloadContent()
         {
+            if (SaveDataParser.savedStatus)
+            {
+                StreamWriter lastPerson;
+                lastPerson = File.CreateText(SaveDataParser.myGamesDir + "\\last_person.txt");
 
+                try
+                {
+                    lastPerson.WriteLine(EntityManager.player.Name);
+                }
+                catch (NullReferenceException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+                }
+                finally
+                {
+                    lastPerson.Close();
+                }
+            }
         }
 
         protected override void Update(GameTime gameTime)

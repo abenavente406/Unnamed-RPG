@@ -26,6 +26,10 @@ namespace GameHelperLibrary.Shapes
 
         public int Width  { get { return (int)_size.X; } }
         public int Height { get { return (int)_size.Y; } }
+        public Texture2D Texture
+        {
+            get { return texture; }
+        }
 
         public DrawableRectangle(GraphicsDevice graphics, Vector2 size, Color color, bool filled)
         {
@@ -62,8 +66,10 @@ namespace GameHelperLibrary.Shapes
             return result;
         }
 
-        public void Draw(SpriteBatch batch, Vector2 position)
+        public void Draw(SpriteBatch batch, Vector2 position, Color color)
         {
+            this.color = color;
+
             Position = position;
             batch.Draw(texture, position, color);
         }

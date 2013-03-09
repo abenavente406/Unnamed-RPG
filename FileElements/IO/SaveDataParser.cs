@@ -9,15 +9,18 @@ namespace ProjectElements.IO
 {
     public class SaveDataParser
     {
-        private string saveDir = "";
-        private XmlSerializer serializer;
+        static string saveDir = "";
+        public static string myGamesDir;
+        public static bool savedStatus = false;
+        static XmlSerializer serializer;
 
-        private List<SaveData> saveStates = new List<SaveData>();
+        static List<SaveData> saveStates = new List<SaveData>();
 
         public SaveDataParser()
         {
             string myDocs = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             string myGames = Path.Combine(myDocs, "My Games\\Unnamed RPG");
+            myGamesDir = myGames;
             saveDir = Path.Combine(myGames, "savedata.xml");
 
             if (!Directory.Exists(myGames))
@@ -32,7 +35,7 @@ namespace ProjectElements.IO
                 LoadData();
         }
 
-        public void LoadData()
+        public static void LoadData()
         {
             Stream dataStream = File.Open(saveDir, FileMode.Open);
 
@@ -50,10 +53,23 @@ namespace ProjectElements.IO
             }
         }
 
-        public void SaveState(SaveData saveInfo)
+        public static void SaveState(SaveData saveInfo)
         {
-            saveStates.Add(new SaveData() { Name = saveInfo.Name, Location = saveInfo.Location, Health = saveInfo.Health });
+            bool overridedData = false;
+            savedStatus = true;
 
+            saveStates.ForEach(delegate(SaveData data)
+            {
+                if (saveInfo.Name.Equals(data.Name))
+                {
+                    overridedData = true;
+                    saveStates[saveStates.IndexOf(data)] = saveInfo;
+                }
+            });
+
+            if (!overridedData && saveStates.Count < 5)
+                saveStates.Add(saveInfo);
+					 
             Stream dataStream = File.Open(saveDir, FileMode.Open);
             try
             {
@@ -65,11 +81,11 @@ namespace ProjectElements.IO
             }
         }
 
-        public SaveData LoadGameState(string name)
+        public static SaveData LoadGameState(string name)
         {
             try
             {
-                return saveStates.Find(s => s.Name == name);
+                return saveStates.Find(s => s.Name.ToLower() == name.ToLower());
             }
             catch (Exception ex)
             {

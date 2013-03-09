@@ -9,3 +9,4 @@ Content\GUI\leftarrowUp.xnb
 Content\GUI\cursor.xnb
 Content\Fonts\defaultFont.xnb
 Content\Fonts\titleFont.xnb
+Content\GUI\txtCursor.xnb

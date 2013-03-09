@@ -24,7 +24,7 @@ namespace GameplayElements.Data.Entities
         protected float speedMultiplier = 1f;
         protected bool isMoving = false;
 
-        protected float health = 20.0f;
+        protected float health = 100.0f;
         protected bool dead = false;
 
         protected Image avatarUp;
@@ -70,6 +70,12 @@ namespace GameplayElements.Data.Entities
                     LevelManager.GetCurrentLevel().Height - realHeight));
             }
         }
+        public int Direction
+        {
+            get { return direction; }
+            set { direction = value; }
+        }
+
         public virtual float Speed
         {
             get { return speed * speedMultiplier; }

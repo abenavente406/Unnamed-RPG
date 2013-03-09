@@ -16,3 +16,17 @@ C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\obj\x86\Debug\GameHe
 C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\obj\x86\Debug\GameHelperLibrary.dll
 C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\obj\x86\Debug\GameHelperLibrary.pdb
+C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\bin\x86\Debug\Nuclex.UserInterface.dll
+C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\bin\x86\Debug\Nuclex.Support.dll
+C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\bin\x86\Debug\Nuclex.Input.dll
+C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\bin\x86\Debug\NMock.StrongNamed.dll
+C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\bin\x86\Debug\Nuclex.Testing.Xna.dll
+C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\bin\x86\Debug\nunit.framework.dll
+C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\bin\x86\Debug\SlimDX.DirectInput.dll
+C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\bin\x86\Debug\Nuclex.UserInterface.xml
+C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\bin\x86\Debug\Nuclex.Support.xml
+C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\bin\x86\Debug\Nuclex.Input.xml
+C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\bin\x86\Debug\NMock.StrongNamed.xml
+C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\bin\x86\Debug\Nuclex.Testing.Xna.xml
+C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\bin\x86\Debug\nunit.framework.xml
+C:\Users\Anthony Benavente\Git\UnnamedRpg\GameHelperLibrary\bin\x86\Debug\SlimDX.DirectInput.xml

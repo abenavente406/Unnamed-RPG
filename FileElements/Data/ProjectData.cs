@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,7 +25,7 @@ namespace ProjectElements.Data
         public static SaveData cachedSave = null;
 
         public static SaveDataParser parser;
-        string lastPerson = "Anthony";
+        public static string lastPerson = null;
 
         public ProjectData(ContentManager content, GraphicsDeviceManager graphics)
         {
@@ -34,8 +35,18 @@ namespace ProjectElements.Data
 
             parser = new SaveDataParser();
 
+          
+            try
+            {
+                lastPerson = new StreamReader(SaveDataParser.myGamesDir + "\\last_person.txt").ReadLine();
+            }
+            catch (FileNotFoundException ex)
+            {
+                System.Diagnostics.Debug.WriteLine("last_person file does not exist.\n" + ex.ToString());
+            }
+
             if (lastPerson != null)
-                cachedSave = parser.LoadGameState(lastPerson);
+                cachedSave = SaveDataParser.LoadGameState(lastPerson);
         }
     }
 }
