@@ -25,6 +25,11 @@ namespace GameHelperLibrary {
         #region Properties
         public int SpriteWidth  { get { return _spriteWidth;  } set { _spriteWidth = value;  } }
         public int SpriteHeight { get { return _spriteHeight; } set { _spriteHeight = value; } }
+
+        public int Width { get { return imageWidth; } }
+        public int Height { get { return imageHeight; } }
+
+        public string Name { get; set; }
         #endregion
 
         /// <summary>
@@ -41,6 +46,8 @@ namespace GameHelperLibrary {
             SpriteWidth = spriteWidth;
             SpriteHeight = spriteHeight;
             this.graphics = graphics;
+
+            this.Name = sourceImage.Name;
         }
 
         /// <summary>

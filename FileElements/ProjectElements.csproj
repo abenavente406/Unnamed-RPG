@@ -63,6 +63,7 @@
     <Compile Include="Data\SaveData.cs" />
     <Compile Include="IO\SaveDataParser.cs" />
     <Compile Include="IO\SpriteSheetManager.cs" />
+    <Compile Include="IO\TileSheetManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -84,5 +84,27 @@ namespace GameHelperLibrary {
             Draw(spriteBatch, gameTime, position.X, position.Y);
         }
 
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime, Rectangle destRect)
+        {
+            Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            //Check the timer is more than the chosen interval
+            if (Timer > Interval)
+            {
+                //Show the next frame
+                CurrentFrame++;
+                //Reset the timer
+                Timer = 0f;
+            }
+
+            // If we are on the last frame, reset back to the one before the first frame
+            if (CurrentFrame == frames)
+            {
+                CurrentFrame = 0;
+            }
+
+            spriteBatch.Draw(_images[CurrentFrame], destRect, Color.White);
+        }
+
     }
 }

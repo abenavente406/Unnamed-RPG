@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using GameplayElements.Data.Entities;
 
 namespace GameplayElements.Managers
 {
@@ -114,6 +115,16 @@ namespace GameplayElements.Managers
         public static Vector2 Transform(Vector2 point)
         {
             return point - Position;
+        }
+
+        public static bool IsOnCamera(Entity entity)
+        {
+            return IsOnCamera(entity.BoundingBox);
+        }
+
+        public static bool IsOnCamera(Rectangle rect)
+        {
+            return ViewPortRectangle.Intersects(rect);
         }
         #endregion
     }

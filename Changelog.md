@@ -1,6 +1,18 @@
 Changelog
 =========
 
+03-10-2013
+----------
+ - Added load game screen (fully functional)
+ - Added a new level loading system
+   - Not working yet
+
+03-09-2013
+----------
+ - Allow pseudo 3D drawing by drawing specific layers first
+ - Moved the drawing of entities to the level manager class
+
+
 03-08-2013
 ----------
  - Fully functional saving of game data

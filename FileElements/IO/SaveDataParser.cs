@@ -16,6 +16,11 @@ namespace ProjectElements.IO
 
         static List<SaveData> saveStates = new List<SaveData>();
 
+        public static List<SaveData> SaveStates
+        {
+            get { return saveStates; }
+        }
+
         public SaveDataParser()
         {
             string myDocs = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -38,7 +43,7 @@ namespace ProjectElements.IO
         public static void LoadData()
         {
             Stream dataStream = File.Open(saveDir, FileMode.Open);
-
+            
             try
             {
                 saveStates = serializer.Deserialize(dataStream) as List<SaveData>;
@@ -70,7 +75,7 @@ namespace ProjectElements.IO
             if (!overridedData && saveStates.Count < 5)
                 saveStates.Add(saveInfo);
 					 
-            Stream dataStream = File.Open(saveDir, FileMode.Open);
+            Stream dataStream = File.Create(saveDir);
             try
             {
                 serializer.Serialize(dataStream, saveStates);
@@ -92,6 +97,22 @@ namespace ProjectElements.IO
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
                 throw new Exception("Save Data: Save name not found!");
             }
+        }
+
+        public static SaveData GetSaveAtIndex(int index)
+        {
+            SaveData saveState = null;
+
+            try
+            {
+                saveState = saveStates[index];
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                System.Diagnostics.Debug.WriteLine("The save cannot be found!\n" + ex.ToString());
+            }
+
+            return saveState;
         }
     }
 }

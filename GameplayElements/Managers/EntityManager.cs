@@ -24,9 +24,9 @@ namespace GameplayElements.Managers
 
         public static Player player;
 
-        public EntityManager()
+        public EntityManager(SaveData data)
         {
-            player = new Player("Anthony", new Vector2(ProjectData.GameWidth / 2, ProjectData.GameHeight / 2));
+            player = new Player(data.Name, new Vector2(60, 60));
         }
 
         public void UpdateAll(GameTime gameTime)
@@ -69,17 +69,21 @@ namespace GameplayElements.Managers
         public void Draw(SpriteBatch batch, GameTime gameTime)
         {
             player.Draw(batch, gameTime);
+
             npcs.ForEach(delegate(GameplayElements.Data.Entities.NPCs.NPC npc)
             {
-                npc.Draw(batch, gameTime);
+                if (Camera.IsOnCamera(npc as Entity))
+                    npc.Draw(batch, gameTime);
             });
             passives.ForEach(delegate(GameplayElements.Data.Entities.Passives.Passive passive)
             {
-                passive.Draw(batch, gameTime);
+                if (Camera.IsOnCamera(passive as Entity))
+                    passive.Draw(batch, gameTime);
             });
             monsters.ForEach(delegate(GameplayElements.Data.Entities.Monsters.Monster monster)
             {
-                monster.Draw(batch, gameTime);
+                if (Camera.IsOnCamera(monster as Entity))
+                    monster.Draw(batch, gameTime);
             });
         }
 

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using ProjectElements.Data;
 using GameHelperLibrary;
+using GameplayElements.Managers;
 
 namespace GameplayElements.Data.Entities
 {
@@ -16,11 +17,19 @@ namespace GameplayElements.Data.Entities
             : base(name, pos)
         {
             speed = 2f;
-            SetTexture(new Vector2(3, 0), "Entity Sprites 1");
+            SetTexture(new Vector2(3, 0), "Entity Sprites 1", 28, 28);
+
+            while (LevelManager.GetCurrentLevel().wallTile[(int)LevelManager.PointToTile(Position).X,
+                (int)LevelManager.PointToTile(Position).Y]);
+            {
+                this.pos.X -= 32;
+            }
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (InputHandler.KeyPressed(Keys.N))
+                NoClip = !NoClip;
 
             int dirX = 0;
             int dirY = 0;

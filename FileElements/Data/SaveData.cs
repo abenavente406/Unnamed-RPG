@@ -19,6 +19,8 @@ namespace ProjectElements.Data
 		public bool GodModeEnabled { get; set; }
 		public bool SuperSpeedEnabled { get; set; }
 
+        public string Time { get; set; }
+
         public static SaveData CreateNewSave(string name)
         {
             return new SaveData()
@@ -28,7 +30,8 @@ namespace ProjectElements.Data
                 Position = new Vector2(ProjectData.GameWidth / 2, ProjectData.GameHeight / 2),
                 NoClipEnabled = false,
                 GodModeEnabled = false,
-                SuperSpeedEnabled = false
+                SuperSpeedEnabled = false,
+                Time = System.DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt")
             };
         }
     }

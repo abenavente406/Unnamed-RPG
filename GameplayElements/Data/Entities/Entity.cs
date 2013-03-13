@@ -66,8 +66,8 @@ namespace GameplayElements.Data.Entities
             get { return pos; } 
             set
             {
-                pos = Vector2.Clamp(value, Vector2.Zero, new Vector2(LevelManager.GetCurrentLevel().Width - realWidth,
-                    LevelManager.GetCurrentLevel().Height - realHeight));
+                pos = Vector2.Clamp(value, Vector2.Zero, new Vector2(LevelManager.GetCurrentLevel().Width - spriteWidth,
+                    LevelManager.GetCurrentLevel().Height - spriteHeight));
             }
         }
         public int Direction
@@ -214,11 +214,26 @@ namespace GameplayElements.Data.Entities
 
         protected void Move(Vector2 newPos)
         {
-            Vector2 testPos = new Vector2(newPos.X - realWidth, newPos.Y - realHeight);
-            if (!LevelManager.IsWallTile(this))
-                Position = newPos;
+                
+            Vector2 topLeft = newPos;
+            Vector2 topRight = newPos + new Vector2(realWidth, 0);
+            Vector2 bottomLeft = newPos + new Vector2(0, realHeight);
+            Vector2 bottomRight = newPos + new Vector2(realWidth, realHeight) ;
+
+            if (!NoClip)
+            {
+                if (!LevelManager.IsWallTile(topLeft) && !LevelManager.IsWallTile(topRight) &&
+                    !LevelManager.IsWallTile(bottomLeft) && !LevelManager.IsWallTile(bottomRight))
+                {
+                    Position = newPos;
+                }
+                else
+                {
+                    isMoving = false;
+                }
+            }
             else
-                isMoving = false;
+                Position = newPos;
         }
 
         protected float DistanceTo(Entity from, Entity to)
