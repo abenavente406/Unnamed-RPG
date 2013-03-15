@@ -9,6 +9,7 @@ using GameHelperLibrary.Controls;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ProjectElements.IO;
 
 namespace UnnamedRpg.GameScreens
 {
@@ -30,6 +31,8 @@ namespace UnnamedRpg.GameScreens
         float maxItemWidth = 0f;
 
         int changes = 0;
+
+        public static object Background;
 
         public StartMenuScreen(Game game, GameStateManager manager)
             : base(game, manager)
@@ -63,6 +66,7 @@ namespace UnnamedRpg.GameScreens
                         }
 
                         backGround = new Animation(images);
+                        Background = backGround;
                         break;
                     }
                 case 1:
@@ -91,9 +95,12 @@ namespace UnnamedRpg.GameScreens
                         picBackGround.Position = new Vector2(0, 0);
                         ControlManager.Add(picBackGround);
                         break;
-
                     }
+
             }
+
+            if (selectedWallpaper > 0)
+                Background = picBackGround;
 
             Texture2D arrowTexture = Content.Load<Texture2D>("GUI\\leftarrowUp");
             arrowImage = new PictureBox(arrowTexture, new Rectangle(0, 0, arrowTexture.Width, arrowTexture.Height));
@@ -129,9 +136,14 @@ namespace UnnamedRpg.GameScreens
             ControlManager.Add(startGame);
 
             loadGame = new LinkLabel();
+            loadGame.Enabled = SaveDataParser.SaveStates.Count > 0;
             loadGame.Text = "Load Game";
             loadGame.Size = loadGame.SpriteFont.MeasureString(loadGame.Text);
             loadGame.Selected += menuItem_Selected;
+
+            if (!loadGame.Enabled)
+                loadGame.Color = new Color(30, 30, 30);
+
             ControlManager.Add(loadGame);
 
             exitGame = new LinkLabel();
@@ -154,10 +166,10 @@ namespace UnnamedRpg.GameScreens
                         maxItemWidth = c.Size.X;
                     c.Position = position - offset;
                     position.Y += c.Size.Y + 10f;
-                    c.Effect = ControlEffect.FLASH;
+                    c.Effect = ControlEffect.GLOW;
                     c.FlashDuration = 300;
 
-                    if (selectedWallpaper != 3 && selectedWallpaper != 2)
+                    if (selectedWallpaper == 0)
                     {
                         c.Color = Color.Black;
                         ((LinkLabel)c).SelectedColor = selectedColor;

@@ -10,7 +10,8 @@ namespace GameHelperLibrary.Controls
     public enum ControlEffect
     {
         NONE,
-        FLASH
+        FLASH,
+        GLOW
     }
 
     public abstract class Control

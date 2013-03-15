@@ -15,6 +15,8 @@ namespace UnnamedRpg.GameScreens
 	public class LoadGameScreen : BaseGameState
 	{
         PictureBox arrowImage;
+        PictureBox background;
+        Animation backgroundAnim;
 
         float maxItemWidth = 0f;
 
@@ -40,6 +42,15 @@ namespace UnnamedRpg.GameScreens
             var Content = GameRef.Content;
             states = SaveDataParser.SaveStates;
 
+            if (StartMenuScreen.Background is PictureBox)
+            {
+                background = StartMenuScreen.Background as PictureBox;
+                ControlManager.Add(background);
+            }
+            else
+                backgroundAnim = StartMenuScreen.Background as Animation;
+
+
             Texture2D arrowTexture = Content.Load<Texture2D>("GUI\\leftarrowUp");
             arrowImage = new PictureBox(arrowTexture, new Rectangle(0, 0, arrowTexture.Width, arrowTexture.Height));
             ControlManager.Add(arrowImage);
@@ -59,8 +70,7 @@ namespace UnnamedRpg.GameScreens
 
                 label.Size = label.SpriteFont.MeasureString(label.Text);
                 label.Selected += new EventHandler(menuItem_Selected);
-                label.Effect = ControlEffect.FLASH;
-                label.FlashDuration = 300;
+                label.Effect = ControlEffect.GLOW;
                 labels.Add(label);
                 ControlManager.Add(label);
             }
@@ -121,6 +131,8 @@ namespace UnnamedRpg.GameScreens
             GameRef.spriteBatch.Begin();
             {
                 base.Draw(gameTime);
+                if (backgroundAnim != null)
+                    backgroundAnim.Draw(GameRef.spriteBatch, gameTime, new Rectangle(0, 0, ProjectData.GameWidth, ProjectData.GameHeight));
                 ControlManager.Draw(GameRef.spriteBatch, gameTime);
             }
             GameRef.spriteBatch.End();
