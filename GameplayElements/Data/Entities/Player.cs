@@ -17,7 +17,7 @@ namespace GameplayElements.Data.Entities
             : base(name, pos)
         {
             speed = 2f;
-            SetTexture(new Vector2(3, 0), "Entity Sprites 1", 28, 28);
+            SetTexture(new Vector2(3, 0), "Entity Sprites 1", 30, 20);
         }
 
         public override void Update(GameTime gameTime)
@@ -47,14 +47,20 @@ namespace GameplayElements.Data.Entities
             else if (dirY > 0)
                 direction = 1;
 
-            if (dirX == 0 & dirY == 0)
+            if (dirX > 0 && dirY > 0)
+                direction = 1;
+            if (dirX < 0 && dirY < 0)
+                direction = 0;
+
+            if (dirX == 0 && dirY == 0)
                 isMoving = false;
             else
                 isMoving = true;
 
-            Vector2 testPostion = Position + new Vector2(dirX * speed * speedMultiplier, dirY * speed * speedMultiplier);
+            float newX = Position.X + dirX * speed * speedMultiplier;
+            float newY = Position.Y + dirY * speed * speedMultiplier;
 
-            Move(testPostion);
+            Move(newX, newY);
         }
 
     }

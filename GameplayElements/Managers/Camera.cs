@@ -27,8 +27,8 @@ namespace GameplayElements.Managers
             get { return pos; }
             set
             {
-                pos = Vector2.Clamp(value, Vector2.Zero, new Vector2(LevelManager.GetCurrentLevel().Width,
-                    LevelManager.GetCurrentLevel().Height));
+                pos = Vector2.Clamp(value, Vector2.Zero, new Vector2(LevelManager.GetCurrentLevel().Width - viewportWidth,
+                    LevelManager.GetCurrentLevel().Height - viewportHeight));
             }
         }
 
@@ -92,16 +92,8 @@ namespace GameplayElements.Managers
         {
             if (EntityManager.player.IsMoving)
             {
-                if (EntityManager.player.Position.X >= ProjectData.GameWidth / 2 &&
-                    (EntityManager.player.Position.X <= LevelManager.GetCurrentLevel().Width -
-                                                       ProjectData.GameWidth / 2))
-                    pos.X += amount.X;
-                if (EntityManager.player.Position.Y >= ProjectData.GameHeight / 2 && 
-                    (EntityManager.player.Position.Y <= LevelManager.GetCurrentLevel().Height -
-                                                        ProjectData.GameHeight / 2))
-                    pos.Y += amount.Y;
-
-                pos = Vector2.Clamp(pos, Vector2.Zero, new Vector2(LevelManager.GetCurrentLevel().Width,
+                
+                Position += Vector2.Clamp(pos, Vector2.Zero, new Vector2(LevelManager.GetCurrentLevel().Width,
                     LevelManager.GetCurrentLevel().Height));
             }
         }
@@ -119,7 +111,7 @@ namespace GameplayElements.Managers
 
         public static bool IsOnCamera(Entity entity)
         {
-            return IsOnCamera(entity.BoundingBox);
+            return IsOnCamera(entity.SpriteBoundingBox);
         }
 
         public static bool IsOnCamera(Rectangle rect)

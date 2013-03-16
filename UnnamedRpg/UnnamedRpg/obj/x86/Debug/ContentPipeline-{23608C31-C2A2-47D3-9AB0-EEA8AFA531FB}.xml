@@ -84,7 +84,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Fonts\menuFont.xnb</Output>
-      <Time>2013-03-15T21:58:33.184981-04:00</Time>
+      <Time>2013-03-15T22:00:00.3699677-04:00</Time>
     </Item>
     <Item>
       <Source>GUI\leftarrowUp.png</Source>
@@ -120,7 +120,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Fonts\titleFont.xnb</Output>
-      <Time>2013-03-15T21:58:46.8507627-04:00</Time>
+      <Time>2013-03-15T22:00:00.3719678-04:00</Time>
     </Item>
     <Item>
       <Source>GUI\txtCursor.png</Source>

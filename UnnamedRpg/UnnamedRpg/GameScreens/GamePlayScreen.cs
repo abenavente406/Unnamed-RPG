@@ -49,20 +49,21 @@ namespace UnnamedRpg.GameScreens
             base.Update(gameTime);
 
             lm.Update(gameTime);
+            camera.Update(new Vector2(EntityManager.player.Position.X - ProjectData.GameWidth / 2, 
+                EntityManager.player.Position.Y - ProjectData.GameHeight / 2));
+            //int dirX = 0;
+            //int dirY = 0;
 
-            int dirX = 0;
-            int dirY = 0;
+            //if (InputHandler.KeyDown(Keys.Up))
+            //    dirY--;
+            //if (InputHandler.KeyDown(Keys.Down))
+            //    dirY++;
+            //if (InputHandler.KeyDown(Keys.Left))
+            //    dirX--;
+            //if (InputHandler.KeyDown(Keys.Right))
+            //    dirX++;
 
-            if (InputHandler.KeyDown(Keys.Up))
-                dirY--;
-            if (InputHandler.KeyDown(Keys.Down))
-                dirY++;
-            if (InputHandler.KeyDown(Keys.Left))
-                dirX--;
-            if (InputHandler.KeyDown(Keys.Right))
-                dirX++;
-
-            camera.Move(new Vector2(dirX * EntityManager.player.Speed, dirY * EntityManager.player.Speed));
+            //camera.Move(new Vector2(dirX * EntityManager.player.Speed, dirY * EntityManager.player.Speed));
 
             if (InputHandler.KeyPressed(Keys.Escape))
                 SaveDataParser.SaveState(new SaveData()

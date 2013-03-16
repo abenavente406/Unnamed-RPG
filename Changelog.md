@@ -1,6 +1,11 @@
 Changelog
 =========
 
+03-16-2013
+----------
+ - Fixed the Move function in Entity
+ - Fixed the Camera when the player stops moving
+
 03-15-2013
 ----------
  - Finalized the fadeout/fadein of gamestates
@@ -9,7 +14,7 @@ Changelog
  - Changed fonts to a system defined font
  - Added direction to the default save initializer
  - Made several methods in the Level class virtual for implementing different level types
- - Added DrawState function rather than Draw function --------- I will fix this
+ - Added DrawState function rather than Draw function ---------> I will fix this
 
 03-14-2013
 ----------

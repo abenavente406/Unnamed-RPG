@@ -114,12 +114,20 @@ namespace GameplayElements.Data.Entities
             set { realHeight = value; }
         }
 
-        public Rectangle BoundingBox
+        public Rectangle SpriteBoundingBox
         {
             get
             {
                 return new Rectangle((int)pos.X, (int)pos.Y,
-                    RealWidth, RealHeight);
+                    SpriteWidth, SpriteHeight);
+            }
+        }
+        public Rectangle CollisionBoundingBox
+        {
+            get
+            {
+                return new Rectangle((int)(pos.X + (SpriteWidth - realWidth) / 2),
+                    (int)(pos.Y + (SpriteHeight - RealHeight) / 2), RealWidth, RealHeight);
             }
         }
 
@@ -197,7 +205,7 @@ namespace GameplayElements.Data.Entities
                 }
             }
 
-            DrawShadow();
+            //DrawShadow();
         }
 
         /// <summary>
@@ -205,7 +213,7 @@ namespace GameplayElements.Data.Entities
         /// </summary>
         public void DrawShadow()
         {
-            ProjectData.Drawer.Begin();
+            ProjectData.Drawer.Begin(RaisingStudio.Xna.Graphics.DrawingSortMode.Sprite);
             ProjectData.Drawer.DrawFilledEllipse(new Vector2(OnScreenPosition.X, OnScreenPosition.Y + SpriteHeight - 4),
                 new Vector2(realWidth, realHeight / 4), new Color(0, 0, 0, 0.3f));
             ProjectData.Drawer.End();
@@ -215,10 +223,10 @@ namespace GameplayElements.Data.Entities
         protected void Move(Vector2 newPos)
         {
                 
-            Vector2 topLeft = newPos;
-            Vector2 topRight = newPos + new Vector2(realWidth, 0);
-            Vector2 bottomLeft = newPos + new Vector2(0, realHeight);
-            Vector2 bottomRight = newPos + new Vector2(realWidth, realHeight) ;
+            Vector2 topLeft = newPos + new Vector2((spriteWidth - realWidth) / 2, (spriteHeight - realHeight) / 2);
+            Vector2 topRight = newPos + new Vector2(spriteWidth - (spriteWidth - realWidth) / 2, (spriteHeight - realHeight) / 2);
+            Vector2 bottomLeft = newPos + new Vector2((spriteWidth - realWidth) / 2, spriteHeight);
+            Vector2 bottomRight = newPos + new Vector2(spriteWidth - (spriteWidth - realWidth) / 2, spriteHeight);
 
             if (!NoClip)
             {
@@ -234,6 +242,20 @@ namespace GameplayElements.Data.Entities
             }
             else
                 Position = newPos;
+        }
+        protected void Move(float testX, float testY)
+        {
+            if (!NoClip)
+            {
+                if (!LevelManager.IsWallTile(testX, Position.Y, RealWidth, SpriteHeight))
+                    pos.X = testX;
+                if (!LevelManager.IsWallTile(Position.X, testY, RealWidth, SpriteHeight))
+                    pos.Y = testY;
+
+                Position = pos;
+            }
+            else
+                Position = new Vector2(testX, testY);
         }
 
         protected float DistanceTo(Entity from, Entity to)

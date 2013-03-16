@@ -42,7 +42,7 @@ namespace GameplayElements.Managers
             if (data != null)
                 LoadSave(data);
 
-            LoadMonsters();
+            //LoadMonsters();
 
         }
         void LoadMonsters()
@@ -84,12 +84,34 @@ namespace GameplayElements.Managers
             return point / new Vector2(currentLevel.TileWidth, currentLevel.TileHeight);
         }
 
+        public static bool IsWallTile(float x, float y, int width, int height)
+        {
+            int atx1 = (int)(x) / currentLevel.tileWidth;
+            int atx2 = (int)(x + width) / currentLevel.tileWidth;
+            int aty1 = (int)(y + height / 2) / currentLevel.tileHeight;
+            int aty2 = (int)(y + height) / currentLevel.tileHeight;
+
+            if (IsTileBlocked(atx1, aty1))
+                return true;
+            if (IsTileBlocked(atx1, aty2))
+                return true;
+            if (IsTileBlocked(atx2, aty1))
+                return true;
+            if (IsTileBlocked(atx2, aty2))
+                return true;
+
+            return false;
+        }
         public static bool IsWallTile(Vector2 testPos)
         {
             int testX = (int)PointToTile(testPos).X;
             int testY = (int)PointToTile(testPos).Y;
 
-            return currentLevel.mapArr[testX, testY].IsWallTile;
+            return IsTileBlocked(testX, testY);
+        }
+        public static bool IsTileBlocked(int tx, int ty)
+        {
+            return currentLevel.mapArr[tx, ty].IsWallTile;
         }
 
         public void LoadSave(SaveData data)

@@ -187,17 +187,17 @@ namespace GameHelperLibrary
             {
                 isEntering = false;
                 Alpha = 0.0f;
-                isActive = true;
             }
 
-            if (IsActive)
-            {
                 // Update each component in the state
+            if (!isEntering && !isExiting)
+            {
                 foreach (GameComponent component in childComponents)
                     if (component.Enabled)
                         component.Update(gameTime);
+
+                base.Update(gameTime);
             }
-            base.Update(gameTime);
         }
         #endregion
 
