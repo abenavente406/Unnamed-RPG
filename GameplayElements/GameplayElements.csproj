@@ -59,6 +59,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Dungeon.cs" />
     <Compile Include="Data\Entities\Entity.cs" />
     <Compile Include="Data\Entities\ItemEntity.cs" />
     <Compile Include="Data\Entities\Monsters\Monster.cs" />

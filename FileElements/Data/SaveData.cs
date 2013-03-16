@@ -27,7 +27,8 @@ namespace ProjectElements.Data
             {
                 Name = name,
                 Health = 100,
-                Position = new Vector2(ProjectData.GameWidth / 2, ProjectData.GameHeight / 2),
+                Direction = 1,
+                Position = new Vector2(33, 33),
                 NoClipEnabled = false,
                 GodModeEnabled = false,
                 SuperSpeedEnabled = false,

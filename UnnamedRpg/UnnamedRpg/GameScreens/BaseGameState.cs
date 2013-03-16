@@ -23,7 +23,6 @@ namespace UnnamedRpg.GameScreens
             : base(game, manager)
         {
             GameRef = (TestGame)game;
-
             playerIndexInControl = PlayerIndex.One;
         }
 
@@ -42,9 +41,16 @@ namespace UnnamedRpg.GameScreens
             base.Update(gameTime);
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void DrawState(SpriteBatch batch, GameTime gameTime)
         {
-            base.Draw(gameTime);
+            base.DrawState(batch, gameTime);
+        }
+
+        public void SwitchState(GameState targetState)
+        {
+            StateManager.TargetState = targetState;
+
+            IsExiting = true;
         }
     }
 }

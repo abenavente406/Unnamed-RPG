@@ -17,12 +17,14 @@ namespace GameplayElements.Data
 
         public bool[,] wallTile;
 
-        private Tile[,] mapArr;
-        private int tileWidth;
-        private int tileHeight;
+        public Tile[,] mapArr;
+        public int tileWidth;
+        public int tileHeight;
 
-        private int width;
-        private int height;
+        public int width;
+        public int height;
+        public int widthInTiles;
+        public int heightInTiles;
 
         #region Properties
         public int Width
@@ -73,6 +75,8 @@ namespace GameplayElements.Data
             this.tileHeight = tileHeight;
             width = mapwidth * TileWidth;
             height = mapheight * TileHeight;
+            widthInTiles = width / TileWidth;
+            heightInTiles = height / TileHeight;
 
             GenerateLevel();
         }
@@ -83,7 +87,7 @@ namespace GameplayElements.Data
             for (int x = 0; x < mapArr.GetLength(0); x++)
                 for (int y = 0; y < mapArr.GetLength(1); y++)
                 {
-                    mapArr[x, y] = new Tile(tileWidth, tileHeight);
+                    mapArr[x, y] = new Tile(tileWidth, tileHeight, null);
                     mapArr[x, y].TrueLocation = new Vector2(x * tileWidth, y * tileHeight);
                     mapArr[x, y].IsWallTile = false;
                 }
@@ -133,7 +137,7 @@ namespace GameplayElements.Data
 
         }
 
-        public void Draw(SpriteBatch batch, Rectangle region)
+        public virtual void Draw(SpriteBatch batch, Rectangle region)
         {
             if (map != null)
             {
@@ -195,7 +199,7 @@ namespace GameplayElements.Data
             }
         }
 
-        public Tile(int width, int height)
+        public Tile(int width, int height, Texture2D texture)
         {
             Width = width;
             Height = height;

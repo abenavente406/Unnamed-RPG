@@ -18,12 +18,6 @@ namespace GameplayElements.Data.Entities
         {
             speed = 2f;
             SetTexture(new Vector2(3, 0), "Entity Sprites 1", 28, 28);
-
-            while (LevelManager.GetCurrentLevel().wallTile[(int)LevelManager.PointToTile(Position).X,
-                (int)LevelManager.PointToTile(Position).Y]);
-            {
-                this.pos.X -= 32;
-            }
         }
 
         public override void Update(GameTime gameTime)

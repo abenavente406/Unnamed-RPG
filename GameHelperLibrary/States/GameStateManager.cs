@@ -20,6 +20,8 @@ namespace GameHelperLibrary
         const int startDrawOrder = 5000;
         const int drawOrderInc = 100;
         int drawOrder;
+
+        GameState targetState;
         #endregion
 
         #region Properties
@@ -27,6 +29,12 @@ namespace GameHelperLibrary
         public GameState CurrentState
         {
             get { return gameStates.Peek(); }
+        }
+
+        public GameState TargetState
+        {
+            get { return targetState; }
+            set { targetState = value; }
         }
         #endregion
 
@@ -122,6 +130,7 @@ namespace GameHelperLibrary
             if (OnStateChanged != null)
                 OnStateChanged(this, null);
         }
+
         #endregion
     }
 }

@@ -134,6 +134,7 @@ namespace UnnamedRpg.GameScreens
                 if (backgroundAnim != null)
                     backgroundAnim.Draw(GameRef.spriteBatch, gameTime, new Rectangle(0, 0, ProjectData.GameWidth, ProjectData.GameHeight));
                 ControlManager.Draw(GameRef.spriteBatch, gameTime);
+                FadeOutRect.Draw(GameRef.spriteBatch, Vector2.Zero, FadeOutColor);
             }
             GameRef.spriteBatch.End();
         }

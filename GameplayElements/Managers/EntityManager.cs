@@ -26,7 +26,7 @@ namespace GameplayElements.Managers
 
         public EntityManager(SaveData data)
         {
-            player = new Player(data.Name, new Vector2(60, 60));
+            player = new Player(data.Name, new Vector2(0, 0));
         }
 
         public void UpdateAll(GameTime gameTime)

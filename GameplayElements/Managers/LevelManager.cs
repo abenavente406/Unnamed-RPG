@@ -32,17 +32,27 @@ namespace GameplayElements.Managers
         public LevelManager(ContentManager content, SaveData data)
         {
             Content = content;
+
             //levels.Add("MainWorld", new Level("MainWorlds", "Levels\\world_1"));
             //SetCurrentLevel("MainWorld");
-            SetCurrentLevel(new Level(50, 30, 32, 32));
+            SetCurrentLevel(new Dungeon(80, 60, 32, 32) as Level);
 
             em = new EntityManager(data);
 
             if (data != null)
                 LoadSave(data);
 
-            EntityManager.AddMonster(new Skeleton(new Vector2(rand.Next(400), rand.Next(400))));
+            LoadMonsters();
 
+        }
+        void LoadMonsters()
+        {
+            foreach (Room r in ((Dungeon)currentLevel).rooms)
+            {
+                EntityManager.AddMonster(new Skeleton(new Vector2(rand.Next((int)r.Position.X,
+                    (int)r.Position.X + r.Width - currentLevel.tileWidth), rand.Next((int)r.Position.Y,
+                    (int)r.Position.Y + r.Height - currentLevel.tileHeight))));
+            }
         }
 
         public void Update(GameTime gameTime)
@@ -76,11 +86,10 @@ namespace GameplayElements.Managers
 
         public static bool IsWallTile(Vector2 testPos)
         {
-
             int testX = (int)PointToTile(testPos).X;
             int testY = (int)PointToTile(testPos).Y;
 
-            return currentLevel.wallTile[testX, testY];
+            return currentLevel.mapArr[testX, testY].IsWallTile;
         }
 
         public void LoadSave(SaveData data)

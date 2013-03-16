@@ -57,16 +57,17 @@ namespace UnnamedRpg.GameScreens
             base.Update(gameTime);
 
             if (InputHandler.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Enter))
-                StateManager.PushState(new GamePlayScreen(Game, StateManager, SaveData.CreateNewSave(txtName.Text)));
+                SwitchState(new GamePlayScreen(Game, StateManager, SaveData.CreateNewSave(txtName.Text)));
         }
 
         public override void Draw(GameTime gameTime)
         {
             GameRef.spriteBatch.Begin();
             {
+                ControlManager.Draw(GameRef.spriteBatch, gameTime);
                 base.Draw(gameTime);
 
-                ControlManager.Draw(GameRef.spriteBatch, gameTime);
+                FadeOutRect.Draw(GameRef.spriteBatch, Vector2.Zero, FadeOutColor);
             }
             GameRef.spriteBatch.End();
         }

@@ -200,11 +200,11 @@ namespace UnnamedRpg.GameScreens
         {
             ProjectData.guiSelect.Play(.5f, 0.0f, 0.0f);
             if (sender == startGame)
-                StateManager.PushState(new NewGameScreen(Game, StateManager));
+                SwitchState(new NewGameScreen(Game, StateManager));
             else if (sender == loadGame)
-                StateManager.PushState(new LoadGameScreen(Game, StateManager));
+                SwitchState(new LoadGameScreen(Game, StateManager));
             else if (sender == continueGame)
-                StateManager.PushState(new GamePlayScreen(Game, StateManager, ProjectData.cachedSave));
+                SwitchState(new GamePlayScreen(Game, StateManager, ProjectData.cachedSave));
             else if (sender == exitGame)
                 GameRef.Exit();
         }
@@ -219,10 +219,12 @@ namespace UnnamedRpg.GameScreens
         {
             GameRef.spriteBatch.Begin();
             {
-                base.Draw(gameTime);
+                base.DrawState(GameRef.spriteBatch, gameTime);
                 if (picBackGround == null)
                     backGround.Draw(GameRef.spriteBatch, gameTime, GameRef.GraphicsDevice.Viewport.Bounds);
                 ControlManager.Draw(GameRef.spriteBatch, gameTime);
+
+                FadeOutRect.Draw(GameRef.spriteBatch, Vector2.Zero, FadeOutColor);
             }
             GameRef.spriteBatch.End();
         }

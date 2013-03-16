@@ -49,6 +49,9 @@ namespace UnnamedRpg
 
         protected override void Initialize()
         {
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+
             projectData = new ProjectData(Content, graphics);
             Components.Add(new InputHandler(this));
 
@@ -64,9 +67,7 @@ namespace UnnamedRpg
 
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            
         }
 
         protected override void UnloadContent()

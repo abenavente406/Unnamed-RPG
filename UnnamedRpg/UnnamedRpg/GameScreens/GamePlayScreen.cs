@@ -76,19 +76,21 @@ namespace UnnamedRpg.GameScreens
                     SuperSpeedEnabled = EntityManager.player.SuperSpeed,
                     Time = System.DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt")
                 });
+
+            if (InputHandler.KeyReleased(Keys.Escape))
+                Game.Exit();
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            if (InputHandler.KeyReleased(Keys.Escape))
-                Game.Exit();
-
             GameRef.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp,
                         DepthStencilState.Default, RasterizerState.CullNone);
-            lm.Draw(GameRef.spriteBatch, gameTime);
+            {
+                base.Draw(gameTime);
+                lm.Draw(GameRef.spriteBatch, gameTime);
+                FadeOutRect.Draw(GameRef.spriteBatch, Vector2.Zero, FadeOutColor);
+            }
             GameRef.spriteBatch.End();
-
-            base.Draw(gameTime);
         }
 
     }

@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using GameHelperLibrary.Shapes;
 #endregion
 
 namespace GameHelperLibrary
@@ -79,6 +80,30 @@ namespace GameHelperLibrary
         }
         bool isExiting = false;
 
+        public bool IsEntering
+        {
+            get { return isEntering; }
+            set { isEntering = value; }
+        }
+        bool isEntering = true;
+
+        public DrawableRectangle FadeOutRect;
+
+        public Color FadeOutColor
+        {
+            get { return new Color(0, 0, 0, Alpha); }
+        }
+
+        public float Alpha
+        {
+            get { return alpha; }
+            set
+            {
+                alpha = MathHelper.Clamp(value, 0, 1);
+            }
+        }
+        float alpha = 1.0f;
+
         /// <summary>
         /// Gets if the game state can accept user input (because it is active)
         /// </summary>
@@ -86,12 +111,10 @@ namespace GameHelperLibrary
         {
             get
             {
-                return !otherScreenHasFocus &&
-                          (stateStatus == StateStatus.TransitionOn ||
-                           stateStatus == StateStatus.Active);
+                return isActive;
             }
         }
-        bool otherScreenHasFocus;
+        bool isActive = false;
 
         #endregion  
 
@@ -113,10 +136,18 @@ namespace GameHelperLibrary
         {
             base.Initialize();
         }
+
+        protected override void LoadContent()
+        {
+            base.LoadContent();
+
+            FadeOutRect = new DrawableRectangle(GraphicsDevice, new Vector2(GraphicsDevice.Viewport.Width,
+                GraphicsDevice.Viewport.Height), Color.Black, true);
+        }
         #endregion
 
         #region Update and Draw
-        public override void Draw(GameTime gameTime)
+        public virtual void DrawState(SpriteBatch batch, GameTime gameTime)
         {
             DrawableGameComponent drawComponent;
             
@@ -126,22 +157,46 @@ namespace GameHelperLibrary
                 if (component is DrawableGameComponent)
                 {
                     drawComponent = component as DrawableGameComponent;
-
                     if (drawComponent.Visible)
                         drawComponent.Draw(gameTime);
                 }
             }
 
-            base.Draw(gameTime);
+                FadeOutRect.Draw(batch, Vector2.Zero, FadeOutColor);
+
         }
 
         public override void Update(GameTime gameTime)
         {
-            // Update each component in the state
-            foreach (GameComponent component in childComponents)
-                if (component.Enabled)
-                    component.Update(gameTime);
+            if (isExiting)
+                Alpha += .05f;
+            if (isEntering)
+                Alpha -= .02f;
 
+            if (Alpha >= 1.0f && isExiting)
+            {
+                isExiting = false;
+                Alpha = 0.0f;
+                StateManager.TargetState.IsEntering = true;
+                StateManager.TargetState.alpha = 1.0f;
+                StateManager.PushState(StateManager.TargetState);
+                StateManager.TargetState = null;
+            }
+
+            if (Alpha <= 0 && IsEntering)
+            {
+                isEntering = false;
+                Alpha = 0.0f;
+                isActive = true;
+            }
+
+            if (IsActive)
+            {
+                // Update each component in the state
+                foreach (GameComponent component in childComponents)
+                    if (component.Enabled)
+                        component.Update(gameTime);
+            }
             base.Update(gameTime);
         }
         #endregion
