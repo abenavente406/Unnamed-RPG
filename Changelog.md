@@ -1,6 +1,22 @@
 Changelog
 =========
 
+03-15-2013
+----------
+ - Finalized the fadeout/fadein of gamestates
+ - Added dungeon generator for level class
+ - Fixed the entity starting at an inconveniant location
+ - Changed fonts to a system defined font
+ - Added direction to the default save initializer
+ - Made several methods in the Level class virtual for implementing different level types
+ - Added DrawState function rather than Draw function --------- I will fix this
+
+03-14-2013
+----------
+ - Began transition feature for game states
+ - Added glowing effect to controls (ControlEffects.GLOW)
+ - Changed spritebatch initialization to the Initialize() method in TestGame.cs
+
 03-10-2013
 ----------
  - Added load game screen (fully functional)
