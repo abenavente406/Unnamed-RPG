@@ -31,15 +31,6 @@ namespace GameplayElements.Managers
                     LevelManager.GetCurrentLevel().Height - viewportHeight));
             }
         }
-
-        public static Rectangle ViewPortRectangle
-        {
-            get
-            {
-                return new Rectangle((int)Position.X, (int)Position.Y, viewportWidth, viewportHeight);
-            }
-        }
-
         #endregion
 
         public Camera(Vector2 startPos, int viewPortWidth, int viewPortHeight)
@@ -55,7 +46,7 @@ namespace GameplayElements.Managers
         #region Advanced Camera Functions
         private Matrix transform;
 
-        protected float zoom = 1.25f;
+        static float zoom = 1f;
         protected float rotation;
 
         public float Zoom
@@ -74,17 +65,28 @@ namespace GameplayElements.Managers
             get { return transform; }
             set { transform = value; }
         }
+        
 
-        public Matrix get_transformation(GraphicsDevice graphicsDevice)
+        public static Rectangle ViewPortRectangle
         {
-            Vector3 matrixRotOrigin = new Vector3(Position, 0);
-            Vector3 matrixScreenPos = new Vector3(new Vector2(Position.X,
-                Position.Y), 0);
+            get
+            {
+                return new Rectangle((int)(Position.X - viewportWidth / zoom / 2), 
+                    (int)(Position.Y - viewportHeight / zoom / 2), (int)(viewportWidth / zoom), (int)(viewportHeight / zoom));
+            }
+        }
+
+        public Matrix GetTransformation(GraphicsDevice graphicsDevice)
+        {
+            Vector3 matrixRotOrigin = Vector3.Clamp(new Vector3(Position.X, Position.Y, 0), Vector3.Zero,
+                new Vector3(LevelManager.GetCurrentLevel().width, LevelManager.GetCurrentLevel().height, 0));
+            Vector3 matrixScreenPos = new Vector3(new Vector2(viewportWidth / 2, viewportHeight / 2), 0);
 
             transform = Matrix.CreateTranslation(-matrixRotOrigin) *
                          Matrix.CreateRotationZ(Rotation) *
                          Matrix.CreateScale(new Vector3(Zoom, Zoom, 1.0f)) *
                          Matrix.CreateTranslation(matrixScreenPos);
+
             return transform;
         }
 
@@ -106,7 +108,7 @@ namespace GameplayElements.Managers
 
         public static Vector2 Transform(Vector2 point)
         {
-            return point - Position;
+            return point;
         }
 
         public static bool IsOnCamera(Entity entity)

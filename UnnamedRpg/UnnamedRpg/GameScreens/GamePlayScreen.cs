@@ -49,21 +49,16 @@ namespace UnnamedRpg.GameScreens
             base.Update(gameTime);
 
             lm.Update(gameTime);
-            camera.Update(new Vector2(EntityManager.player.Position.X - ProjectData.GameWidth / 2, 
-                EntityManager.player.Position.Y - ProjectData.GameHeight / 2));
-            //int dirX = 0;
-            //int dirY = 0;
 
-            //if (InputHandler.KeyDown(Keys.Up))
-            //    dirY--;
-            //if (InputHandler.KeyDown(Keys.Down))
-            //    dirY++;
-            //if (InputHandler.KeyDown(Keys.Left))
-            //    dirX--;
-            //if (InputHandler.KeyDown(Keys.Right))
-            //    dirX++;
+            if (InputHandler.KeyPressed(Keys.Add) ||
+                InputHandler.KeyPressed(Keys.OemPlus))
+                camera.Zoom += .05f;
 
-            //camera.Move(new Vector2(dirX * EntityManager.player.Speed, dirY * EntityManager.player.Speed));
+            if (InputHandler.KeyPressed(Keys.Subtract) ||
+                InputHandler.KeyPressed(Keys.OemMinus))
+                camera.Zoom -= .05f;
+
+            camera.Update(EntityManager.player.Position);
 
             if (InputHandler.KeyPressed(Keys.Escape))
                 SaveDataParser.SaveState(new SaveData()
@@ -85,7 +80,7 @@ namespace UnnamedRpg.GameScreens
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
             GameRef.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp,
-                        DepthStencilState.Default, RasterizerState.CullNone);
+                        DepthStencilState.Default, RasterizerState.CullNone, null, camera.GetTransformation(GraphicsDevice));
             {
                 base.Draw(gameTime);
                 lm.Draw(GameRef.spriteBatch, gameTime);
