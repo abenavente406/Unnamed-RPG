@@ -29,18 +29,20 @@ namespace GameplayElements.Data.Entities
 
         protected Image avatarUp;
         protected Image avatarDown;
-        protected Image avatarLeft;
         protected Image avatarRight;
 
         protected Animation movingUp;
         protected Animation movingDown;
-        protected Animation movingLeft;
         protected Animation movingRight;
+        protected Animation attackingUp;
+        protected Animation attackingDown;
+        protected Animation attackingRight;
 
         protected int spriteWidth;
         protected int spriteHeight;
         protected int realWidth;
         protected int realHeight;
+        protected float scale = 1.0f;
 
         protected int detectRange = 100;
 
@@ -113,6 +115,11 @@ namespace GameplayElements.Data.Entities
             get { return realHeight; }
             set { realHeight = value; }
         }
+        public float Scale
+        {
+            get { return scale; }
+            set { scale = MathHelper.Clamp(value, 0.1f, 30.0f); }
+        }
 
         public Rectangle SpriteBoundingBox
         {
@@ -163,48 +170,83 @@ namespace GameplayElements.Data.Entities
         /// <param name="gameTime"></param>
         public virtual void Draw(SpriteBatch batch, GameTime gameTime)
         {
-            if (isMoving)
+            if (!isAttacking)
             {
-                switch (direction)
+                if (isMoving)
                 {
-                    case 0:
-                        movingUp.Draw(batch, gameTime, OnScreenPosition);
-                        break;
-                    case 1:
-                        movingDown.Draw(batch, gameTime, OnScreenPosition);
-                        break;
-                    case 2:
-                        movingLeft.Draw(batch, gameTime, OnScreenPosition);
-                        break;
-                    case 3:
-                        movingRight.Draw(batch, gameTime, OnScreenPosition);
-                        break;
+                    switch (direction)
+                    {
+                        case 0:
+                            movingUp.Draw(batch, gameTime, OnScreenPosition, false, scale);
+                            break;
+                        case 1:
+                            movingDown.Draw(batch, gameTime, OnScreenPosition, false, scale);
+                            break;
+                        case 2:
+                            movingRight.Draw(batch, gameTime, OnScreenPosition, true, scale);
+                            break;
+                        case 3:
+                            movingRight.Draw(batch, gameTime, OnScreenPosition, false, scale);
+                            break;
+                    }
+                }
+                else
+                {
+                    movingUp.CurrentFrame = 0;
+                    movingDown.CurrentFrame = 0;
+                    movingRight.CurrentFrame = 0;
+                    movingRight.CurrentFrame = 0;
+
+                    switch (direction)
+                    {
+                        case 0:
+                            avatarUp.Draw(batch, OnScreenPosition, false, scale);
+                            break;
+                        case 1:
+                            avatarDown.Draw(batch, OnScreenPosition, false, scale);
+                            break;
+                        case 2:
+                            avatarRight.Draw(batch, OnScreenPosition, true, scale);
+                            break;
+                        case 3:
+                            avatarRight.Draw(batch, OnScreenPosition, false, scale);
+                            break;
+                    }
                 }
             }
             else
             {
-                movingUp.CurrentFrame = 0;
-                movingDown.CurrentFrame = 0;
-                movingLeft.CurrentFrame = 0;
-                movingRight.CurrentFrame = 0;
-
                 switch (direction)
                 {
                     case 0:
-                        avatarUp.Draw(batch, OnScreenPosition);
+                        attackingUp.Draw(batch, gameTime, OnScreenPosition, false, scale);
+                        if (attackingUp.CurrentFrame == attackingUp.Images.Length - 1)
+                            isAttacking = false;
                         break;
                     case 1:
-                        avatarDown.Draw(batch, OnScreenPosition);
+                        attackingDown.Draw(batch, gameTime, OnScreenPosition, false, scale);
+                        if (attackingDown.CurrentFrame == attackingUp.Images.Length - 1)
+                            isAttacking = false;
                         break;
                     case 2:
-                        avatarLeft.Draw(batch, OnScreenPosition);
+                        attackingRight.Draw(batch, gameTime, OnScreenPosition, true, scale);
+                        if (attackingRight.CurrentFrame == attackingUp.Images.Length - 1)
+                            isAttacking = false;
                         break;
                     case 3:
-                        avatarRight.Draw(batch, OnScreenPosition);
+                        attackingRight.Draw(batch, gameTime, OnScreenPosition, false, scale);
+                        if (attackingRight.CurrentFrame == attackingUp.Images.Length - 1)
+                            isAttacking = false;
                         break;
                 }
             }
 
+            if (!isAttacking)
+            {
+                attackingUp.CurrentFrame = 0;
+                attackingDown.CurrentFrame = 0;
+                attackingRight.CurrentFrame = 0;
+            }
             //DrawShadow();
         }
 
@@ -247,9 +289,9 @@ namespace GameplayElements.Data.Entities
         {
             if (!NoClip)
             {
-                if (!LevelManager.IsWallTile(testX, Position.Y, RealWidth, SpriteHeight))
+                if (!LevelManager.IsWallTile(testX, Position.Y, RealWidth, (int)(SpriteHeight * scale)))
                     pos.X = testX;
-                if (!LevelManager.IsWallTile(Position.X, testY, RealWidth, SpriteHeight))
+                if (!LevelManager.IsWallTile(Position.X, testY, RealWidth, (int)(SpriteHeight * scale)))
                     pos.Y = testY;
 
                 Position = pos;
@@ -268,7 +310,9 @@ namespace GameplayElements.Data.Entities
         {
             if (attackCoolDownTicks <= 0)
             {
-                target.Damage(10);
+                if (target != null)
+                    target.Damage(10);
+
                 attackCoolDownTicks = attackCoolDown;
             }
         }
@@ -338,7 +382,6 @@ namespace GameplayElements.Data.Entities
 
             avatarDown = new Image(sheet.GetSubImage(x + 1, y));
             avatarUp = new Image(sheet.GetSubImage(x + 1, y + 3));
-            avatarLeft = new Image(sheet.GetSubImage(x + 1, y + 1));
             avatarRight = new Image(sheet.GetSubImage(x + 1, y + 2));
 
             Texture2D[] imagesDown = new Texture2D[] { sheet.GetSubImage(x, y), 
@@ -351,7 +394,6 @@ namespace GameplayElements.Data.Entities
                 sheet.GetSubImage(x + 1, y + 3), sheet.GetSubImage(x + 2, y + 3)};
 
             movingDown = new Animation(imagesDown);
-            movingLeft = new Animation(imagesLeft);
             movingRight = new Animation(imagesRight);
             movingUp = new Animation(imagesUp);
 
@@ -367,6 +409,80 @@ namespace GameplayElements.Data.Entities
                 this.realHeight = realHeight;
             else
                 this.realHeight = spriteHeight;
+        }
+
+        protected void SetCustomTexture(Vector2 start, string sheetName, int frames,
+                                        int realWidth = 0, int realHeight = 0, float duration = 100f)
+        {
+            SpriteSheet sheet = SpriteSheetManager.EntitySprites[sheetName];
+
+            int x = (int)start.X;
+            int y = (int)start.Y;
+
+            avatarDown = new Image(sheet.GetSubImage(x + frames - 1, y));
+            avatarUp = new Image(sheet.GetSubImage(x + frames - 1, y + 1));
+            avatarRight = new Image(sheet.GetSubImage(x, y + 2));
+
+            Texture2D[] imagesDown = new Texture2D[frames];
+            Texture2D[] imagesRight = new Texture2D[frames];
+            Texture2D[] imagesUp = new Texture2D[frames];
+
+            for (int i = 0; i < frames; i++)
+            {
+                imagesDown[i] = sheet.GetSubImage(x + i, y);
+                imagesUp[i] = sheet.GetSubImage(x + i, y + 1);
+                imagesRight[i] = sheet.GetSubImage(x + i, y + 2);
+            }
+
+            movingDown = new Animation(imagesDown, duration);
+            movingRight = new Animation(imagesRight, duration);
+            movingUp = new Animation(imagesUp, duration);
+
+            spriteWidth = avatarDown.Width;
+            spriteHeight = avatarDown.Height;
+
+            if (realWidth != 0)
+                this.realWidth = realWidth;
+            else
+                this.realWidth = spriteWidth;
+
+            if (realHeight != 0)
+                this.realHeight = realHeight;
+            else
+                this.realHeight = spriteHeight;
+        }
+
+        protected void SetAttackingAnim(Vector2 start, string sheetName, int spriteWidth, int spriteHeight, 
+                                        float duration = 100f)
+        {
+
+        }
+
+        protected void SetCustomAttackingAnimCustom(string sheetName, int spriteWidth, int spriteHeight,
+                                                    int frames, float duration = 100f)
+        {
+            SpriteSheet sheet = SpriteSheetManager.EntitySprites[sheetName];
+
+            int x = 0;
+            int y = 0;
+
+            Texture2D[] imagesDown = new Texture2D[frames];
+            Texture2D[] imagesRight = new Texture2D[frames];
+            Texture2D[] imagesUp = new Texture2D[frames];
+
+            for (int i = 0; i < frames; i++)
+            {
+                imagesDown[i] = sheet.GetSubImage(x + i, y);
+                imagesUp[i] = sheet.GetSubImage(x + i, y + 1);
+                imagesRight[i] = sheet.GetSubImage(x + i, y + 2);
+            }
+
+            attackingDown = new Animation(imagesDown, duration);
+            attackingRight = new Animation(imagesRight, duration);
+            attackingUp = new Animation(imagesUp, duration);
+
+            spriteWidth = avatarDown.Width;
+            spriteHeight = avatarDown.Height;
         }
     }
 }

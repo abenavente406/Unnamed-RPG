@@ -284,6 +284,24 @@
       <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Sounds\gui_select.xnb</Output>
       <Time>2013-03-13T16:57:51.0181119-04:00</Time>
     </Item>
+    <Item>
+      <Source>Sprites\link-playersheet.png</Source>
+      <Name>Sprites\link-playersheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Sprites\link-playersheet.xnb</Output>
+      <Time>2013-03-17T20:39:11.120165-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\link-attackingsheet.PNG</Source>
+      <Name>Sprites\link-attackingsheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Anthony Benavente\Git\UnnamedRpg\UnnamedRpg\UnnamedRpg\bin\x86\Debug\Content\Sprites\link-attackingsheet.xnb</Output>
+      <Time>2013-03-17T21:24:45.4225581-04:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{23608C31-C2A2-47D3-9AB0-EEA8AFA531FB}</ContentProjectGUID>

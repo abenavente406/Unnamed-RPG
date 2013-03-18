@@ -36,6 +36,7 @@ namespace GameplayElements.Managers
             //levels.Add("MainWorld", new Level("MainWorlds", "Levels\\world_1"));
             //SetCurrentLevel("MainWorld");
             SetCurrentLevel(new Dungeon(80, 60, 32, 32) as Level);
+            //SetCurrentLevel(new Level(80, 60, 32, 32));
 
             em = new EntityManager(data);
 

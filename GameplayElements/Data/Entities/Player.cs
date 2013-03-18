@@ -17,13 +17,21 @@ namespace GameplayElements.Data.Entities
             : base(name, pos)
         {
             speed = 2f;
-            SetTexture(new Vector2(3, 0), "Entity Sprites 1", 30, 20);
+            SetCustomTexture(Vector2.Zero, "LinkPlayerSheet", 8, 30, 28, 75);
+            SetCustomAttackingAnimCustom("LinkAttackingSheet", 24, 48, 5);
+
+            Scale = 1.3333333f;
+            RealWidth = (int)scale * spriteWidth;
+            RealHeight = (int)scale * spriteHeight;
         }
 
         public override void Update(GameTime gameTime)
         {
             if (InputHandler.KeyPressed(Keys.N))
                 NoClip = !NoClip;
+
+            if (attackCoolDownTicks > 0)
+                attackCoolDownTicks--;
 
             int dirX = 0;
             int dirY = 0;
@@ -61,6 +69,16 @@ namespace GameplayElements.Data.Entities
             float newY = Position.Y + dirY * speed * speedMultiplier;
 
             Move(newX, newY);
+
+            if (InputHandler.KeyPressed(Keys.Space))
+            {
+                if (!isAttacking)
+                {
+                    isAttacking = true;
+                }
+
+                    Attack(null);
+            }
         }
 
     }

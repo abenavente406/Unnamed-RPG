@@ -34,6 +34,8 @@ namespace ProjectElements.IO
         private void Initialize(ContentManager content)
         {
             AddEntitySheet(content, "Sprites\\EntitySprites", "Entity Sprites 1", 32, 32);
+            AddEntitySheet(content, "Sprites\\link-playersheet", "LinkPlayerSheet", 24, 24);
+            AddEntitySheet(content, "Sprites\\link-attackingsheet", "LinkAttackingSheet", 24, 48);
         }
 
 

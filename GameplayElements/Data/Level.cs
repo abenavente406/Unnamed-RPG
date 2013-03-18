@@ -145,12 +145,13 @@ namespace GameplayElements.Data
             }
             else
             {
-                for (int x = 0; x < mapArr.GetLength(0); x++)
+                for (int x = 0; x < widthInTiles; x++)
                 {
-                    for (int y = 0; y < mapArr.GetLength(1); y++)
+                    for (int y = 0; y < heightInTiles; y++)
                     {
-                        if (Camera.IsOnCamera(mapArr[x, y].TrueBounds))
-                            batch.Draw(mapArr[x, y].Texture, Camera.Transform(mapArr[x, y].TrueLocation), Color.White);
+                        if (Camera.IsOnCamera(new Rectangle(x * 32, y * 32, tileWidth, tileHeight)))
+                            batch.Draw(mapArr[x, y].Texture, new Vector2(x * tileWidth,
+                                y * tileHeight), Color.White);
                     }
                 }
             }

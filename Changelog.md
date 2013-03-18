@@ -1,6 +1,15 @@
 Changelog
 =========
 
+03-17-2013
+----------
+ - Added full functionality to camera zooming
+ - Added new sprites for the player... I'm just reusing TLOZ: ripped sprites
+ - Added attacking function + animation to the player ----> Very unorganized, would like fixing there
+ - Added features to the GameHelperLibrary
+   - Allowed for drawing horizontally flipped sprites and animtations
+ - Added the feature to import custom spritesheets and animations
+
 03-16-2013
 ----------
  - Fixed the Move function in Entity

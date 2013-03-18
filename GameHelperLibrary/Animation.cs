@@ -45,6 +45,18 @@ namespace GameHelperLibrary {
             }
         }
 
+
+        /// <summary>
+        /// Draws the animation to the screen
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        /// <param name="gameTime"></param>
+        /// <param name="position">The position to draw the animation</param>
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime, Vector2 position, bool flipped = false, float scale = 1.0f)
+        {
+            Draw(spriteBatch, gameTime, position.X, position.Y, flipped, scale);
+        }
+
         /// <summary>
         /// Draws the animation to the screen.
         /// </summary>
@@ -52,7 +64,7 @@ namespace GameHelperLibrary {
         /// <param name="gameTime"></param>
         /// <param name="x">X location to draw the animation</param>
         /// <param name="y">Y location to draw the animation</param>
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float x, float y) {
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float x, float y, bool flipped = false, float scale = 1.0f) {
 
             position = new Vector2(x, y);
 
@@ -71,17 +83,10 @@ namespace GameHelperLibrary {
                   CurrentFrame = 0;
             }
 
-            spriteBatch.Draw(_images[CurrentFrame], position, Color.White);
-        }
-
-        /// <summary>
-        /// Draws the animation to the screen
-        /// </summary>
-        /// <param name="spriteBatch"></param>
-        /// <param name="gameTime"></param>
-        /// <param name="position">The position to draw the animation</param>
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime, Vector2 position) {
-            Draw(spriteBatch, gameTime, position.X, position.Y);
+            if (flipped)
+                spriteBatch.Draw(_images[CurrentFrame], position, null, Color.White, 0, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0f);
+            else
+                spriteBatch.Draw(_images[CurrentFrame], position, null, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0f);
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime, Rectangle destRect)

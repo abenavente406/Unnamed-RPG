@@ -50,13 +50,16 @@ namespace GameHelperLibrary
             _image = image;
         }
 
-        public void Draw(SpriteBatch spriteBatch, float x, float y)
+        public void Draw(SpriteBatch spriteBatch, float x, float y, bool flipped = false, float scale = 1.0f)
         {
-            Draw(spriteBatch, new Vector2(x, y));
+            Draw(spriteBatch, new Vector2(x, y), flipped, scale);
         }
-        public void Draw(SpriteBatch spriteBatch, Vector2 pos)
+        public void Draw(SpriteBatch spriteBatch, Vector2 pos, bool flipped = false, float scale = 1.0f)
         {
-            spriteBatch.Draw(_image, pos, Color.White);
+            if (flipped)
+                spriteBatch.Draw(_image, pos, null, Color.White, 0, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0f);
+            else
+                spriteBatch.Draw(_image, pos, null, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0f);
         }
 
     }

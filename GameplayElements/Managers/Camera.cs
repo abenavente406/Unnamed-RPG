@@ -41,8 +41,6 @@ namespace GameplayElements.Managers
             viewportHeight = viewPortHeight;
         }
 
-
-
         #region Advanced Camera Functions
         private Matrix transform;
 
