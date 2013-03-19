@@ -12,12 +12,14 @@ namespace GameplayElements.Data
 {
     public class Level
     {
+        #region Fields
         public string name = "";
+
         public Map map;
 
         public bool[,] wallTile;
-
         public Tile[,] mapArr;
+
         public int tileWidth;
         public int tileHeight;
 
@@ -25,6 +27,10 @@ namespace GameplayElements.Data
         public int height;
         public int widthInTiles;
         public int heightInTiles;
+
+        Random rand = new Random();
+
+        #endregion
 
         #region Properties
         public int Width
@@ -56,12 +62,11 @@ namespace GameplayElements.Data
                     return tileHeight;
             }
         }
-        #endregion
-
-            Random rand = new Random();
 
         public string Name { get { return name; } }
+        #endregion
 
+        #region Constructor and Initialization
         /// <summary>
         /// Generates a level randomly
         /// </summary>
@@ -122,8 +127,13 @@ namespace GameplayElements.Data
             Map.InitObjectDrawing(ProjectData.Graphics.GraphicsDevice);
             map = LevelManager.Content.Load<Map>(location);
 
+            mapArr = new Tile[map.Width, map.Height];
+            this.tileWidth = map.TileWidth;
+            this.tileHeight = map.TileHeight;
             width = map.Width * tileWidth;
             height = map.Height * tileHeight;
+            widthInTiles = width / TileWidth;
+            heightInTiles = height / TileHeight;
 
             wallTile = new bool[map.Width, map.Height];
 
@@ -135,42 +145,54 @@ namespace GameplayElements.Data
                 }
             }
 
+            for (int x = 0; x < widthInTiles; x++)
+            {
+                for (int y = 0; y < heightInTiles; y++)
+                {
+                    mapArr[x, y] = new Tile(width, height, null)
+                    {
+                        IsWallTile = wallTile[x, y]
+                    };
+                }
+            }
         }
+        #endregion
 
+        #region Drawing
         public virtual void Draw(SpriteBatch batch, Rectangle region)
         {
             if (map != null)
-            {
                 map.Draw(batch, region);
-            }
             else
-            {
                 for (int x = 0; x < widthInTiles; x++)
-                {
                     for (int y = 0; y < heightInTiles; y++)
-                    {
                         if (Camera.IsOnCamera(new Rectangle(x * 32, y * 32, tileWidth, tileHeight)))
-                            batch.Draw(mapArr[x, y].Texture, new Vector2(x * tileWidth,
-                                y * tileHeight), Color.White);
-                    }
-                }
-            }
+                            batch.Draw(mapArr[x, y].Texture, Camera.Transform(new Vector2(x * tileWidth,
+                                y * tileHeight)), Color.White);
         }
 
         public void DrawLayer(SpriteBatch batch, Rectangle region, int layerId)
         {
             map.DrawLayer(batch, layerId, region, 0.0f);
         }
+        #endregion
 
+        #region Helper Methods
         public TileLayerList GetLayers()
         {
             return map.TileLayers;
         }
+        #endregion
 
     }
 
     public class Tile
     {
+
+        #region Fields
+        #endregion
+
+        #region Properties
         public int Width { get; set; }
         public int Height { get; set; }
 
@@ -199,11 +221,15 @@ namespace GameplayElements.Data
                     1, 1);
             }
         }
+        #endregion
 
+        #region Constructor and Initialization
         public Tile(int width, int height, Texture2D texture)
         {
             Width = width;
             Height = height;
         }
+        #endregion
+
     }
 }

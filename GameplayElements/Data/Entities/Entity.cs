@@ -13,7 +13,6 @@ namespace GameplayElements.Data.Entities
 {
     public abstract class Entity
     {
-
         #region Fields
         protected string name;
 
@@ -55,6 +54,9 @@ namespace GameplayElements.Data.Entities
         protected bool god = false;
         protected bool superSpeed = false;
 
+        protected const int MAX_LEVEL = 100;
+        protected int expLevel = 1;
+        protected int experience = 0;
         #endregion
 
         #region Properties
@@ -94,6 +96,28 @@ namespace GameplayElements.Data.Entities
         {
             get { return dead; }
             set { dead = value; }
+        }
+
+        public int ExperienceLevel
+        {
+            get { return expLevel; }
+            set 
+            {
+                if (value < 0) value = 0;
+                if (value > MAX_LEVEL) value = MAX_LEVEL;
+                expLevel = MAX_LEVEL;
+            }
+        }
+
+        public int ExperiencePoints
+        {
+            get { return experience; }
+            set
+            {
+                if (value < 0) value = 0;
+                if (value > Int32.MaxValue) value = Int32.MaxValue;
+                experience = value;
+            }
         }
 
         public int SpriteWidth

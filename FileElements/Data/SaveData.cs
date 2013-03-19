@@ -14,7 +14,10 @@ namespace ProjectElements.Data
 		
         public Vector2 Position { get; set; }
         public int Direction { get; set; }
-		
+
+        public int ExperienceLevel { get; set; }
+        public int ExperiencePoints { get; set; }
+
 		public bool NoClipEnabled { get; set; }
 		public bool GodModeEnabled { get; set; }
 		public bool SuperSpeedEnabled { get; set; }
@@ -32,7 +35,9 @@ namespace ProjectElements.Data
                 NoClipEnabled = false,
                 GodModeEnabled = false,
                 SuperSpeedEnabled = false,
-                Time = System.DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt")
+                Time = System.DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt"),
+                ExperienceLevel = 1,
+                ExperiencePoints = 0
             };
         }
     }

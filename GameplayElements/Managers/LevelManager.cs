@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using GameplayElements.Data.Entities.Monsters;
 using ProjectElements.Data;
+using GameHelperLibrary;
 
 namespace GameplayElements.Managers
 {
@@ -34,9 +35,9 @@ namespace GameplayElements.Managers
             Content = content;
 
             //levels.Add("MainWorld", new Level("MainWorlds", "Levels\\world_1"));
-            //SetCurrentLevel("MainWorld");
-            SetCurrentLevel(new Dungeon(80, 60, 32, 32) as Level);
-            //SetCurrentLevel(new Level(80, 60, 32, 32));
+            levels.Add("RandomTestDungeon", new Dungeon(80, 60, 32, 32) as Level);
+            levels.Add("RandomTestLevel", new Level(80, 60, 32, 32));
+            SetCurrentLevel("RandomTestDungeon");
 
             em = new EntityManager(data);
 
@@ -71,7 +72,7 @@ namespace GameplayElements.Managers
                 currentLevel.DrawLayer(batch, Camera.ViewPortRectangle, (int)LayerID.FORELAYER);
 
                 // Enable this if you want to see the collision bounds of tiles
-                currentLevel.DrawLayer(batch, Camera.ViewPortRectangle, (int)LayerID.COLLISION);
+                //currentLevel.DrawLayer(batch, Camera.ViewPortRectangle, (int)LayerID.COLLISION);
             }
             else
             {
@@ -124,6 +125,8 @@ namespace GameplayElements.Managers
             EntityManager.player.Position = data.Position;
             EntityManager.player.Direction = data.Direction;
             EntityManager.player.SuperSpeed = data.SuperSpeedEnabled;
+            EntityManager.player.ExperienceLevel = data.ExperienceLevel;
+            EntityManager.player.ExperiencePoints = data.ExperiencePoints;
         }
 
         public static Level GetCurrentLevel()

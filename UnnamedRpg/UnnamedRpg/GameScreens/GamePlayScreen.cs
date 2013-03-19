@@ -50,12 +50,12 @@ namespace UnnamedRpg.GameScreens
 
             lm.Update(gameTime);
 
-            if (InputHandler.KeyPressed(Keys.Add) ||
-                InputHandler.KeyPressed(Keys.OemPlus))
+            if (InputHandler.KeyDown(Keys.Add) ||
+                InputHandler.KeyDown(Keys.OemPlus))
                 camera.Zoom += .05f;
 
-            if (InputHandler.KeyPressed(Keys.Subtract) ||
-                InputHandler.KeyPressed(Keys.OemMinus))
+            if (InputHandler.KeyDown(Keys.Subtract) ||
+                InputHandler.KeyDown(Keys.OemMinus))
                 camera.Zoom -= .05f;
 
             camera.Update(EntityManager.player.Position);
@@ -80,7 +80,7 @@ namespace UnnamedRpg.GameScreens
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
             GameRef.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp,
-                        DepthStencilState.Default, RasterizerState.CullNone, null, camera.GetTransformation(GraphicsDevice));
+                        DepthStencilState.Default, RasterizerState.CullNone, null ,camera.GetTransformation(GraphicsDevice));
             {
                 base.Draw(gameTime);
                 lm.Draw(GameRef.spriteBatch, gameTime);

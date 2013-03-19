@@ -22,13 +22,14 @@ namespace GameplayElements.Managers
         private static Vector2 pos;
 
         #region Properties
-        public static Vector2 Position 
+        public static Vector2 Position
         {
             get { return pos; }
             set
             {
-                pos = Vector2.Clamp(value, Vector2.Zero, new Vector2(LevelManager.GetCurrentLevel().Width - viewportWidth,
-                    LevelManager.GetCurrentLevel().Height - viewportHeight));
+                //pos = Vector2.Clamp(value, Vector2.Zero, new Vector2(LevelManager.GetCurrentLevel().Width - viewportWidth,
+                //    LevelManager.GetCurrentLevel().Height - viewportHeight));
+                pos = value;
             }
         }
         #endregion
@@ -63,13 +64,13 @@ namespace GameplayElements.Managers
             get { return transform; }
             set { transform = value; }
         }
-        
+
 
         public static Rectangle ViewPortRectangle
         {
             get
             {
-                return new Rectangle((int)(Position.X - viewportWidth / zoom / 2), 
+                return new Rectangle((int)(Position.X - viewportWidth / zoom / 2),
                     (int)(Position.Y - viewportHeight / zoom / 2), (int)(viewportWidth / zoom), (int)(viewportHeight / zoom));
             }
         }
@@ -92,7 +93,7 @@ namespace GameplayElements.Managers
         {
             if (EntityManager.player.IsMoving)
             {
-                
+
                 Position += Vector2.Clamp(pos, Vector2.Zero, new Vector2(LevelManager.GetCurrentLevel().Width,
                     LevelManager.GetCurrentLevel().Height));
             }
@@ -100,7 +101,7 @@ namespace GameplayElements.Managers
 
         public void Update(Vector2 newPos)
         {
-            Position = newPos;        
+            Position = newPos;
         }
 
 

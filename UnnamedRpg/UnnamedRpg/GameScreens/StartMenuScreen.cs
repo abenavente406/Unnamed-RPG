@@ -211,8 +211,8 @@ namespace UnnamedRpg.GameScreens
 
         public override void Update(GameTime gameTime)
         {
-            ControlManager.Update(gameTime, playerIndexInControl);
             base.Update(gameTime);
+            ControlManager.Update(gameTime, playerIndexInControl);
         }
 
         public override void Draw(GameTime gameTime)

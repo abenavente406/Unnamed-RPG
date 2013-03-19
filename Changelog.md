@@ -1,7 +1,14 @@
 Changelog
 =========
 
-03-17-2013
+__03-18-2013__
+----------
+ - Fixed the crash when you pressed enter before the game loads using epsilon
+ - Fixed crash when pressing enter twice going into new game screen
+ - Changed zooming to be updated with each game update
+ - __I NEED HELP WITH THE CAMERA CLASS!__
+
+__03-17-2013__
 ----------
  - Added full functionality to camera zooming
  - Added new sprites for the player... I'm just reusing TLOZ: ripped sprites
@@ -10,12 +17,12 @@ Changelog
    - Allowed for drawing horizontally flipped sprites and animtations
  - Added the feature to import custom spritesheets and animations
 
-03-16-2013
+__03-16-2013__
 ----------
  - Fixed the Move function in Entity
  - Fixed the Camera when the player stops moving
 
-03-15-2013
+__03-15-2013__
 ----------
  - Finalized the fadeout/fadein of gamestates
  - Added dungeon generator for level class
@@ -25,25 +32,25 @@ Changelog
  - Made several methods in the Level class virtual for implementing different level types
  - Added DrawState function rather than Draw function ---------> I will fix this
 
-03-14-2013
+__03-14-2013__
 ----------
  - Began transition feature for game states
  - Added glowing effect to controls (ControlEffects.GLOW)
  - Changed spritebatch initialization to the Initialize() method in TestGame.cs
 
-03-10-2013
+__03-10-2013__
 ----------
  - Added load game screen (fully functional)
  - Added a new level loading system
    - Not working yet
 
-03-09-2013
+__03-09-2013__
 ----------
  - Allow pseudo 3D drawing by drawing specific layers first
  - Moved the drawing of entities to the level manager class
 
 
-03-08-2013
+__03-08-2013__
 ----------
  - Fully functional saving of game data
  - Added the "New Game" screen
@@ -54,7 +61,7 @@ Changelog
  - Added "Continue Game" ability
  
 
-03-07-2013
+__03-07-2013__
 ----------
  - Added the ability to save game data by pressing ESCAPE
  - Added another gamestate and font type

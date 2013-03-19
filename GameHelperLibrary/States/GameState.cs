@@ -168,12 +168,13 @@ namespace GameHelperLibrary
 
         public override void Update(GameTime gameTime)
         {
+
             if (isExiting)
                 Alpha += .05f;
             if (isEntering)
                 Alpha -= .02f;
 
-            if (Alpha >= 1.0f && isExiting)
+            if (1 - Alpha <= .05f && isExiting)
             {
                 isExiting = false;
                 Alpha = 0.0f;
@@ -181,6 +182,7 @@ namespace GameHelperLibrary
                 StateManager.TargetState.alpha = 1.0f;
                 StateManager.PushState(StateManager.TargetState);
                 StateManager.TargetState = null;
+                return;
             }
 
             if (Alpha <= 0 && IsEntering)
@@ -189,15 +191,11 @@ namespace GameHelperLibrary
                 Alpha = 0.0f;
             }
 
-                // Update each component in the state
-            if (!isEntering && !isExiting)
-            {
                 foreach (GameComponent component in childComponents)
                     if (component.Enabled)
                         component.Update(gameTime);
 
                 base.Update(gameTime);
-            }
         }
         #endregion
 

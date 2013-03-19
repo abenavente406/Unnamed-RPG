@@ -92,8 +92,9 @@ namespace GameHelperLibrary.Controls
 
             foreach (Keys key in pressedKeys)
             {
-                if (!lastPressedKeys.Contains(key))
-                    OnKeyDown(key);
+                if (!(lastPressedKeys == null))
+                    if (!lastPressedKeys.Contains(key))
+                        OnKeyDown(key);
             }
 
             lastPressedKeys = pressedKeys;
