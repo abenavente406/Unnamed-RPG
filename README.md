@@ -9,7 +9,7 @@ Contributors
 
 Todo
 ====
-- [ ] ##Basic Framework
+- [ ] __Basic Framework__
   - [X] Creating save game system
   - [X] Creating file loading system
   - [ ] Naming the project
@@ -18,13 +18,13 @@ Todo
     - [X] Level classes
     - [X] Item Classes
 
-- [ ] ##Functioning Gameplay
+- [ ] __Functioning Gameplay__
   - [X] Camera
   - [X] Level Loading System
   - [ ] Level Changing System
   - [X] Transitions
 
-- [ ] ##GUI
+- [ ] __GUI__
   - [ ] Conversation popup textbox
   - [ ] Status bars
     - [ ] Life bars
@@ -34,7 +34,7 @@ Todo
   - [ ] Clickable main menu
   - [ ] Clickable loading screen
 
-- [ ] ##Art
+- [ ] __Art__
   - [ ] Player
   - [ ] NPCs
   - [ ] Monsters
