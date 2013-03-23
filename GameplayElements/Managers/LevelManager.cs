@@ -30,14 +30,25 @@ namespace GameplayElements.Managers
 
         Random rand = new Random();
 
-        public LevelManager(ContentManager content, SaveData data)
+        public LevelManager(ContentManager content, SaveData data, int levelType = 0)
         {
             Content = content;
 
-            //levels.Add("MainWorld", new Level("MainWorlds", "Levels\\world_1"));
-            levels.Add("RandomTestDungeon", new Dungeon(80, 60, 32, 32) as Level);
-            levels.Add("RandomTestLevel", new Level(80, 60, 32, 32));
-            SetCurrentLevel("RandomTestDungeon");
+            switch (levelType)
+            {
+                case 0:
+                    levels.Add("RandomTestLevel", new Level(80, 60, 32, 32));
+                    SetCurrentLevel("RandomTestLevel");
+                    break;
+                case 1:
+                    levels.Add("RandomTestDungeon", new Dungeon(80, 60, 32, 32) as Level);
+                    SetCurrentLevel("RandomTestDungeon");
+                    break;
+                case 2:
+                    levels.Add("MainWorld", new Level("MainWorlds", "Levels\\world_1"));
+                    SetCurrentLevel("MainWorld");
+                    break;
+            }
 
             em = new EntityManager(data);
 

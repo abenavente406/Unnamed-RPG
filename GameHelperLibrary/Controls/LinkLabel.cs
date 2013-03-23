@@ -13,20 +13,11 @@ namespace GameHelperLibrary.Controls
         #region Fields and Properties
 
         Color selectedColor = Color.CadetBlue;
-        Color overlay = Color.Black;
-
-        bool reverse;
 
         public Color SelectedColor
         {
             get { return selectedColor; }
             set { selectedColor = value; }
-        }
-
-        public Color Overlay
-        {
-            get { return overlay; }
-            set { overlay = value; }
         }
 
         #endregion
@@ -70,14 +61,14 @@ namespace GameHelperLibrary.Controls
                             if (!reverse)
                             {
                                 spriteBatch.DrawString(SpriteFont, text, Position, selectedColor);
-                                overlay.A += 4;
+                                overlay.A += glowSpeed;
                                 spriteBatch.DrawString(SpriteFont, text, position, Overlay);
 
                             }
                             else
                             {
                                 spriteBatch.DrawString(SpriteFont, text, Position, selectedColor);
-                                overlay.A -= 4;
+                                overlay.A -= glowSpeed;
                                 spriteBatch.DrawString(SpriteFont, text, position, Overlay);
 
                             }
@@ -87,9 +78,9 @@ namespace GameHelperLibrary.Controls
                                 overlay.A = 250;
                                 reverse = true;
                             }
-                            else if (overlay.A < 5)
+                            else if (overlay.A < glowSpeed)
                             {
-                                overlay.A = 5;
+                                overlay.A = glowSpeed;
                                 reverse = false;
                             }
 

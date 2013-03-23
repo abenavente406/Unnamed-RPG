@@ -39,6 +39,29 @@ namespace GameHelperLibrary.Controls
                             spriteBatch.DrawString(spriteFont, Text, Position, Color);
                         break;
                     }
+                case ControlEffect.GLOW:
+                    {
+                        spriteBatch.DrawString(SpriteFont, text, Position, Color);
+                        spriteBatch.DrawString(SpriteFont, text, position, Overlay);
+
+                        if (!reverse)
+                            overlay.A += glowSpeed;
+                        else
+                            overlay.A -= glowSpeed;
+
+                        if (overlay.A > 250)
+                        {
+                            overlay.A = 250;
+                            reverse = true;
+                        }
+                        else if (overlay.A < glowSpeed)
+                        {
+                            overlay.A = glowSpeed;
+                            reverse = false;
+                        }
+
+                        break;
+                    }
             }
         }
 

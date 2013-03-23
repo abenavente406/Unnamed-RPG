@@ -1,6 +1,16 @@
 Changelog
 =========
 
+__03-23-2013__
+----------
+ - Added SelectLevelType screen
+
+__03-22-2013__
+----------
+ - Fixed bug when saving experience data
+ - Added features to GameHelperLibrary
+   - Added the glow effect for picture boxes and labels
+
 __03-18-2013__
 ----------
  - Fixed the crash when you pressed enter before the game loads using epsilon

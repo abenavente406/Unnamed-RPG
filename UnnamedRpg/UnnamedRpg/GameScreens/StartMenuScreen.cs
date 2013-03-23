@@ -104,6 +104,7 @@ namespace UnnamedRpg.GameScreens
 
             Texture2D arrowTexture = Content.Load<Texture2D>("GUI\\leftarrowUp");
             arrowImage = new PictureBox(arrowTexture, new Rectangle(0, 0, arrowTexture.Width, arrowTexture.Height));
+            arrowImage.Effect = ControlEffect.FLASH;
             ControlManager.Add(arrowImage);
 
             title = new Label();
@@ -111,7 +112,7 @@ namespace UnnamedRpg.GameScreens
             title.Text = "O  R  I  G  I  N  S";
             title.Size = title.SpriteFont.MeasureString(title.Text);
 
-            if (selectedWallpaper != 2 && selectedWallpaper != 3)
+            if (selectedWallpaper == 0)
                 title.Color = Color.Black;
 
             title.Position = new Vector2(ProjectElements.Data.ProjectData.GameWidth / 2 -

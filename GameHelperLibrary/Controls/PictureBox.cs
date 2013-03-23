@@ -82,6 +82,32 @@ namespace GameHelperLibrary.Controls
                                 (int)(destRect.Height * scale)), sourceRect, color);
                         break;
                     }
+                case ControlEffect.GLOW:
+                    {
+                        spriteBatch.Draw(image, new Rectangle(destRect.X, destRect.Y, (int)(destRect.Width * scale),
+                               (int)(destRect.Height * scale)), sourceRect, color);
+
+                        spriteBatch.Draw(image, new Rectangle(destRect.X, destRect.Y, (int)(destRect.Width * scale),
+                        (int)(destRect.Height * scale)), sourceRect, overlay);
+
+                        if (!reverse)
+                            overlay.A += glowSpeed;
+                        else
+                            overlay.A -= glowSpeed;
+
+                        if (overlay.A > 250)
+                        {
+                            overlay.A = 250;
+                            reverse = true;
+                        }
+                        else if (overlay.A < glowSpeed)
+                        {
+                            overlay.A = glowSpeed;
+                            reverse = false;
+                        }
+
+                        break;
+                    }
             }
         }
 

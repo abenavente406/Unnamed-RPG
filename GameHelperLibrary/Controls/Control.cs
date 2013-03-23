@@ -32,7 +32,10 @@ namespace GameHelperLibrary.Controls
         protected Color color;
         protected string type;
         protected int flashDuration = 350;
+        protected byte glowSpeed = 4;
         protected float scale = 1.0f;
+        protected bool reverse = false;
+        protected Color overlay = Color.Black;
 
         #endregion
 
@@ -132,11 +135,24 @@ namespace GameHelperLibrary.Controls
             set { flashDuration = value; }
         }
 
+        public byte GlowSpeed
+        {
+            get { return glowSpeed; }
+            set { glowSpeed = value; }
+        }
+
         public float Scale
         {
             get { return scale; }
             set { scale = MathHelper.Clamp(value, 0.1f, 50.0f); }
         }
+
+        public Color Overlay
+        {
+            get { return overlay; }
+            set { overlay = value; }
+        }
+
         #endregion
 
         #region Constructor Region

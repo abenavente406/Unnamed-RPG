@@ -23,6 +23,14 @@ namespace UnnamedRpg.GameScreens
 
         Random rand = new Random();
 
+        public GamePlayScreen(Game game, GameStateManager manager, SaveData data, int levelType)
+            : base(game, manager)
+        {
+            ssm = new SpriteSheetManager(GameRef.GraphicsDevice, GameRef.Content);
+            tsm = new TileSheetManager(GameRef.GraphicsDevice, GameRef.Content);
+            lm = new LevelManager(GameRef.Content, data, levelType);
+        }
+
         public GamePlayScreen(Game game, GameStateManager manager, SaveData data)
             : base(game, manager)
         {
@@ -70,7 +78,9 @@ namespace UnnamedRpg.GameScreens
                     NoClipEnabled = EntityManager.player.NoClip,
                     GodModeEnabled = EntityManager.player.God,
                     SuperSpeedEnabled = EntityManager.player.SuperSpeed,
-                    Time = System.DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt")
+                    Time = System.DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt"),
+                    ExperienceLevel = EntityManager.player.ExperienceLevel,
+                    ExperiencePoints = EntityManager.player.ExperiencePoints
                 });
 
             if (InputHandler.KeyReleased(Keys.Escape))
