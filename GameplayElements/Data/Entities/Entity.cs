@@ -265,12 +265,12 @@ namespace GameplayElements.Data.Entities
                 }
             }
 
-            if (!isAttacking)
-            {
-                attackingUp.CurrentFrame = 0;
-                attackingDown.CurrentFrame = 0;
-                attackingRight.CurrentFrame = 0;
-            }
+            //if (!isAttacking)
+            //{
+            //    attackingUp.CurrentFrame = 0;
+            //    attackingDown.CurrentFrame = 0;
+            //    attackingRight.CurrentFrame = 0;
+            //}
             //DrawShadow();
         }
 

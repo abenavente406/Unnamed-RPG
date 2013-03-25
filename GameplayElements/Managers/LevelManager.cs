@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.Content;
 using GameplayElements.Data.Entities.Monsters;
 using ProjectElements.Data;
 using GameHelperLibrary;
+using GameplayElements.Data.Entities.PathFinding;
+using Microsoft.Xna.Framework.Input;
 
 namespace GameplayElements.Managers
 {
@@ -30,7 +32,9 @@ namespace GameplayElements.Managers
 
         Random rand = new Random();
 
-        public LevelManager(ContentManager content, SaveData data, int levelType = 0)
+        Texture2D pathSquare;
+
+        public LevelManager(ContentManager content, SaveData data, int levelType = 1)
         {
             Content = content;
 
@@ -55,17 +59,21 @@ namespace GameplayElements.Managers
             if (data != null)
                 LoadSave(data);
 
-            //LoadMonsters();
+            LoadMonsters();
+
+            pathSquare = Content.Load<Texture2D>("Test\\square");
 
         }
+
         void LoadMonsters()
         {
-            foreach (Room r in ((Dungeon)currentLevel).rooms)
+            foreach (Tile t in GetCurrentLevel().mapArr)
             {
-                EntityManager.AddMonster(new Skeleton(new Vector2(rand.Next((int)r.Position.X,
-                    (int)r.Position.X + r.Width - currentLevel.tileWidth), rand.Next((int)r.Position.Y,
-                    (int)r.Position.Y + r.Height - currentLevel.tileHeight))));
+                if (EntityManager.monsters.Count < 20)
+                EntityManager.AddMonster(new Skeleton(t.TrueLocation));
             }
+
+            
         }
 
         public void Update(GameTime gameTime)
@@ -89,6 +97,21 @@ namespace GameplayElements.Managers
             {
                 currentLevel.Draw(batch, Camera.ViewPortRectangle);
                 em.Draw(batch, gameTime);
+
+                List<Vector2> nodes = new List<Vector2>();
+                nodes = PathFinder.FindPath(new Vector2(1, 1), PointToTile(EntityManager.player.Position));
+
+                if (!(nodes == null))
+                {
+                    foreach (Vector2 node in nodes)
+                    {
+                        batch.Draw(
+                        pathSquare,
+                        node,
+                        new Color(128, 0, 0, 80));
+                    }
+                }
+                // Temporary Code End
             }
         }
 
@@ -99,10 +122,10 @@ namespace GameplayElements.Managers
 
         public static bool IsWallTile(float x, float y, int width, int height)
         {
-            int atx1 = (int)(x) / currentLevel.tileWidth;
-            int atx2 = (int)(x + width) / currentLevel.tileWidth;
-            int aty1 = (int)(y + height / 2) / currentLevel.tileHeight;
-            int aty2 = (int)(y + height) / currentLevel.tileHeight;
+            int atx1 = (int)MathHelper.Clamp((x) / currentLevel.tileWidth, 0, currentLevel.widthInTiles - 1);
+            int atx2 = (int)MathHelper.Clamp((x + width) / currentLevel.tileWidth, 0, currentLevel.widthInTiles - 1);
+            int aty1 = (int)MathHelper.Clamp((y + height / 2) / currentLevel.tileHeight, 0, currentLevel.heightInTiles - 1);
+            int aty2 = (int)MathHelper.Clamp((y + height) / currentLevel.tileHeight, 0, currentLevel.heightInTiles - 1);
 
             if (IsTileBlocked(atx1, aty1))
                 return true;

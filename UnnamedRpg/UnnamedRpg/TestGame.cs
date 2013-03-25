@@ -43,6 +43,8 @@ namespace UnnamedRpg
             graphics.IsFullScreen = ProjectData.isFullScreen;
             graphics.ApplyChanges();
 
+            IsMouseVisible = true;
+
             ScreenRectangle = new Rectangle(0, 0, ProjectData.GameWidth, ProjectData.GameHeight);
 
         }

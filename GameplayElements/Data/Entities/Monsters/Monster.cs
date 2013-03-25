@@ -11,20 +11,20 @@ namespace GameplayElements.Data.Entities.Monsters
 {
     public class Monster : Entity
     {
+        protected int movementTimer = 0;
+        protected int movementTimerMax = 300;
+        protected int movementDir = 1;
 
-        int movementTimer = 0;
-        int movementTimerMax = 300;
-        int movementDir = 1;
+        protected bool canMove = true;
 
-        bool canMove = true;
-
-        Random rand = new Random();
+        Random rand;
 
         public Monster(string name, Vector2 pos)
             : base(name, pos)
         {
-            
+            rand = new Random(System.DateTime.Now.Millisecond);
         }
+
         public override void Update(GameTime gameTime)
         {
             if (attackCoolDownTicks > 0)
@@ -75,8 +75,10 @@ namespace GameplayElements.Data.Entities.Monsters
             if (!(player == null))
             {
                 if (DistanceTo(this, player) < attackRange)
-                    Attack(player);
-                return;
+                {
+                    //Attack(player);
+                    return;
+                }
             }
 
             Vector2 newPos = Position + new Vector2(dirX * speed * speedMultiplier,
@@ -87,17 +89,7 @@ namespace GameplayElements.Data.Entities.Monsters
 
         public void DrawPathToPlayer(SpriteBatch batch, Player player)
         {
-            List<Rectangle> rects = new List<Rectangle>();
-            List<DrawableRectangle> rectsd = new List<DrawableRectangle>();
-
-            foreach (Vector2 v in PathFinder.FindPath(this.Position, player.Position))
-                rects.Add(new Rectangle((int)v.X, (int)v.Y, spriteWidth, spriteHeight));
-
-            foreach (Rectangle r in rects)
-                rectsd.Add(new DrawableRectangle(batch.GraphicsDevice, new Vector2(r.Width, r.Height),
-                    Color.Red * .5f, true));
-        }
-
             
+        }
     }
 }

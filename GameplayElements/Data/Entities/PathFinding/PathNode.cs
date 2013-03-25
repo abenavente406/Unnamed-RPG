@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using ProjectElements.Data;
+using GameplayElements.Managers;
 
 namespace GameplayElements.Data.Entities.PathFinding
 {
@@ -36,8 +37,8 @@ namespace GameplayElements.Data.Entities.PathFinding
             get { return gridLocation; }
             set 
             {
-                gridLocation = new Vector2((float)MathHelper.Clamp(value.X, 0f, (float) ProjectData.GameWidth),
-                    (float)MathHelper.Clamp(value.Y, 0f, (float) ProjectData.GameHeight));
+                gridLocation = new Vector2((float)MathHelper.Clamp(value.X, 0f, (float)LevelManager.GetCurrentLevel().widthInTiles),
+                    (float)MathHelper.Clamp(value.Y, 0f, (float) LevelManager.GetCurrentLevel().heightInTiles));
             }
         }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using ProjectElements.Data;
+using GameplayElements.Managers;
 
 namespace GameplayElements.Data.Entities.PathFinding
 {
@@ -54,11 +55,11 @@ namespace GameplayElements.Data.Entities.PathFinding
         public static List<Vector2> FindPath(Vector2 startTile, Vector2 endTile)
         {
             // If any of the locations are walls, cancel the search
-            //if (MazeComponents.Maze.IsWallTile(startTile) ||
-            //    MazeComponents.Maze.IsWallTile(endTile))
-            //{
-            //    return null;
-            //}
+            if (LevelManager.GetCurrentLevel().mapArr[(int)startTile.X, (int)startTile.Y].IsWallTile ||
+                LevelManager.GetCurrentLevel().mapArr[(int)endTile.X, (int)endTile.Y].IsWallTile)
+            {
+                return null;
+            }
 
             openList.Clear();
             nodeCosts.Clear();
@@ -72,7 +73,7 @@ namespace GameplayElements.Data.Entities.PathFinding
 
             AddNodeToOpenList(startNode);
 
-            while (openList.Count > 0)
+             while (openList.Count > 0)
             {
                 PathNode currentNode = openList[openList.Count - 1];
 
@@ -140,7 +141,7 @@ namespace GameplayElements.Data.Entities.PathFinding
             Vector2 SE = new Vector2(X + 1, Y + 1);
             Vector2 SW = new Vector2(X - 1, Y + 1);
 
-            if ((X > 0) && X < ProjectData.GameWidth)
+            if ((X > 0) && !LevelManager.GetCurrentLevel().mapArr[(int)W.X, (int)W.Y].IsWallTile)
             {
                 adjcacentNodes.Add(new PathNode(currentNode, endNode, W, CostStraight + currentNode.DirectCost));
             }
@@ -150,55 +151,55 @@ namespace GameplayElements.Data.Entities.PathFinding
                 downLeft = false;
             }
 
-            //if ((X < Maze.MAZEWIDTH) && (!Maze.IsWallTile(E)))
-            //{
-            //    adjcacentNodes.Add(new PathNode(currentNode, endNode, E, CostStraight + currentNode.DirectCost));
-            //}
-            //else
-            //{
-            //    upRight = false;
-            //    downRight = false;
-            //}
+            if ((X < LevelManager.GetCurrentLevel().widthInTiles) && (!LevelManager.GetCurrentLevel().mapArr[(int)E.X, (int)E.Y].IsWallTile))
+            {
+                adjcacentNodes.Add(new PathNode(currentNode, endNode, E, CostStraight + currentNode.DirectCost));
+            }
+            else
+            {
+                upRight = false;
+                downRight = false;
+            }
 
-            //if ((Y > 0) && (!Maze.IsWallTile(N)))
-            //{
-            //    adjcacentNodes.Add(new PathNode(currentNode, endNode, N, CostStraight + currentNode.DirectCost));
-            //}
-            //else
-            //{
-            //    upLeft = false;
-            //    upRight = false;
-            //}
+            if ((Y > 0) && (!LevelManager.GetCurrentLevel().mapArr[(int)N.X, (int)N.Y].IsWallTile))
+            {
+                adjcacentNodes.Add(new PathNode(currentNode, endNode, N, CostStraight + currentNode.DirectCost));
+            }
+            else
+            {
+                upLeft = false;
+                upRight = false;
+            }
 
-            //if ((Y < Maze.MAZEHEIGHT) && (!Maze.IsWallTile(S)))
-            //{
-            //    adjcacentNodes.Add(new PathNode(currentNode, endNode, S, CostStraight + currentNode.DirectCost));
-            //}
-            //else
-            //{
-            //    downLeft = false;
-            //    downRight = false;
-            //}
+            if ((Y < LevelManager.GetCurrentLevel().heightInTiles) && (!LevelManager.GetCurrentLevel().mapArr[(int)S.X, (int)S.Y].IsWallTile))
+            {
+                adjcacentNodes.Add(new PathNode(currentNode, endNode, S, CostStraight + currentNode.DirectCost));
+            }
+            else
+            {
+                downLeft = false;
+                downRight = false;
+            }
 
-            //if ((upLeft) && (!Maze.IsWallTile(NW)))
-            //{
-            //    adjcacentNodes.Add(new PathNode(currentNode, endNode, NW, CostDiagonal + currentNode.DirectCost));
-            //}
+            if ((upLeft) && (!LevelManager.GetCurrentLevel().mapArr[(int)NW.X, (int)NW.Y].IsWallTile))
+            {
+                adjcacentNodes.Add(new PathNode(currentNode, endNode, NW, CostDiagonal + currentNode.DirectCost));
+            }
 
-            //if ((upRight) && (!Maze.IsWallTile(NE)))
-            //{
-            //    adjcacentNodes.Add(new PathNode(currentNode, endNode, NE, CostDiagonal + currentNode.DirectCost));
-            //}
+            if ((upRight) && (!LevelManager.GetCurrentLevel().mapArr[(int)NE.X, (int)NE.Y].IsWallTile))
+            {
+                adjcacentNodes.Add(new PathNode(currentNode, endNode, NE, CostDiagonal + currentNode.DirectCost));
+            }
 
-            //if ((downLeft) && (!Maze.IsWallTile(SW)))
-            //{
-            //    adjcacentNodes.Add(new PathNode(currentNode, endNode, SW, CostDiagonal + currentNode.DirectCost));
-            //}
+            if ((downLeft) && (!LevelManager.GetCurrentLevel().mapArr[(int)SW.X, (int)SW.Y].IsWallTile))
+            {
+                adjcacentNodes.Add(new PathNode(currentNode, endNode, SW, CostDiagonal + currentNode.DirectCost));
+            }
 
-            //if ((downRight) && (!Maze.IsWallTile(SE)))
-            //{
-            //    adjcacentNodes.Add(new PathNode(currentNode, endNode, SE, CostDiagonal + currentNode.DirectCost));
-            //}
+            if ((downRight) && (!LevelManager.GetCurrentLevel().mapArr[(int)SE.X, (int)SE.Y].IsWallTile))
+            {
+                adjcacentNodes.Add(new PathNode(currentNode, endNode, SE, CostDiagonal + currentNode.DirectCost));
+            }
 
             return adjcacentNodes;
         }
