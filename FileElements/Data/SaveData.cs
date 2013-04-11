@@ -5,6 +5,9 @@ using Microsoft.Xna.Framework;
 
 namespace ProjectElements.Data
 {
+    /// <summary>
+    /// All the properties that are saved when a game is saved.
+    /// </summary>
     public class SaveData
     {
 

@@ -11,6 +11,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace UnnamedRpg.GameScreens
 {
+    /// <summary>
+    ///  The screen where you create a new game.
+    ///  You type your name and press enter
+    /// </summary>
     class NewGameScreen : BaseGameState
     {
         Label lblPrompt;

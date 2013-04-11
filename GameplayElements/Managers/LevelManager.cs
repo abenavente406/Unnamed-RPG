@@ -67,12 +67,15 @@ namespace GameplayElements.Managers
 
         void LoadMonsters()
         {
-            foreach (Tile t in GetCurrentLevel().mapArr)
+            do
             {
-                if (EntityManager.monsters.Count < 20)
-                EntityManager.AddMonster(new Skeleton(t.TrueLocation));
-            }
-
+                var randPos = new Vector2(rand.Next(currentLevel.widthInTiles),
+                    rand.Next(currentLevel.heightInTiles));
+                if (!currentLevel.mapArr[(int)randPos.X, (int)randPos.Y].IsWallTile)
+                    EntityManager.AddMonster(new Skeleton(TileToPoint(randPos)));
+                else
+                    continue;
+            } while (EntityManager.monsters.Count < 10);
             
         }
 
@@ -118,6 +121,11 @@ namespace GameplayElements.Managers
         public static Vector2 PointToTile(Vector2 point)
         {
             return point / new Vector2(currentLevel.TileWidth, currentLevel.TileHeight);
+        }
+
+        public static Vector2 TileToPoint(Vector2 point)
+        {
+            return new Vector2(point.X * currentLevel.tileWidth, point.Y * currentLevel.tileHeight);
         }
 
         public static bool IsWallTile(float x, float y, int width, int height)

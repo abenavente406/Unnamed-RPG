@@ -1,6 +1,10 @@
 Changelog
 =========
 
+__03-24-2013__
+----------
+ - Began working on pathfinder AI for entities
+
 __03-23-2013__
 ----------
  - Added SelectLevelType screen

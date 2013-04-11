@@ -10,6 +10,7 @@ namespace UnnamedRpg
         /// </summary>
         static void Main(string[] args)
         {
+            // Create a new instance of our game and run it
             using (TestGame game = new TestGame())
             {
                 game.Run();

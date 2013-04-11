@@ -10,8 +10,12 @@ using ProjectElements.Data;
 
 namespace UnnamedRpg.GameScreens
 {
+    /// <summary>
+    /// Allows you to choose the type of level you want
+    /// </summary>
     public class NewLevelScreen : BaseGameState
     {
+        #region Fields
         PictureBox arrowImage;
         LinkLabel lblDungeon;
         LinkLabel lblRandom;
@@ -21,7 +25,9 @@ namespace UnnamedRpg.GameScreens
         uint changes = 0;
 
         string playerName;
+        #endregion
 
+        #region Initialization
         public NewLevelScreen(Game game, GameStateManager manager, string playerName)
             : base(game, manager)
         {
@@ -72,13 +78,9 @@ namespace UnnamedRpg.GameScreens
             ControlManager.FocusChanged += new EventHandler(ControlManager_FocusChanged);
             ControlManager_FocusChanged(lblRandom, null);
         }
+        #endregion
 
-        public override void Update(GameTime gameTime)
-        {
-            ControlManager.Update(gameTime, playerIndexInControl);
-            base.Update(gameTime);
-        }
-
+        #region Event Delegates
         protected void ControlManager_FocusChanged(object sender, EventArgs e)
         {
             Control control = sender as Control;
@@ -102,6 +104,14 @@ namespace UnnamedRpg.GameScreens
             else if (sender == lblRandom)
                 SwitchState(new GamePlayScreen(Game, StateManager, SaveData.CreateNewSave(playerName), 0));
         }
+        #endregion
+
+        #region Update and Draw
+        public override void Update(GameTime gameTime)
+        {
+            ControlManager.Update(gameTime, playerIndexInControl);
+            base.Update(gameTime);
+        }
 
         public override void Draw(GameTime gameTime)
         {
@@ -114,5 +124,6 @@ namespace UnnamedRpg.GameScreens
             }
             GameRef.spriteBatch.End();
         }
+        #endregion
     }
 }

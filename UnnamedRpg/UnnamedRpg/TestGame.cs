@@ -25,14 +25,21 @@ namespace UnnamedRpg
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
 
+        // Initialize global data used throughout the project
         public static ProjectData projectData;
 
+        // Manages the game states/screens
         GameStateManager stateManager;
 
+        // The title screen for our game
         public StartMenuScreen StartMenuScreen;
 
+        // The size of our game screen/viewport
         public readonly Rectangle ScreenRectangle;
 
+        /**
+         * Constructor!
+         * */
         public TestGame()
         {
             Content.RootDirectory = "Content";
@@ -62,26 +69,27 @@ namespace UnnamedRpg
 
             StartMenuScreen = new GameScreens.StartMenuScreen(this, stateManager);
 
+            // Make the state manager jump to 
             stateManager.ChangeState(StartMenuScreen);
 
             base.Initialize();
         }
 
-        protected override void LoadContent()
-        {
-            
-        }
-
+        /// <summary>
+        /// This code snippet creates a text file that shows what save file was
+        /// last to be open.  This allows the game to load the most recent save
+        /// file for the "Continue" function
+        /// </summary>
         protected override void UnloadContent()
         {
             if (SaveDataParser.savedStatus)
             {
-                StreamWriter lastPerson;
+                StreamWriter lastPerson;    // The stream that holds the data for the last person who played
                 lastPerson = File.CreateText(SaveDataParser.myGamesDir + "\\last_person.txt");
 
                 try
                 {
-                    lastPerson.WriteLine(EntityManager.player.Name);
+                    lastPerson.WriteLine(EntityManager.player.Name);    // Write the current player to last player
                 }
                 catch (NullReferenceException ex)
                 {
@@ -89,15 +97,15 @@ namespace UnnamedRpg
                 }
                 finally
                 {
+                    // Cleanup
                     lastPerson.Close();
                 }
             }
         }
 
-        protected override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-        }
+        /**
+         * ALL GAME LOGIC TAKES PLACE IN THE STATE CLASSES
+         * */
 
         protected override void Draw(GameTime gameTime)
         {

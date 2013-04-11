@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace ProjectElements.IO
 {
+    /// <summary>
+    /// Manages all the tilesheets in the game
+    /// </summary>
     public class TileSheetManager
     {
         static Dictionary<string, SpriteSheet> tileSheets = new Dictionary<string, SpriteSheet>();

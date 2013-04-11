@@ -162,8 +162,7 @@ namespace GameHelperLibrary
                 }
             }
 
-                FadeOutRect.Draw(batch, Vector2.Zero, FadeOutColor);
-
+            FadeOutRect.Draw(batch, Vector2.Zero, FadeOutColor);
         }
 
         public override void Update(GameTime gameTime)

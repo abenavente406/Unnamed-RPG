@@ -11,13 +11,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace UnnamedRpg.GameScreens
 {
+    /// <summary>
+    /// The blue print for game states
+    /// </summary>
     public abstract partial class BaseGameState : GameState
     {
-        protected TestGame GameRef;
-
-        protected ControlManager ControlManager;
-
-        protected PlayerIndex playerIndexInControl;
+        protected TestGame GameRef;                 // The main game that is referenced in each game state
+        protected ControlManager ControlManager;    // Manages all controls on individual states; controls: btn, txtbox, etc.
+        protected PlayerIndex playerIndexInControl; // The player index in control... usually player 1
 
         public BaseGameState(Game game, GameStateManager manager)
             : base(game, manager)
@@ -30,7 +31,7 @@ namespace UnnamedRpg.GameScreens
         {
             ContentManager Content = GameRef.Content;
 
-            SpriteFont menuFont = Content.Load<SpriteFont>("Fonts\\menuFont");
+            SpriteFont menuFont = Content.Load<SpriteFont>("Fonts\\menuFont");  // This loads the default font for the game
             ControlManager = new ControlManager(menuFont);
 
             base.LoadContent();
@@ -46,6 +47,16 @@ namespace UnnamedRpg.GameScreens
             base.DrawState(batch, gameTime);
         }
 
+        // IMPORTANT! READ THIS BEFORE TRYING TO FIGURE OUT WHAT SwitchState DOES
+        // IMPORTANT! READ THIS BEFORE TRYING TO FIGURE OUT WHAT SwitchState DOES
+        // IMPORTANT! READ THIS BEFORE TRYING TO FIGURE OUT WHAT SwitchState DOES
+        // IMPORTANT! READ THIS BEFORE TRYING TO FIGURE OUT WHAT SwitchState DOES
+        // IMPORTANT! READ THIS BEFORE TRYING TO FIGURE OUT WHAT SwitchState DOES
+        /// <summary>
+        /// Kind of a hack function. Allows the fading from one state to another but you need
+        /// to call FadeOutRectangle.Draw(GameRef.spriteBatch, Vector2.Zero, FadeOutColor);
+        /// </summary>
+        /// <param name="targetState">The state to switch to</param>
         public void SwitchState(GameState targetState)
         {
             StateManager.TargetState = targetState;

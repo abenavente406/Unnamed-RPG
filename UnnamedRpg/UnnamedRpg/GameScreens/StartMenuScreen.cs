@@ -15,8 +15,8 @@ namespace UnnamedRpg.GameScreens
 {
     public class StartMenuScreen : BaseGameState
     {
-
-        // Optional
+        #region Fields and Properties
+        // Is only initialized if it is chosen as the background
         protected Animation backGround;
 
         PictureBox picBackGround;
@@ -33,16 +33,13 @@ namespace UnnamedRpg.GameScreens
         int changes = 0;
 
         public static object Background;
+        #endregion
 
+        #region Initialization
         public StartMenuScreen(Game game, GameStateManager manager)
             : base(game, manager)
         {
             
-        }
-
-        public override void Initialize()
-        {
-            base.Initialize();
         }
 
         protected override void LoadContent()
@@ -52,19 +49,17 @@ namespace UnnamedRpg.GameScreens
             ContentManager Content = Game.Content;
             Color selectedColor = Color.Navy;
 
-            int selectedWallpaper = new Random().Next(4);
+            int selectedWallpaper = new Random().Next(4);   // Choose between four backgrounds
 
             switch (selectedWallpaper)
             {
-                case 0:
+                case 0:   // This is the animation. Hence, the texture2d array
                     {
                         Texture2D[] images = new Texture2D[8];
-
                         for (int i = 0; i < 8; i++)
                         {
                             images[i] = Content.Load<Texture2D>("Backgrounds\\exploded_bg\\water" + i.ToString());
                         }
-
                         backGround = new Animation(images);
                         Background = backGround;
                         break;
@@ -183,7 +178,10 @@ namespace UnnamedRpg.GameScreens
             else
                 ControlManager_FocusChanged(startGame, null);
         }
+        #endregion
 
+        #region Event Delegates
+        // Event called when a control manager changes focus from a control
         protected void ControlManager_FocusChanged(object sender, EventArgs e)
         {
             Control control = sender as Control;
@@ -197,6 +195,7 @@ namespace UnnamedRpg.GameScreens
             changes++;
         }
 
+        // Called when a link label is selected
         public virtual void menuItem_Selected(object sender, EventArgs e)
         {
             ProjectData.guiSelect.Play(.5f, 0.0f, 0.0f);
@@ -209,7 +208,9 @@ namespace UnnamedRpg.GameScreens
             else if (sender == exitGame)
                 GameRef.Exit();
         }
+        #endregion
 
+        #region Update and Draw
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -225,11 +226,11 @@ namespace UnnamedRpg.GameScreens
                     backGround.Draw(GameRef.spriteBatch, gameTime, GameRef.GraphicsDevice.Viewport.Bounds);
                 ControlManager.Draw(GameRef.spriteBatch, gameTime);
 
+                // THIS IS ALWAYS NECESSARY! SEE THE BASEGAMESTATE CLASS
                 FadeOutRect.Draw(GameRef.spriteBatch, Vector2.Zero, FadeOutColor);
             }
             GameRef.spriteBatch.End();
         }
-
-
+        #endregion
     }
 }
