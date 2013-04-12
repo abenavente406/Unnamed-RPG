@@ -100,21 +100,6 @@ namespace GameplayElements.Managers
             {
                 currentLevel.Draw(batch, Camera.ViewPortRectangle);
                 em.Draw(batch, gameTime);
-
-                List<Vector2> nodes = new List<Vector2>();
-                nodes = PathFinder.FindPath(new Vector2(1, 1), PointToTile(EntityManager.player.Position));
-
-                if (!(nodes == null))
-                {
-                    foreach (Vector2 node in nodes)
-                    {
-                        batch.Draw(
-                        pathSquare,
-                        node,
-                        new Color(128, 0, 0, 80));
-                    }
-                }
-                // Temporary Code End
             }
         }
 
@@ -150,6 +135,11 @@ namespace GameplayElements.Managers
         {
             int testX = (int)PointToTile(testPos).X;
             int testY = (int)PointToTile(testPos).Y;
+
+            if (testX > currentLevel.widthInTiles - 1)
+                return true;
+            else if (testY > currentLevel.heightInTiles - 1)
+                return true;
 
             return IsTileBlocked(testX, testY);
         }

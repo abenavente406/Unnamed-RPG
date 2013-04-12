@@ -27,6 +27,8 @@ namespace GameplayElements.Data.Entities
 
         public override void Update(GameTime gameTime)
         {
+            speedMultiplier = 1.0f;
+
             if (InputHandler.KeyPressed(Keys.N))
                 NoClip = !NoClip;
 
@@ -44,6 +46,8 @@ namespace GameplayElements.Data.Entities
                 dirX--;
             if (InputHandler.KeyDown(Keys.Right))
                 dirX++;
+            if (InputHandler.KeyDown(Keys.LeftShift))
+                speedMultiplier *= 1.20f;
 
             if (dirX < 0)
                 direction = 2;
@@ -60,10 +64,7 @@ namespace GameplayElements.Data.Entities
             if (dirX < 0 && dirY < 0)
                 direction = 0;
 
-            if (dirX == 0 && dirY == 0)
-                isMoving = false;
-            else
-                isMoving = true;
+            isMoving = !(dirX == 0 && dirY == 0);
 
             float newX = Position.X + dirX * speed * speedMultiplier;
             float newY = Position.Y + dirY * speed * speedMultiplier;
@@ -73,13 +74,9 @@ namespace GameplayElements.Data.Entities
             if (InputHandler.KeyPressed(Keys.Space))
             {
                 if (!isAttacking)
-                {
                     isAttacking = true;
-                }
-
-                    Attack(null);
+                Attack(null);
             }
         }
-
     }
 }

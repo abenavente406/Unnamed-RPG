@@ -9,8 +9,19 @@ using GameplayElements.Data.Entities.PathFinding;
 
 namespace GameplayElements.Data.Entities.Monsters
 {
+    public enum AiState
+    {
+        ROAMING,
+        TARGETTING,
+        ATTACKING,
+        SEARCHING,
+        FLEEING
+    }
+        
     public class Monster : Entity
     {
+        public AiState aiState = AiState.ROAMING;
+
         protected int movementTimer = 0;
         protected int movementTimerMax = 300;
         protected int movementDir = 1;
@@ -27,6 +38,8 @@ namespace GameplayElements.Data.Entities.Monsters
 
         public override void Update(GameTime gameTime)
         {
+            speedMultiplier = 1.0f;
+
             if (attackCoolDownTicks > 0)
                 attackCoolDownTicks--;
 
@@ -66,7 +79,7 @@ namespace GameplayElements.Data.Entities.Monsters
             else
             {
                 isMoving = false;
-                if (rand.NextDouble() > 0.97)
+                if (rand.NextDouble() > 0.9)
                     canMove = true;
             }
 
@@ -74,15 +87,40 @@ namespace GameplayElements.Data.Entities.Monsters
 
             if (!(player == null))
             {
+                aiState = AiState.TARGETTING;
                 if (DistanceTo(this, player) < attackRange)
                 {
-                    //Attack(player);
-                    return;
+                    aiState = AiState.ATTACKING;
                 }
+
+                var angle = Math.Atan2(player.Position.Y - Position.Y, player.Position.X - pos.X);
+                if (angle > MathHelper.PiOver4 && angle < MathHelper.PiOver4 * 3) direction = 1;
+                else if (angle < -MathHelper.PiOver4 && angle > -MathHelper.PiOver4 * 3) direction = 0;
+                else if (angle < MathHelper.PiOver4 && angle > -MathHelper.PiOver4) direction = 3;
+                else if (angle > MathHelper.PiOver4 * 3 && angle < MathHelper.PiOver4 * 5) direction = 2;
+
+            }
+            else
+            {
+                aiState = AiState.ROAMING;
             }
 
             Vector2 newPos = Position + new Vector2(dirX * speed * speedMultiplier,
                 dirY * speed * speedMultiplier);
+
+            switch (aiState)
+            {
+                case AiState.TARGETTING:
+                    speedMultiplier *= 1.085f;
+                    var dist = Vector2.Distance(Position, player.Position);
+                    var distV = new Vector2(player.Position.X - Position.X,
+                        player.Position.Y - Position.Y);
+                    newPos = Position + (distV / dist) * speed * speedMultiplier;
+
+                    break;
+                case AiState.ATTACKING:
+                    return;
+            }
 
             Move(newPos);
         }

@@ -101,7 +101,7 @@ namespace GameplayElements.Data
             {
                 for (int y = 0; y < mapArr.GetLength(1); y++)
                 {
-                    if (rand.NextDouble() > .999)
+                    if (rand.NextDouble() > 1)
                     {
                         wallTile[x, y] = true;
                         mapArr[x, y].IsWallTile = true;
