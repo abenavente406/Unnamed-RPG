@@ -1,6 +1,16 @@
 Changelog
 =========
 
+__04-13-2013__
+----------
+ - Added a knockback method to the Entity class
+ - Added traits to player class
+   - Strength: how much damage the player deals
+   - Dexterity: how fast the player moves
+   - Intelligence: how fast the player's mana recovers; how strong magic is
+   - Athleticism: how fast the player's stamina recovered
+   - Constitution: how much of a chance there is for a critical hit
+   
 __03-24-2013__
 ----------
  - Began working on pathfinder AI for entities

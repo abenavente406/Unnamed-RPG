@@ -16,6 +16,7 @@ namespace GameplayElements.Data.Entities
         public Player(string name, Vector2 pos)
             : base(name, pos)
         {
+            strength = 10;
             speed = 2f;
             SetCustomTexture(Vector2.Zero, "LinkPlayerSheet", 8, 30, 28, 75);
             SetCustomAttackingAnimCustom("LinkAttackingSheet", 24, 48, 5);
@@ -71,11 +72,11 @@ namespace GameplayElements.Data.Entities
 
             Move(newX, newY);
 
+            var monsterInRange = ScanForMonster();
+
             if (InputHandler.KeyPressed(Keys.Space))
             {
-                if (!isAttacking)
-                    isAttacking = true;
-                Attack(null);
+                Attack(ref monsterInRange);
             }
         }
     }

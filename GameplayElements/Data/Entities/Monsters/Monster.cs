@@ -38,6 +38,8 @@ namespace GameplayElements.Data.Entities.Monsters
 
         public override void Update(GameTime gameTime)
         {
+            if (IsDead) return;
+
             speedMultiplier = 1.0f;
 
             if (attackCoolDownTicks > 0)

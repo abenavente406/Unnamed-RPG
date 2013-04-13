@@ -63,6 +63,8 @@ namespace GameplayElements.Managers
             monsters.ForEach(delegate(GameplayElements.Data.Entities.Monsters.Monster monster)
             {
                 monster.Update(gameTime);
+
+                if (monster.IsDead) monsters.Remove(monster);
             });
         }
 

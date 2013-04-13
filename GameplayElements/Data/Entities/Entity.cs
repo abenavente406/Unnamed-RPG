@@ -47,8 +47,9 @@ namespace GameplayElements.Data.Entities
 
         protected int attackRange = 40;
         protected bool isAttacking = false;
-        protected int attackCoolDown = 350;
+        protected int attackCoolDown = 20;
         protected int attackCoolDownTicks = 0;
+        protected float baseDamagePoints = 5;
 
         protected bool noClip = false;
         protected bool god = false;
@@ -57,6 +58,13 @@ namespace GameplayElements.Data.Entities
         protected const int MAX_LEVEL = 100;
         protected int expLevel = 1;
         protected int experience = 0;
+        
+        // Skill Levels
+        protected int strength = 1;
+        protected int dexterity = 1;
+        protected int intelligence = 1;
+        protected int athleticism = 1;
+        protected int constitution = 1;
         #endregion
 
         #region Properties
@@ -89,7 +97,7 @@ namespace GameplayElements.Data.Entities
         public float Health
         {
             get { return health; }
-            set { if (value < 0) value = 0; }
+            set { if (value < 0) value = 0; health = value; }
         }
 
         public bool IsDead
@@ -118,6 +126,58 @@ namespace GameplayElements.Data.Entities
                 if (value > Int32.MaxValue) value = Int32.MaxValue;
                 experience = value;
             }
+        }
+
+        #region Traits
+        /// <summary>
+        /// Handles the base damage of weapons
+        /// </summary>
+        public int Strength
+        {
+            get { return strength; }
+            set { strength = value; }
+        }
+
+        /// <summary>
+        /// Handles how fast the player moves
+        /// </summary>
+        public int Dexterity
+        {
+            get { return dexterity; }
+            set { dexterity = value; }
+        }
+
+        /// <summary>
+        /// Handles how much mana the player has and how long it takes to fill
+        /// </summary>
+        public int Intelligence
+        {
+            get { return intelligence; }
+            set { intelligence = value; }
+        }
+
+        /// <summary>
+        /// Handles how fast stamina recovers
+        /// </summary>
+        public int Athleticism
+        {
+            get { return athleticism; }
+            set { athleticism = value; }
+        }
+
+        /// <summary>
+        /// Handles the likeliness of critical hits
+        /// </summary>
+        public int Constitution
+        {
+            get { return constitution; }
+            set { constitution = value; }
+        }
+        #endregion
+
+        public float DamagePoints
+        {
+            get { return baseDamagePoints * (strength * 1.25f); }
         }
 
         public int SpriteWidth
@@ -194,76 +254,76 @@ namespace GameplayElements.Data.Entities
         /// <param name="gameTime"></param>
         public virtual void Draw(SpriteBatch batch, GameTime gameTime)
         {
-            if (!isAttacking)
-            {
-                if (isMoving)
-                {
-                    switch (direction)
-                    {
-                        case 0:
-                            movingUp.Draw(batch, gameTime, OnScreenPosition, false, scale);
-                            break;
-                        case 1:
-                            movingDown.Draw(batch, gameTime, OnScreenPosition, false, scale);
-                            break;
-                        case 2:
-                            movingRight.Draw(batch, gameTime, OnScreenPosition, true, scale);
-                            break;
-                        case 3:
-                            movingRight.Draw(batch, gameTime, OnScreenPosition, false, scale);
-                            break;
-                    }
-                }
-                else
-                {
-                    movingUp.CurrentFrame = 0;
-                    movingDown.CurrentFrame = 0;
-                    movingRight.CurrentFrame = 0;
-                    movingRight.CurrentFrame = 0;
-
-                    switch (direction)
-                    {
-                        case 0:
-                            avatarUp.Draw(batch, OnScreenPosition, false, scale);
-                            break;
-                        case 1:
-                            avatarDown.Draw(batch, OnScreenPosition, false, scale);
-                            break;
-                        case 2:
-                            avatarRight.Draw(batch, OnScreenPosition, true, scale);
-                            break;
-                        case 3:
-                            avatarRight.Draw(batch, OnScreenPosition, false, scale);
-                            break;
-                    }
-                }
-            }
-            else
+            //if (!isAttacking).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+            //{
+            if (isMoving)
             {
                 switch (direction)
                 {
                     case 0:
-                        attackingUp.Draw(batch, gameTime, OnScreenPosition, false, scale);
-                        if (attackingUp.CurrentFrame == attackingUp.Images.Length - 1)
-                            isAttacking = false;
+                        movingUp.Draw(batch, gameTime, OnScreenPosition, false, scale);
                         break;
                     case 1:
-                        attackingDown.Draw(batch, gameTime, OnScreenPosition, false, scale);
-                        if (attackingDown.CurrentFrame == attackingUp.Images.Length - 1)
-                            isAttacking = false;
+                        movingDown.Draw(batch, gameTime, OnScreenPosition, false, scale);
                         break;
                     case 2:
-                        attackingRight.Draw(batch, gameTime, OnScreenPosition, true, scale);
-                        if (attackingRight.CurrentFrame == attackingUp.Images.Length - 1)
-                            isAttacking = false;
+                        movingRight.Draw(batch, gameTime, OnScreenPosition, true, scale);
                         break;
                     case 3:
-                        attackingRight.Draw(batch, gameTime, OnScreenPosition, false, scale);
-                        if (attackingRight.CurrentFrame == attackingUp.Images.Length - 1)
-                            isAttacking = false;
+                        movingRight.Draw(batch, gameTime, OnScreenPosition, false, scale);
                         break;
                 }
             }
+            else
+            {
+                movingUp.CurrentFrame = 0;
+                movingDown.CurrentFrame = 0;
+                movingRight.CurrentFrame = 0;
+                movingRight.CurrentFrame = 0;
+
+                switch (direction)
+                {
+                    case 0:
+                        avatarUp.Draw(batch, OnScreenPosition, false, scale);
+                        break;
+                    case 1:
+                        avatarDown.Draw(batch, OnScreenPosition, false, scale);
+                        break;
+                    case 2:
+                        avatarRight.Draw(batch, OnScreenPosition, true, scale);
+                        break;
+                    case 3:
+                        avatarRight.Draw(batch, OnScreenPosition, false, scale);
+                        break;
+                }
+            }
+            //}
+            //else
+            //{
+            //    switch (direction)
+            //    {
+            //        case 0:
+            //            attackingUp.Draw(batch, gameTime, OnScreenPosition, false, scale);
+            //            if (attackingUp.CurrentFrame == attackingUp.Images.Length - 1)
+            //                isAttacking = false;
+            //            break;
+            //        case 1:
+            //            attackingDown.Draw(batch, gameTime, OnScreenPosition, false, scale);
+            //            if (attackingDown.CurrentFrame == attackingUp.Images.Length - 1)
+            //                isAttacking = false;
+            //            break;
+            //        case 2:
+            //            attackingRight.Draw(batch, gameTime, OnScreenPosition, true, scale);
+            //            if (attackingRight.CurrentFrame == attackingUp.Images.Length - 1)
+            //                isAttacking = false;
+            //            break;
+            //        case 3:
+            //            attackingRight.Draw(batch, gameTime, OnScreenPosition, false, scale);
+            //            if (attackingRight.CurrentFrame == attackingUp.Images.Length - 1)
+            //                isAttacking = false;
+            //            break;
+            //    }
+            //}
 
             //if (!isAttacking)
             //{
@@ -330,12 +390,16 @@ namespace GameplayElements.Data.Entities
         }
 
         #region Attacking methods
-        public void Attack(Entity target)
+        public void Attack(ref Entity target)
         {
             if (attackCoolDownTicks <= 0)
             {
                 if (target != null)
-                    target.Damage(10);
+                {
+                    target.Damage(DamagePoints);
+                    System.Diagnostics.Debug.WriteLine("POW! " + Name + " attacked " + target.name + " for 10 points!\n" +
+                        target.name + " has " + target.health + " left.");
+                }
 
                 attackCoolDownTicks = attackCoolDown;
             }
@@ -343,6 +407,27 @@ namespace GameplayElements.Data.Entities
         public void Damage(float damage)
         {
             Health -= damage;
+            if (Health <= 0) IsDead = true;
+            KnockBack(damage);
+        }
+        public void KnockBack(float amt)
+        {
+            amt *= 2;
+            switch (Direction)
+            {
+                case 0:
+                    Move(Position.X, Position.Y + amt);
+                    break;
+                case 1:
+                    Move(Position.X, Position.Y - amt);
+                    break;
+                case 2:
+                    Move(Position.X + amt, Position.Y);
+                    break;
+                case 3:
+                    Move(Position.X - amt, Position.Y);
+                    break;
+            }
         }
         #endregion
 
