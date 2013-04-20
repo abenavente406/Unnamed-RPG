@@ -18,6 +18,7 @@ namespace GameplayElements.Data.Entities
 
         protected Vector2 pos;
         protected Vector2 onScreenPos;
+        protected Point gridPos;
         protected int direction;
         protected float speed = 1.7f;
         protected float speedMultiplier = 1f;
@@ -80,6 +81,14 @@ namespace GameplayElements.Data.Entities
             {
                 pos = Vector2.Clamp(value, Vector2.Zero, new Vector2(LevelManager.GetCurrentLevel().Width - spriteWidth,
                     LevelManager.GetCurrentLevel().Height - spriteHeight));
+            }
+        }
+        public Point GridPosition
+        {
+            get
+            {
+                return new Point((int)pos.X / LevelManager.GetCurrentLevel().tileWidth,
+                    (int)pos.Y / LevelManager.GetCurrentLevel().tileHeight);
             }
         }
         public int Direction

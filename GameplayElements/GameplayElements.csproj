@@ -72,8 +72,7 @@
     <Compile Include="Data\Entities\Passives\Passive.cs" />
     <Compile Include="Data\Entities\Passives\Pig.cs" />
     <Compile Include="Data\Entities\Passives\Sheep.cs" />
-    <Compile Include="Data\Entities\PathFinding\PathFinder.cs" />
-    <Compile Include="Data\Entities\PathFinding\PathNode.cs" />
+    <Compile Include="PathFinding\Pathfinder.cs" />
     <Compile Include="Data\Entities\Player.cs" />
     <Compile Include="Data\Items\Armor.cs" />
     <Compile Include="Data\Items\Item.cs" />

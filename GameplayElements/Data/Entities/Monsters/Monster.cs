@@ -5,7 +5,6 @@ using System.Text;
 using GameHelperLibrary.Shapes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GameplayElements.Data.Entities.PathFinding;
 
 namespace GameplayElements.Data.Entities.Monsters
 {

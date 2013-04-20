@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.Content;
 using GameplayElements.Data.Entities.Monsters;
 using ProjectElements.Data;
 using GameHelperLibrary;
-using GameplayElements.Data.Entities.PathFinding;
 using Microsoft.Xna.Framework.Input;
 
 namespace GameplayElements.Managers

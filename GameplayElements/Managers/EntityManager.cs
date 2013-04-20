@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using GameplayElements.Data.Entities;
 using ProjectElements.Data;
+using GameplayElements.PathFinding;
+using GameHelperLibrary.Shapes;
 
 namespace GameplayElements.Managers
 {
@@ -23,10 +25,16 @@ namespace GameplayElements.Managers
             new List<Data.Entities.Monsters.Monster>();
 
         public static Player player;
+        public Pathfinder pathFinder;
+
+        DrawableRectangle bounds;
 
         public EntityManager(SaveData data)
         {
             player = new Player(data.Name, new Vector2(0, 0));
+            pathFinder = new Pathfinder(LevelManager.GetCurrentLevel());
+
+            bounds = new DrawableRectangle(ProjectData.Graphics.GraphicsDevice, new Vector2(32, 32), Color.Red, true);
         }
 
         public void UpdateAll(GameTime gameTime)
@@ -87,6 +95,10 @@ namespace GameplayElements.Managers
                 if (Camera.IsOnCamera(monster as Entity))
                     monster.Draw(batch, gameTime);
             });
+
+            List<Vector2> path = pathFinder.FindPath(player.GridPosition, monsters[0].GridPosition);
+            foreach (Vector2 v in path)
+                batch.Draw(bounds.Texture, v, Color.Red * .5f);
         }
 
         public static void AddNpc(Data.Entities.NPCs.NPC npc)
