@@ -34,6 +34,8 @@ namespace ProjectElements.Data
         public static SoundEffect guiBeep;
         public static SoundEffect guiSelect;
 
+        public static bool DeveloperMode = true;
+
         /// <summary>
         /// Set up the project elements
         /// </summary>

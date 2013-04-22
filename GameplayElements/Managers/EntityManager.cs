@@ -94,11 +94,10 @@ namespace GameplayElements.Managers
             {
                 if (Camera.IsOnCamera(monster as Entity))
                     monster.Draw(batch, gameTime);
-            });
 
-            List<Vector2> path = pathFinder.FindPath(player.GridPosition, monsters[0].GridPosition);
-            foreach (Vector2 v in path)
-                batch.Draw(bounds.Texture, v, Color.Red * .5f);
+                if (monster.aiState == Data.Entities.Monsters.AiState.TARGETTING)
+                 monster.DrawPathToPlayer(batch, player);
+            });
         }
 
         public static void AddNpc(Data.Entities.NPCs.NPC npc)

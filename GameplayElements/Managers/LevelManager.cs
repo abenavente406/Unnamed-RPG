@@ -87,13 +87,19 @@ namespace GameplayElements.Managers
         {
             if (currentLevel.map != null)
             {
-                currentLevel.DrawLayer(batch, Camera.ViewPortRectangle, (int)LayerID.GROUND);
-                currentLevel.DrawLayer(batch, Camera.ViewPortRectangle, (int)LayerID.BACKLAYER);
+                //var region = new Rectangle((int)MathHelper.Clamp(Camera.ViewPortRectangle.X, 0, currentLevel.width),
+                //    (int)MathHelper.Clamp(Camera.ViewPortRectangle.Y, 0, currentLevel.height), Camera.ViewPortRectangle.Width,
+                //    Camera.ViewPortRectangle.Height);
+
+                var region = new Rectangle((int)Math.Abs(Camera.Position.X), (int)Math.Abs(Camera.Position.Y), ProjectData.GameWidth, ProjectData.GameHeight);
+
+                currentLevel.DrawLayer(batch, region, (int)LayerID.GROUND);
+                currentLevel.DrawLayer(batch, region, (int)LayerID.BACKLAYER);
                 em.Draw(batch, gameTime);
-                currentLevel.DrawLayer(batch, Camera.ViewPortRectangle, (int)LayerID.FORELAYER);
+                currentLevel.DrawLayer(batch, region, (int)LayerID.FORELAYER);
 
                 // Enable this if you want to see the collision bounds of tiles
-                //currentLevel.DrawLayer(batch, Camera.ViewPortRectangle, (int)LayerID.COLLISION);
+                //currentLevel.DrawLayer(batch, region, (int)LayerID.COLLISION);
             }
             else
             {
@@ -135,9 +141,9 @@ namespace GameplayElements.Managers
             int testX = (int)PointToTile(testPos).X;
             int testY = (int)PointToTile(testPos).Y;
 
-            if (testX > currentLevel.widthInTiles - 1)
+            if (testX > currentLevel.widthInTiles - 1 || testX < 0)
                 return true;
-            else if (testY > currentLevel.heightInTiles - 1)
+            else if (testY > currentLevel.heightInTiles - 1 || testY < 0)
                 return true;
 
             return IsTileBlocked(testX, testY);

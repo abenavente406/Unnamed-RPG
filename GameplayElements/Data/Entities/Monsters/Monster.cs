@@ -5,6 +5,9 @@ using System.Text;
 using GameHelperLibrary.Shapes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using GameplayElements.PathFinding;
+using GameplayElements.Managers;
+using ProjectElements.Data;
 
 namespace GameplayElements.Data.Entities.Monsters
 {
@@ -29,10 +32,15 @@ namespace GameplayElements.Data.Entities.Monsters
 
         Random rand;
 
+        Pathfinder pathFinder;
+
         public Monster(string name, Vector2 pos)
             : base(name, pos)
         {
             rand = new Random(System.DateTime.Now.Millisecond);
+            pathFinder = new Pathfinder(LevelManager.GetCurrentLevel());
+
+            detectRange = 32 * 5;
         }
 
         public override void Update(GameTime gameTime)
@@ -41,48 +49,12 @@ namespace GameplayElements.Data.Entities.Monsters
 
             speedMultiplier = 1.0f;
 
-            if (attackCoolDownTicks > 0)
-                attackCoolDownTicks--;
-
-            if (canMove)
-            {
-                movementTimer = rand.Next(250) + 1;
-                movementDir = rand.Next(4);
-                canMove = false;
-            }
-
-            direction = movementDir;
-
+            Vector2 newPos = Position;
             int dirX = 0;
             int dirY = 0;
 
-            if (movementTimer < movementTimerMax)
-            {
-                switch (movementDir)
-                {
-                    case 0:
-                        dirY--;
-                        break;
-                    case 1:
-                        dirY++;
-                        break;
-                    case 2:
-                        dirX--;
-                        break;
-                    case 3:
-                        dirX++;
-                        break;
-                }
-
-                movementTimer++;
-                isMoving = true;
-            }
-            else
-            {
-                isMoving = false;
-                if (rand.NextDouble() > 0.9)
-                    canMove = true;
-            }
+            if (attackCoolDownTicks > 0)
+                attackCoolDownTicks--;
 
             Player player = this.ScanForPlayer();
 
@@ -106,21 +78,73 @@ namespace GameplayElements.Data.Entities.Monsters
                 aiState = AiState.ROAMING;
             }
 
-            Vector2 newPos = Position + new Vector2(dirX * speed * speedMultiplier,
-                dirY * speed * speedMultiplier);
-
             switch (aiState)
             {
-                case AiState.TARGETTING:
-                    speedMultiplier *= 1.085f;
-                    var dist = Vector2.Distance(Position, player.Position);
-                    var distV = new Vector2(player.Position.X - Position.X,
-                        player.Position.Y - Position.Y);
-                    newPos = Position + (distV / dist) * speed * speedMultiplier;
+                case AiState.ROAMING:   // If the player has not been found, move randomly
+                    {
+                        if (canMove)
+                        {
+                            movementTimer = rand.Next(250) + 1;
+                            movementDir = rand.Next(4);
+                            canMove = false;
+                        }
 
-                    break;
-                case AiState.ATTACKING:
-                    return;
+                        direction = movementDir;
+
+                        if (movementTimer < movementTimerMax)
+                        {
+                            switch (movementDir)
+                            {
+                                case 0:
+                                    dirY--;
+                                    break;
+                                case 1:
+                                    dirY++;
+                                    break;
+                                case 2:
+                                    dirX--;
+                                    break;
+                                case 3:
+                                    dirX++;
+                                    break;
+                            }
+
+                            movementTimer++;
+                            isMoving = true;
+                        }
+                        else
+                        {
+                            isMoving = false;
+                            if (rand.NextDouble() > 0.9)
+                                canMove = true;
+                        }
+
+                        newPos = Position + new Vector2(dirX * speed * speedMultiplier,
+                             dirY * speed * speedMultiplier);
+                        break;
+                    }
+                case AiState.TARGETTING:    // If the player HAS been found, move torwards it and sprint
+                    {
+                        isMoving = true;
+                        speedMultiplier *= 1.085f;
+
+                        var firstPoint = GetTargetDirection(player);
+
+                        dirX = (int)(firstPoint.X - (int)Math.Round(Position.X / (double)32) * 32);
+                        dirY = (int)(firstPoint.Y - (int)Math.Round(Position.Y / (double)32) * 32);
+
+                        var to = new Vector2(dirX, dirY);
+                        to.Normalize();
+
+                        newPos = Position + to;
+                        break;
+                    }
+                case AiState.ATTACKING:     // Attack the player. Attacking prevents moving
+                    {
+                        isMoving = false;
+                        Attack(player as Entity);
+                        return;
+                    }
             }
 
             Move(newPos);
@@ -128,7 +152,19 @@ namespace GameplayElements.Data.Entities.Monsters
 
         public void DrawPathToPlayer(SpriteBatch batch, Player player)
         {
-            
+            List<Vector2> path = pathFinder.FindPath(this.GridPosition, player.GridPosition);
+            foreach (Vector2 v in path)
+                batch.Draw(avatarDown.ImageTexture, v, Color.Red * .5f);
+        }
+
+        private Vector2 GetTargetDirection(Player player)
+        {
+            List<Vector2> path = pathFinder.FindPath(this.GridPosition, player.GridPosition);
+
+            if (path.Count < 1)
+                return Vector2.Zero;
+
+            return path.Count > 2 ? path[1] : path[0];
         }
     }
 }

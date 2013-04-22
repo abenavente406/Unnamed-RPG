@@ -8,6 +8,7 @@ using ProjectElements.Data;
 using ProjectElements.IO;
 using GameplayElements.Managers;
 using GameHelperLibrary;
+using GameplayElements.Data.Entities.Monsters;
 
 namespace GameplayElements.Data.Entities
 {
@@ -18,7 +19,6 @@ namespace GameplayElements.Data.Entities
 
         protected Vector2 pos;
         protected Vector2 onScreenPos;
-        protected Point gridPos;
         protected int direction;
         protected float speed = 1.7f;
         protected float speedMultiplier = 1f;
@@ -51,6 +51,7 @@ namespace GameplayElements.Data.Entities
         protected int attackCoolDown = 20;
         protected int attackCoolDownTicks = 0;
         protected float baseDamagePoints = 5;
+        public bool hasBeenHit = false;
 
         protected bool noClip = false;
         protected bool god = false;
@@ -87,8 +88,8 @@ namespace GameplayElements.Data.Entities
         {
             get
             {
-                return new Point((int)pos.X / LevelManager.GetCurrentLevel().tileWidth,
-                    (int)pos.Y / LevelManager.GetCurrentLevel().tileHeight);
+                return new Point((int)Math.Ceiling(pos.X) / LevelManager.GetCurrentLevel().tileWidth,
+                    (int)Math.Ceiling(pos.Y) / LevelManager.GetCurrentLevel().tileHeight);
             }
         }
         public int Direction
@@ -245,17 +246,19 @@ namespace GameplayElements.Data.Entities
         public bool SuperSpeed { get { return superSpeed; } set { superSpeed = value; } }
         #endregion
 
+        #region Constructor
         public Entity(string name, Vector2 pos)
         {
             Name = name;
             Position = pos;
         }
+        #endregion
 
+        #region Update and Draw
         public virtual void Update(GameTime gameTime)
         {
         }
 
-        #region Draw Methods
         /// <summary>
         /// Draws the entity to the screen
         /// </summary>
@@ -355,6 +358,7 @@ namespace GameplayElements.Data.Entities
         }
         #endregion
 
+        #region Movement Functions
         protected void Move(Vector2 newPos)
         {
                 
@@ -392,18 +396,21 @@ namespace GameplayElements.Data.Entities
             else
                 Position = new Vector2(testX, testY);
         }
+        #endregion
 
+        #region Helper Methods
         protected float DistanceTo(Entity from, Entity to)
         {
             return Vector2.Distance(from.Position, to.Position);
         }
+        #endregion
 
         #region Attacking methods
-        public void Attack(ref Entity target)
+        public void Attack(Entity target)
         {
             if (attackCoolDownTicks <= 0)
             {
-                if (target != null)
+                if (target != null && !target.hasBeenHit)
                 {
                     target.Damage(DamagePoints);
                     System.Diagnostics.Debug.WriteLine("POW! " + Name + " attacked " + target.name + " for 10 points!\n" +
@@ -413,6 +420,7 @@ namespace GameplayElements.Data.Entities
                 attackCoolDownTicks = attackCoolDown;
             }
         }
+
         public void Damage(float damage)
         {
             Health -= damage;
@@ -483,6 +491,7 @@ namespace GameplayElements.Data.Entities
         }
         #endregion
 
+        #region Texture Methods
         /// <summary>
         /// Sets the animations and avatars of an entity . . .
         /// Follow the guidelines for making spritesheets
@@ -602,5 +611,6 @@ namespace GameplayElements.Data.Entities
             spriteWidth = avatarDown.Width;
             spriteHeight = avatarDown.Height;
         }
+        #endregion
     }
 }

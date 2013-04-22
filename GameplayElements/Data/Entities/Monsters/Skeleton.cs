@@ -13,7 +13,7 @@ namespace GameplayElements.Data.Entities.Monsters
             : base("Skeleton", pos)
         {
             SetTexture(new Vector2(6, 0), "Entity Sprites 1");
-            realHeight = spriteHeight / 2;
+            //realHeight = spriteHeight / 2;
         }
 
        

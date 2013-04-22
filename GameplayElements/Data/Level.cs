@@ -101,7 +101,7 @@ namespace GameplayElements.Data
             {
                 for (int y = 0; y < mapArr.GetLength(1); y++)
                 {
-                    if (rand.NextDouble() > 1)
+                    if (rand.NextDouble() > .9)
                     {
                         wallTile[x, y] = true;
                         mapArr[x, y].IsWallTile = true;
@@ -161,14 +161,22 @@ namespace GameplayElements.Data
         #region Drawing
         public virtual void Draw(SpriteBatch batch, Rectangle region)
         {
-            if (map != null)
-                map.Draw(batch, region);
-            else
+            if (map == null)
+            {
                 for (int x = 0; x < widthInTiles; x++)
+                {
                     for (int y = 0; y < heightInTiles; y++)
+                    {
                         if (Camera.IsOnCamera(new Rectangle(x * 32, y * 32, tileWidth, tileHeight)))
-                            batch.Draw(mapArr[x, y].Texture, Camera.Transform(new Vector2(x * tileWidth,
-                                y * tileHeight)), Color.White);
+                            batch.Draw(mapArr[x, y].Texture, new Vector2(x * tileWidth,
+                                y * tileHeight), Color.White);
+                    }
+                }
+            }
+            else
+            {
+                map.Draw(batch, region);
+            }
         }
 
         public void DrawLayer(SpriteBatch batch, Rectangle region, int layerId)

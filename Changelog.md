@@ -1,6 +1,11 @@
 Changelog
 =========
 
+__04-21-2013__
+----------
+ - Trying to work the kinks out of the A/* algorithm for the monsters
+ - Added dev mode which allows you to choose the type of level generation
+ 
 __04-13-2013__
 ----------
  - Added a knockback method to the Entity class

@@ -61,7 +61,10 @@ namespace UnnamedRpg.GameScreens
             base.Update(gameTime);
 
             if (InputHandler.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Enter))
-                SwitchState(new NewLevelScreen(Game, StateManager, txtName.Text));
+                if (ProjectData.DeveloperMode)
+                    SwitchState(new NewLevelScreen(Game, StateManager, txtName.Text));
+                else
+                    SwitchState(new GamePlayScreen(Game, StateManager, SaveData.CreateNewSave(txtName.Text), 2));
         }
 
         public override void Draw(GameTime gameTime)

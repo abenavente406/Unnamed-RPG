@@ -12,13 +12,13 @@ namespace GameplayElements.Data.Entities
 {
     public class Player : Entity
     {
-
+        int hitTimerTicks = 0;
+        int hitTimerMax = 200;
         public Player(string name, Vector2 pos)
             : base(name, pos)
         {
-            strength = 10;
             speed = 2f;
-            SetCustomTexture(Vector2.Zero, "LinkPlayerSheet", 8, 30, 28, 75);
+            SetCustomTexture(Vector2.Zero, "LinkPlayerSheet", 8, 32, 32, 75);
             SetCustomAttackingAnimCustom("LinkAttackingSheet", 24, 48, 5);
 
             Scale = 1.3333333f;
@@ -76,7 +76,12 @@ namespace GameplayElements.Data.Entities
 
             if (InputHandler.KeyPressed(Keys.Space))
             {
-                Attack(ref monsterInRange);
+                Attack(monsterInRange);
+            }
+
+            if (hasBeenHit)
+            {
+
             }
         }
     }

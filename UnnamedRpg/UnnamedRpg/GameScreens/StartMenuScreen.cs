@@ -215,6 +215,10 @@ namespace UnnamedRpg.GameScreens
         {
             base.Update(gameTime);
             ControlManager.Update(gameTime, playerIndexInControl);
+
+            if (InputHandler.KeyPressed(Keys.D) ||
+                InputHandler.ButtonPressed(Buttons.Back, playerIndexInControl))
+                ProjectData.DeveloperMode = !ProjectData.DeveloperMode;
         }
 
         public override void Draw(GameTime gameTime)
