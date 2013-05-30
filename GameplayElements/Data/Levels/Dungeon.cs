@@ -11,21 +11,25 @@ using GameplayElements.Data.Entities.Monsters;
 
 namespace GameplayElements.Data
 {
+
     class Dungeon : Level
     {
         public List<Texture2D> tileTextures = new List<Texture2D>();
 
         private SpriteSheet tileSheet;
+        private Goal goal;
 
         Random rand = new Random();
 
         public List<Room> rooms = new List<Room>();
+        public Goal Goal
+        {
+            get { return goal; }
+        }
 
         public Dungeon(int widthInTiles, int heightInTiles, int tw, int th) :
             base(widthInTiles, heightInTiles, tw, th)
         {
-            this.widthInTiles = widthInTiles;
-            this.heightInTiles = heightInTiles;
             this.width = widthInTiles * tw;
             this.height = heightInTiles * th;
             this.tileWidth = tw;
@@ -60,8 +64,8 @@ namespace GameplayElements.Data
 
         public void GenerateDungeon()
         {
-            for (int x = 0; x < widthInTiles; x++)
-                for (int y = 0; y < heightInTiles; y++)
+            for (int x = 0; x < WidthInTiles; x++)
+                for (int y = 0; y < HeightInTiles; y++)
                 {
                     mapArr[x, y] = new Tile(32, 32, null)
                     {
@@ -71,8 +75,8 @@ namespace GameplayElements.Data
                     };
                 }
 
-            int roomsMin = (int)(widthInTiles * heightInTiles) / 300;
-            int roomsMax = (int)(widthInTiles * heightInTiles) / 150;
+            int roomsMin = (int)(WidthInTiles * HeightInTiles) / 300;
+            int roomsMax = (int)(WidthInTiles * HeightInTiles) / 150;
             int roomCount = 30;
 
             int widthRoot = (int)Math.Sqrt(width * 2);
@@ -159,7 +163,7 @@ namespace GameplayElements.Data
                             pointB.Y--;
                     }
 
-                    if (pointB.X < widthInTiles && pointB.Y < heightInTiles)
+                    if (pointB.X < WidthInTiles && pointB.Y < HeightInTiles)
                     {
                         mapArr[(int)pointB.X, (int)pointB.Y].IsWallTile = false;
                         mapArr[(int)pointB.X, (int)pointB.Y].Texture = tileTextures[10];
@@ -186,21 +190,31 @@ namespace GameplayElements.Data
                     }
                 }
             }
+
+            do
+            {
+                var point = new Point(rand.Next(0, WidthInTiles), rand.Next(0, HeightInTiles));
+
+                if (!mapArr[point.X, point.Y].IsWallTile)
+                    goal = new Goal(point);
+
+            } while (goal == null);
         }
 
         public override void Draw(SpriteBatch batch, Rectangle region)
         {
-            for (int x = 0; x < widthInTiles; x++)
+            for (int x = 0; x < WidthInTiles; x++)
             {
-                for (int y = 0; y < heightInTiles; y++)
+                for (int y = 0; y < HeightInTiles; y++)
                 {
                     if (Camera.IsOnCamera(new Rectangle(x * 32, y * 32, tileWidth, tileHeight)))
                         batch.Draw(mapArr[x, y].Texture, new Vector2(x * tileWidth,
                             y * tileHeight), Color.White);
                 }
             }
-        }
 
+            goal.Draw(batch);
+        }
     }
 
 
@@ -233,8 +247,8 @@ namespace GameplayElements.Data
 
         public void Draw(SpriteBatch batch, Texture2D texture)
         {
-            batch.Draw(texture, new Rectangle((int)Camera.Transform(Position).X,
-                (int)Camera.Transform(Position).Y, Width, Height), Color.White);
+            batch.Draw(texture, new Rectangle((int)Position.X,
+                (int)Position.Y, Width, Height), Color.White);
         }
     }
 
@@ -305,6 +319,36 @@ namespace GameplayElements.Data
             });
 
             return adjacents;
+        }
+    }
+
+    class Goal
+    {
+        private Texture2D tex;
+        private Point pos;
+        private bool taken = false;
+
+        public Rectangle Bounds
+        {
+            get { return new Rectangle(pos.X * 32, pos.Y * 32, 32, 32); }
+        }
+
+        public bool Taken
+        {
+            get { return taken; }
+            set { taken = value; }
+        }
+
+        public Goal(Point pos)
+        {
+            this.pos = pos;
+            this.tex = ProjectData.Content.Load<Texture2D>("Sprites\\medal");
+        }
+
+        public void Draw(SpriteBatch batch)
+        {
+            if (!taken)
+                batch.Draw(tex, Bounds, Color.White);
         }
     }
 }

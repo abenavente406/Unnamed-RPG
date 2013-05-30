@@ -1,7 +1,7 @@
 <link type="text/css" rel="stylesheet" href="github.com/abenavente406/Unnamed-RPG/blob/master/md.css"></link>
 
-Unnamed-RPG
-===========
+Unnamed-RPG - DISCONTINUED
+==========================
 
 Contributors
 ============
@@ -49,18 +49,3 @@ Todo
   <li>&#x274f Gameplay sounds</li>
   <li>&#x274f Our own filetype to compress all sounds</li>
 </ul>
-
-Credits
-=======
-<table>
-    <th>Thanks To</th>
-    <tr><td>
-        <a href="http://xnagraphics.codeplex.com/">Thanks to zhong_zhaofeng for the XNA Graphics API Libary. </a>
-    </td></tr>
-    <tr><td>
-        <a href="https://bitbucket.org/vinull/xtiled">Thanks to vinull for the XTiled library.</a>
-    </td></tr>
-    <tr><td>
-        <a href="http://xnagpa.net/about.php">Thanks to Jamie McMahon for his tutorial on XNA RPGs</a>
-    </td></tr>
-</table>

@@ -71,8 +71,8 @@ namespace UnnamedRpg.GameScreens
                 }
             }
 
-            lblTMX.Color = Color.DarkGray;
-            lblTMX.Enabled = false;
+            //lblTMX.Color = Color.DarkGray;
+            //lblTMX.Enabled = false;
 
             ControlManager.NextControl();
             ControlManager.FocusChanged += new EventHandler(ControlManager_FocusChanged);

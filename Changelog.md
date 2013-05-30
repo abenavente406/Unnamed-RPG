@@ -1,6 +1,13 @@
 Changelog
 =========
 
+__05-30-2013__
+----------
+  - Removed tile map functionality
+  - Removed XTiled libraries
+  - Added dialogue for NPCs
+  - STOPPED DEVELOPMENT :(
+
 __04-21-2013__
 ----------
  - Trying to work the kinks out of the A/* algorithm for the monsters

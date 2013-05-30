@@ -27,8 +27,8 @@ namespace GameplayElements.Managers
             get { return pos; }
             set
             {
-                //pos = Vector2.Clamp(value, Vector2.Zero, new Vector2(LevelManager.GetCurrentLevel().Width - viewportWidth,
-                //    LevelManager.GetCurrentLevel().Height - viewportHeight));
+                if (value.X < 0) value.X = 0;
+                if (value.Y < 0) value.Y = 0;
                 pos = value;
             }
         }
@@ -70,15 +70,14 @@ namespace GameplayElements.Managers
         {
             get
             {
-                return new Rectangle((int)(Position.X - viewportWidth / zoom / 2),
-                    (int)(Position.Y - viewportHeight / zoom / 2), (int)(viewportWidth / zoom), (int)(viewportHeight / zoom));
+                return new Rectangle((int)MathHelper.Clamp(Position.X - viewportWidth / zoom, 0, Int32.MaxValue),
+                    (int)MathHelper.Clamp(Position.Y - viewportHeight / zoom, 0, Int32.MaxValue), (int)(viewportWidth / zoom), (int)(viewportHeight / zoom));
             }
         }
 
         public Matrix GetTransformation(GraphicsDevice graphicsDevice)
         {
-            Vector3 matrixRotOrigin = Vector3.Clamp(new Vector3(Position.X, Position.Y, 0), Vector3.Zero,
-                new Vector3(LevelManager.GetCurrentLevel().width, LevelManager.GetCurrentLevel().height, 0));
+            Vector3 matrixRotOrigin = new Vector3(Position.X, Position.Y, 0);
             Vector3 matrixScreenPos = new Vector3(new Vector2(viewportWidth / 2, viewportHeight / 2), 0);
 
             transform = Matrix.CreateTranslation(-matrixRotOrigin) *
@@ -93,7 +92,6 @@ namespace GameplayElements.Managers
         {
             if (EntityManager.player.IsMoving)
             {
-
                 Position += Vector2.Clamp(pos, Vector2.Zero, new Vector2(LevelManager.GetCurrentLevel().Width,
                     LevelManager.GetCurrentLevel().Height));
             }
@@ -102,12 +100,6 @@ namespace GameplayElements.Managers
         public void Update(Vector2 newPos)
         {
             Position = newPos;
-        }
-
-
-        public static Vector2 Transform(Vector2 point)
-        {
-            return point;
         }
 
         public static bool IsOnCamera(Entity entity)

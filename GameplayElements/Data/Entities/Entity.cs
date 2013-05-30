@@ -232,14 +232,6 @@ namespace GameplayElements.Data.Entities
             }
         }
 
-        public virtual Vector2 OnScreenPosition
-        {
-            get
-            {
-                return Camera.Transform(this.Position);
-            }
-        }
-
         public bool IsMoving { get { return isMoving; } }
         public bool NoClip { get { return noClip; } set { noClip = value; } }
         public bool God { get { return god; } set { god = value; } }
@@ -273,16 +265,16 @@ namespace GameplayElements.Data.Entities
                 switch (direction)
                 {
                     case 0:
-                        movingUp.Draw(batch, gameTime, OnScreenPosition, false, scale);
+                        movingUp.Draw(batch, gameTime, Position, false, scale);
                         break;
                     case 1:
-                        movingDown.Draw(batch, gameTime, OnScreenPosition, false, scale);
+                        movingDown.Draw(batch, gameTime, Position, false, scale);
                         break;
                     case 2:
-                        movingRight.Draw(batch, gameTime, OnScreenPosition, true, scale);
+                        movingRight.Draw(batch, gameTime, Position, true, scale);
                         break;
                     case 3:
-                        movingRight.Draw(batch, gameTime, OnScreenPosition, false, scale);
+                        movingRight.Draw(batch, gameTime, Position, false, scale);
                         break;
                 }
             }
@@ -296,16 +288,16 @@ namespace GameplayElements.Data.Entities
                 switch (direction)
                 {
                     case 0:
-                        avatarUp.Draw(batch, OnScreenPosition, false, scale);
+                        avatarUp.Draw(batch, Position, false, scale);
                         break;
                     case 1:
-                        avatarDown.Draw(batch, OnScreenPosition, false, scale);
+                        avatarDown.Draw(batch, Position, false, scale);
                         break;
                     case 2:
-                        avatarRight.Draw(batch, OnScreenPosition, true, scale);
+                        avatarRight.Draw(batch, Position, true, scale);
                         break;
                     case 3:
-                        avatarRight.Draw(batch, OnScreenPosition, false, scale);
+                        avatarRight.Draw(batch, Position, false, scale);
                         break;
                 }
             }
@@ -343,19 +335,8 @@ namespace GameplayElements.Data.Entities
             //    attackingDown.CurrentFrame = 0;
             //    attackingRight.CurrentFrame = 0;
             //}
-            //DrawShadow();
         }
 
-        /// <summary>
-        /// Draws the shadow of the entity (just an ellipse)
-        /// </summary>
-        public void DrawShadow()
-        {
-            ProjectData.Drawer.Begin(RaisingStudio.Xna.Graphics.DrawingSortMode.Sprite);
-            ProjectData.Drawer.DrawFilledEllipse(new Vector2(OnScreenPosition.X, OnScreenPosition.Y + SpriteHeight - 4),
-                new Vector2(realWidth, realHeight / 4), new Color(0, 0, 0, 0.3f));
-            ProjectData.Drawer.End();
-        }
         #endregion
 
         #region Movement Functions
@@ -403,6 +384,7 @@ namespace GameplayElements.Data.Entities
         {
             return Vector2.Distance(from.Position, to.Position);
         }
+
         #endregion
 
         #region Attacking methods

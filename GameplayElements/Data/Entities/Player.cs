@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 using ProjectElements.Data;
 using GameHelperLibrary;
 using GameplayElements.Managers;
+using GameplayElements.Data.Entities.NPCs;
 
 namespace GameplayElements.Data.Entities
 {
@@ -14,6 +15,13 @@ namespace GameplayElements.Data.Entities
     {
         int hitTimerTicks = 0;
         int hitTimerMax = 200;
+        bool isTalking;
+        public bool IsTalking
+        {
+            get { return isTalking; }
+            set { isTalking = value; }
+        }
+
         public Player(string name, Vector2 pos)
             : base(name, pos)
         {
@@ -73,8 +81,17 @@ namespace GameplayElements.Data.Entities
             Move(newX, newY);
 
             var monsterInRange = ScanForMonster();
+            var npcInRange = ScanForNPCs().Count > 0 ? ScanForNPCs().Pop() : null;
 
-            if (InputHandler.KeyPressed(Keys.Space))
+            if (InputHandler.KeyPressed(Keys.Z))
+            {
+                if (npcInRange != null)
+                {
+                    IsTalking = true;
+                }
+            }
+
+            if (InputHandler.KeyPressed(Keys.X))
             {
                 Attack(monsterInRange);
             }
@@ -83,6 +100,20 @@ namespace GameplayElements.Data.Entities
             {
 
             }
+        }
+
+        private Stack<NPC> ScanForNPCs()
+        {
+            var result = new Stack<NPC>();
+
+            foreach (NPC n in EntityManager.npcs)
+            {
+                if (Vector2.Distance(this.Position, n.Position) < detectRange)
+                {
+                    result.Push(n);
+                }
+            }
+            return result;
         }
     }
 }

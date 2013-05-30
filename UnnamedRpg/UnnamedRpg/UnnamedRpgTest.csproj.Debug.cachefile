@@ -1,7 +1,7 @@
 Content\Fonts\menuFont.xnb
 Content\Fonts\defaultFont.xnb
 Content\Fonts\titleFont.xnb
-Content\Levels\world_1.xnb
+Content\Fonts\dialogFont.xnb
 Content\Test\sword.xnb
 Content\Sprites\EntitySprites.xnb
 Content\GUI\leftarrowUp.xnb
@@ -26,7 +26,12 @@ Content\Backgrounds\temple.xnb
 Content\Sprites\link-playersheet.xnb
 Content\Sprites\link-attackingsheet.xnb
 Content\Test\square.xnb
+Content\Sprites\Down0.xnb
+Content\Sprites\Down1.xnb
+Content\Sprites\Left0.xnb
+Content\Sprites\Left1.xnb
+Content\Sprites\Up0.xnb
+Content\Sprites\Up1.xnb
+Content\Sprites\medal.xnb
 Content\Sounds\gui_beep.xnb
 Content\Sounds\gui_select.xnb
-Content\Levels\world_1\00.xnb
-Content\Levels\world_1\01.xnb

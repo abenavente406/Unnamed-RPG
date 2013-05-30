@@ -34,6 +34,10 @@ namespace GameplayElements.Data.Entities.Monsters
 
         Pathfinder pathFinder;
 
+        Vector2 newPos;
+        int dirX = 0;
+        int dirY = 0;
+
         public Monster(string name, Vector2 pos)
             : base(name, pos)
         {
@@ -48,10 +52,9 @@ namespace GameplayElements.Data.Entities.Monsters
             if (IsDead) return;
 
             speedMultiplier = 1.0f;
-
-            Vector2 newPos = Position;
-            int dirX = 0;
-            int dirY = 0;
+            newPos = Position;
+            dirX = 0;
+            dirY = 0;
 
             if (attackCoolDownTicks > 0)
                 attackCoolDownTicks--;
@@ -82,45 +85,7 @@ namespace GameplayElements.Data.Entities.Monsters
             {
                 case AiState.ROAMING:   // If the player has not been found, move randomly
                     {
-                        if (canMove)
-                        {
-                            movementTimer = rand.Next(250) + 1;
-                            movementDir = rand.Next(4);
-                            canMove = false;
-                        }
-
-                        direction = movementDir;
-
-                        if (movementTimer < movementTimerMax)
-                        {
-                            switch (movementDir)
-                            {
-                                case 0:
-                                    dirY--;
-                                    break;
-                                case 1:
-                                    dirY++;
-                                    break;
-                                case 2:
-                                    dirX--;
-                                    break;
-                                case 3:
-                                    dirX++;
-                                    break;
-                            }
-
-                            movementTimer++;
-                            isMoving = true;
-                        }
-                        else
-                        {
-                            isMoving = false;
-                            if (rand.NextDouble() > 0.9)
-                                canMove = true;
-                        }
-
-                        newPos = Position + new Vector2(dirX * speed * speedMultiplier,
-                             dirY * speed * speedMultiplier);
+                        Roam();
                         break;
                     }
                 case AiState.TARGETTING:    // If the player HAS been found, move torwards it and sprint
@@ -165,6 +130,50 @@ namespace GameplayElements.Data.Entities.Monsters
                 return Vector2.Zero;
 
             return path.Count > 2 ? path[1] : path[0];
+        }
+
+
+        private void Roam()
+        {
+            if (canMove)
+            {
+                movementTimer = rand.Next(250) + 1;
+                movementDir = rand.Next(4);
+                canMove = false;
+            }
+
+            direction = movementDir;
+
+            if (movementTimer < movementTimerMax)
+            {
+                switch (movementDir)
+                {
+                    case 0:
+                        dirY--;
+                        break;
+                    case 1:
+                        dirY++;
+                        break;
+                    case 2:
+                        dirX--;
+                        break;
+                    case 3:
+                        dirX++;
+                        break;
+                }
+
+                movementTimer++;
+                isMoving = true;
+            }
+            else
+            {
+                isMoving = false;
+                if (rand.NextDouble() > 0.9)
+                    canMove = true;
+            }
+
+            newPos = Position + new Vector2(dirX * speed * speedMultiplier,
+                 dirY * speed * speedMultiplier);
         }
     }
 }

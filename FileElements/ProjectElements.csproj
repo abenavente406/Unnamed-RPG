@@ -71,10 +71,6 @@
       <Project>{0FC0A4DE-BC3D-4B16-9C78-6AB679C0BC3D}</Project>
       <Name>GameHelperLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RaisingStudio.Xna.Graphics\RaisingStudio.Xna.Graphics.csproj">
-      <Project>{4F3FCA8C-1050-4286-AC21-B06578BE5D12}</Project>
-      <Name>RaisingStudio.Xna.Graphics</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

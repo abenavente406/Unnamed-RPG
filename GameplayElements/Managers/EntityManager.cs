@@ -42,7 +42,11 @@ namespace GameplayElements.Managers
             UpdatePlayer(gameTime);
             UpdatePassives(gameTime);
             UpdateNpcs(gameTime);
-            UpdateMonsters(gameTime);
+
+            if (!player.IsTalking)
+            {
+                UpdateMonsters(gameTime);
+            }
         }
 
         public void UpdatePlayer(GameTime gameTime)

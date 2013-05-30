@@ -6,7 +6,6 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using RaisingStudio.Xna.Graphics;
 using ProjectElements.IO;
 using Microsoft.Xna.Framework.Audio;
 
@@ -23,9 +22,7 @@ namespace ProjectElements.Data
         public static int GameWidth = 960;
         public static int GameHeight = 544;
         public static bool isFullScreen = false;
-
-        public static DrawingBatch Drawer;
-
+        
         public static SaveData cachedSave = null;   // The most recent save
 
         public static SaveDataParser parser;
@@ -33,6 +30,7 @@ namespace ProjectElements.Data
 
         public static SoundEffect guiBeep;
         public static SoundEffect guiSelect;
+        public static SpriteFont smallFont;
 
         public static bool DeveloperMode = true;
 
@@ -45,7 +43,6 @@ namespace ProjectElements.Data
         {
             Graphics = graphics;
             Content = content;
-            Drawer = new DrawingBatch(graphics.GraphicsDevice);
 
             parser = new SaveDataParser();  // Initialize the save data parser... duh right?
 
@@ -63,6 +60,8 @@ namespace ProjectElements.Data
 
             guiBeep = Content.Load<SoundEffect>("Sounds\\gui_beep");      // Basic UI sound when "Up" or "Down" are pressed
             guiSelect = Content.Load<SoundEffect>("Sounds\\gui_select");  // Basic UI sound when "Enter" is pressed
+
+            smallFont = content.Load<SpriteFont>("Fonts\\dialogFont");
         }
     }
 }

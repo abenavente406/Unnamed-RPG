@@ -39,8 +39,8 @@ namespace GameplayElements.PathFinding
 
         public Pathfinder(Level map)
         {
-            levelWidth = map.widthInTiles;
-            levelHeight = map.heightInTiles;
+            levelWidth = map.WidthInTiles;
+            levelHeight = map.HeightInTiles;
 
             searchNodes = new SearchNode[levelWidth, levelHeight];
             InitializeSearchNodes(map);
